@@ -84,13 +84,11 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;CHRISTMASLIGHTSCONTROLLER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -100,13 +98,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;CHRISTMASLIGHTSCONTROLLER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -116,7 +112,6 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -124,7 +119,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;CHRISTMASLIGHTSCONTROLLER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -136,7 +130,6 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -144,7 +137,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;CHRISTMASLIGHTSCONTROLLER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -155,17 +147,113 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationManager.h" />
+    <ClInclude Include="AbstractLedStrip.h" />
+    <ClInclude Include="animation\Animation.h" />
+    <ClInclude Include="animation\CenterRun.h" />
+    <ClInclude Include="animation\CollEnd.h" />
+    <ClInclude Include="animation\CollideOne.h" />
+    <ClInclude Include="animation\CollMdl.h" />
+    <ClInclude Include="animation\ColorSwing.h" />
+    <ClInclude Include="animation\ColorWalk.h" />
+    <ClInclude Include="animation\ColorWave.h" />
+    <ClInclude Include="animation\ColorWipe.h" />
+    <ClInclude Include="animation\Drop.h" />
+    <ClInclude Include="animation\EvenOdd.h" />
+    <ClInclude Include="animation\FlashSeven.h" />
+    <ClInclude Include="animation\Interference.h" />
+    <ClInclude Include="animation\LightHouse.h" />
+    <ClInclude Include="animation\LightUp.h" />
+    <ClInclude Include="animation\MergeOne.h" />
+    <ClInclude Include="animation\MergeWave.h" />
+    <ClInclude Include="animation\NeoFire.h" />
+    <ClInclude Include="animation\RainBlend.h" />
+    <ClInclude Include="animation\Rainbow.h" />
+    <ClInclude Include="animation\RainCycle.h" />
+    <ClInclude Include="animation\RainFull.h" />
+    <ClInclude Include="animation\RandomCreep.h" />
+    <ClInclude Include="animation\RandomDrops.h" />
+    <ClInclude Include="animation\RandomFade.h" />
+    <ClInclude Include="animation\RandomFill.h" />
+    <ClInclude Include="animation\ShineFlash.h" />
+    <ClInclude Include="animation\ShineSeven.h" />
+    <ClInclude Include="animation\SingleColorSwing.h" />
+    <ClInclude Include="animation\SingleWave.h" />
+    <ClInclude Include="animation\SolitonCreep.h" />
+    <ClInclude Include="animation\Sparks.h" />
+    <ClInclude Include="animation\Toward.h" />
+    <ClInclude Include="animation\TowardRain.h" />
+    <ClInclude Include="animation\WalkSeven.h" />
+    <ClInclude Include="animation\Worms.h" />
+    <ClInclude Include="BlendManipulations.h" />
+    <ClInclude Include="BrightnessManipulation.h" />
+    <ClInclude Include="clearance\Clearance.h" />
+    <ClInclude Include="clearance\ClearFade.h" />
+    <ClInclude Include="clearance\ClearFromCenter.h" />
+    <ClInclude Include="clearance\ClearHalf.h" />
+    <ClInclude Include="clearance\ClearSide.h" />
+    <ClInclude Include="clearance\EatFromCenter.h" />
+    <ClInclude Include="ColorSuperposition.h" />
+    <ClInclude Include="Crawl.h" />
+    <ClInclude Include="Shuffle.h" />
+    <ClInclude Include="Helper.h" />
+    <ClInclude Include="SimulatedLedStrip.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="pch.h" />
+    <ClInclude Include="LightsController.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationManager.cpp" />
+    <ClCompile Include="animation\Animation.cpp" />
+    <ClCompile Include="animation\CenterRun.cpp" />
+    <ClCompile Include="animation\CollEnd.cpp" />
+    <ClCompile Include="animation\CollideOne.cpp" />
+    <ClCompile Include="animation\CollMdl.cpp" />
+    <ClCompile Include="animation\ColorSwing.cpp" />
+    <ClCompile Include="animation\ColorWalk.cpp" />
+    <ClCompile Include="animation\ColorWave.cpp" />
+    <ClCompile Include="animation\ColorWipe.cpp" />
+    <ClCompile Include="animation\EvenOdd.cpp" />
+    <ClCompile Include="animation\FlashSeven.cpp" />
+    <ClCompile Include="animation\Interference.cpp" />
+    <ClCompile Include="animation\LightHouse.cpp" />
+    <ClCompile Include="animation\LightUp.cpp" />
+    <ClCompile Include="animation\MergeOne.cpp" />
+    <ClCompile Include="animation\MergeWave.cpp" />
+    <ClCompile Include="animation\NeoFire.cpp" />
+    <ClCompile Include="animation\RainBlend.cpp" />
+    <ClCompile Include="animation\Rainbow.cpp" />
+    <ClCompile Include="animation\RainCycle.cpp" />
+    <ClCompile Include="animation\RainFull.cpp" />
+    <ClCompile Include="animation\RandomCreep.cpp" />
+    <ClCompile Include="animation\RandomDrops.cpp" />
+    <ClCompile Include="animation\RandomFade.cpp" />
+    <ClCompile Include="animation\RandomFill.cpp" />
+    <ClCompile Include="animation\ShineFlash.cpp" />
+    <ClCompile Include="animation\ShineSeven.cpp" />
+    <ClCompile Include="animation\SingleColorSwing.cpp" />
+    <ClCompile Include="animation\SingleWave.cpp" />
+    <ClCompile Include="animation\SolitonCreep.cpp" />
+    <ClCompile Include="animation\Sparks.cpp" />
+    <ClCompile Include="animation\Toward.cpp" />
+    <ClCompile Include="animation\TowardRain.cpp" />
+    <ClCompile Include="animation\WalkSeven.cpp" />
+    <ClCompile Include="animation\Worms.cpp" />
+    <ClCompile Include="BlendManipulations.cpp" />
+    <ClCompile Include="BrightnessManipulation.cpp" />
+    <ClCompile Include="clearance\Clearance.cpp" />
+    <ClCompile Include="clearance\ClearFade.cpp" />
+    <ClCompile Include="clearance\ClearFromCenter.cpp" />
+    <ClCompile Include="clearance\ClearHalf.cpp" />
+    <ClCompile Include="clearance\ClearSide.cpp" />
+    <ClCompile Include="clearance\EatFromCenter.cpp" />
+    <ClCompile Include="framework.cpp" />
+    <ClCompile Include="ColorSuperposition.cpp" />
+    <ClCompile Include="Crawl.cpp" />
+    <ClCompile Include="Shuffle.cpp" />
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="Helper.cpp" />
+    <ClCompile Include="LightsController.cpp" />
+    <ClCompile Include="SimulatedLedStrip.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -18,7 +18,160 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="LightsController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SimulatedLedStrip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\Animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shuffle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clearance\Clearance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\ColorWipe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractLedStrip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\ColorWalk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\ColorWave.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Crawl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BrightnessManipulation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BlendManipulations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorSuperposition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\RandomCreep.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\Rainbow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\RainCycle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\RainFull.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\LightUp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\Sparks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\RandomFade.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\CenterRun.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\ShineSeven.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\WalkSeven.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\FlashSeven.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\MergeOne.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\MergeWave.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\CollideOne.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\NeoFire.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\EvenOdd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\CollMdl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\CollEnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\RainBlend.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\ColorSwing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\SingleColorSwing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\RandomFill.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\ShineFlash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\SingleWave.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\Worms.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\Interference.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\Toward.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\TowardRain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\LightHouse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\RandomDrops.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\Drop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\SolitonCreep.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clearance\ClearSide.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clearance\ClearFromCenter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clearance\ClearFade.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clearance\EatFromCenter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clearance\ClearHalf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -26,7 +179,157 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="LightsController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SimulatedLedStrip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Helper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shuffle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clearance\Clearance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\ColorWipe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\ColorWalk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\ColorWave.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Crawl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BrightnessManipulation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlendManipulations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorSuperposition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\RandomCreep.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\Rainbow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\RainCycle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\RainFull.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\LightUp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\Sparks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\RandomFade.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\CenterRun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\ShineSeven.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\WalkSeven.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\FlashSeven.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\MergeOne.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\MergeWave.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\CollideOne.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\NeoFire.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\EvenOdd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\CollMdl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\CollEnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\RainBlend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\ColorSwing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\SingleColorSwing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\RandomFill.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\ShineFlash.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\SingleWave.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\Worms.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\Interference.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\Toward.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\TowardRain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\LightHouse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\RandomDrops.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\SolitonCreep.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clearance\ClearSide.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clearance\ClearFromCenter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clearance\ClearFade.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clearance\EatFromCenter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clearance\ClearHalf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

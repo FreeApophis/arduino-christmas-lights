@@ -1,0 +1,40 @@
+#include "MergeWave.h"
+#include "../Helper.h"
+
+void MergeWave::init()
+{
+    l = 0;
+    r = _strip->numPixels() - 1;
+    index = random(256);
+    len = random(8, 17);
+    _strip->clear();
+}
+
+void MergeWave::show()
+{
+    if (l < r) {
+        _strip->setPixelColor(l, ColorFromColorWheel(l & 255));
+        if (l > len)
+            _strip->setPixelColor(l - len, 0);
+        _strip->setPixelColor(r, ColorFromColorWheel((index + r) & 255));
+        if ((r + len) > int(_strip->numPixels()))
+            _strip->setPixelColor(r + len, 0);
+    } else {
+        uint32_t c = _strip->getPixelColor(l);
+        c |= ColorFromColorWheel(l & 255);
+        _strip->setPixelColor(l, c);
+        c = _strip->getPixelColor(r);
+        c |= ColorFromColorWheel((index + r) & 255);
+        _strip->setPixelColor(r, c);
+        _strip->setPixelColor(l - len, 0);
+        _strip->setPixelColor(r + len, 0);
+    }
+    --r;
+    ++l;
+    index += 4;
+    if (r < 0) { // Force the strip clerance
+        needsClear = true;
+        complete = true;
+    }
+    complete = false;
+}
