@@ -25,7 +25,7 @@ void CollMdl::show()
         r++;
         if (l < 0) {
             init();
-            complete = true;
+            _complete = true;
         }
         return;
     }
@@ -61,7 +61,7 @@ void CollMdl::show()
     }
     l++;
     r--;
-    complete = false;
+    _complete = false;
 }
 
 void CollMdl::newColors()

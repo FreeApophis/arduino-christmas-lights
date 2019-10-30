@@ -7,31 +7,13 @@
 
 class AnimationManager : public Shuffle {
   public:
-    AnimationManager(Animation* animations[], byte a_size, Clearance* c[], byte clr_size, AbstractLedStrip* strip) :
-        Shuffle(a_size),
-        _animations(animations)
-    {
-        clearance = c;
-        num_clr = clr_size;
-        stp = 0;
-        do_clear = false;
-        aIndex = 0;
-    }
+    AnimationManager(Animation* animations[], byte a_size, Clearance* c[], byte clr_size, AbstractLedStrip* strip);
     void init();
     void show();
-    void menu()
-    {
-        stp_period--;
-        if (stp_period < 1)
-            stp_period = 1;
-    }
-    void menu_l() { initClear(); }
-    void incr()
-    {
-        stp_period++;
-        if (stp_period > 20)
-            stp_period = 20;
-    }
+    void menu();
+    void menu_l();
+
+    void incr();
 
   private:
     SimulatedLedStrip* _strip;

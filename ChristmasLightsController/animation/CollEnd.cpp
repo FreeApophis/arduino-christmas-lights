@@ -40,8 +40,8 @@ void CollEnd::show()
         ml--;
         mr++;
         if (ml < 0) {
-            needsClear = true; // Force the strip clerance
-            complete = true;
+            _needsClear = true; // Force the strip clerance
+            _complete = true;
             return;
         }
         newColors();
@@ -49,7 +49,7 @@ void CollEnd::show()
     }
     l++;
     r--;
-    complete = false;
+    _complete = false;
 }
 
 void CollEnd::newColors()

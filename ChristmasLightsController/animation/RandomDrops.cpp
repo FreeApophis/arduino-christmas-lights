@@ -31,7 +31,7 @@ void RandomDrops::show()
         uint32_t c1 = _strip->getPixelColor(p + 1);
         BrightnessManipulation::change(p + 1, -64);
         uint32_t c2 = _strip->getPixelColor(p);
-        c2 = ColorSuperposition::add(c1, c2);
+        c2 = ColorSuperPosition(c1, c2);
         _strip->setPixelColor(p, c2);
 
         p = dr[i].pos + dr[i].tm;
@@ -41,7 +41,7 @@ void RandomDrops::show()
         if (dr[i].tm > 1)
             BrightnessManipulation::change(p - 1, -32);
         c2 = _strip->getPixelColor(p);
-        c2 = ColorSuperposition::add(c1, c2);
+        c2 = ColorSuperPosition(c1, c2);
         _strip->setPixelColor(p, c2);
 
         BrightnessManipulation::change(dr[i].pos, -64);

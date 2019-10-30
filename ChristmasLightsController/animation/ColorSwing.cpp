@@ -41,10 +41,10 @@ void ColorSwing::show()
         Crawl::fwd = !Crawl::fwd;
         index = _strip->numPixels() - len - 1;
         if (len >= int(_strip->numPixels())) {
-            needsClear = true; // Force the strip clerance
-            complete = true;
+            _needsClear = true; // Force the strip clerance
+            _complete = true;
             return;
         }
     }
-    complete = false;
+    _complete = false;
 }

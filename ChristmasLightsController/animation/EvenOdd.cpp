@@ -24,9 +24,9 @@ void EvenOdd::show()
             r = _strip->numPixels() - 1; // r is Odd
         } else {
             init();
-            complete = true;
+            _complete = true;
             return;
         }
     }
-    complete = false;
+    _complete = false;
 }

@@ -37,7 +37,7 @@ void Worms::show()
             --wi;
             continue;
         } else {
-            c = ColorSuperposition::add(c, w[wi].color);
+            c = ColorSuperPosition(c, w[wi].color);
             w[wi].pos = np;
             _strip->setPixelColor(np, c);
         }

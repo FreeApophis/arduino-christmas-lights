@@ -33,8 +33,8 @@ void MergeWave::show()
     ++l;
     index += 4;
     if (r < 0) { // Force the strip clerance
-        needsClear = true;
-        complete = true;
+        _needsClear = true;
+        _complete = true;
     }
-    complete = false;
+    _complete = false;
 }

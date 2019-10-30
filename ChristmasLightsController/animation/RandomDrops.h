@@ -2,11 +2,10 @@
 
 #include "Animation.h"
 #include "../BrightnessManipulation.h"
-#include "../ColorSuperposition.h"
 #include "Drop.h"
 
 // Random dropped color dot fading out from epicenter
-class RandomDrops : public BrightnessManipulation, public ColorSuperposition, public Animation {
+class RandomDrops : public BrightnessManipulation, public Animation {
   public:
     RandomDrops(AbstractLedStrip* strip);
 

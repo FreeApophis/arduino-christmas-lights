@@ -87,9 +87,9 @@ void SingleWave::show()
         ++mode;
         if (mode >= 3) {
             init();
-            complete = true;
+            _complete = true;
             return;
         }
     }
-    complete = false;
+    _complete = false;
 }

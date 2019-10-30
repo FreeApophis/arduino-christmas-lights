@@ -2,11 +2,10 @@
 
 #include "Animation.h"
 #include "../BrightnessManipulation.h"
-#include "../ColorSuperposition.h"
 #include "../framework.h"
 
 // Several worms are moving randomly
-class Worms : public BrightnessManipulation, public ColorSuperposition, public Animation {
+class Worms : public BrightnessManipulation, public Animation {
   public:
     Worms(AbstractLedStrip* strip);
     virtual void init();

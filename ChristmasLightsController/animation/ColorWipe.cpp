@@ -28,17 +28,17 @@ void ColorWipe::show()
     if (fwd) {
         if (index > int(_strip->numPixels())) { // Start new sequence with the new color
             init();
-            complete = true;
+            _complete = true;
             return;
         }
         _strip->setPixelColor(index++, color);
     } else {
         if (index < 0) { // Start new sequence with the new color
             init();
-            complete = true;
+            _complete = true;
             return;
         }
         _strip->setPixelColor(index--, color);
     }
-    complete = false;
+    _complete = false;
 }

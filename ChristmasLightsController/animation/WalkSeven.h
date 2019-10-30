@@ -3,11 +3,10 @@
 
 #include "Animation.h"
 #include "../BrightnessManipulation.h"
-#include "../ColorSuperposition.h"
 #include "../framework.h"
 
 //---------------------------------------------- Rapid walking by the different colors -----------------------------------
-class WalkSeven : public BrightnessManipulation, public ColorSuperposition, public Animation {
+class WalkSeven : public BrightnessManipulation, public Animation {
   public:
     WalkSeven(AbstractLedStrip* strip, byte duration);
     virtual void init();

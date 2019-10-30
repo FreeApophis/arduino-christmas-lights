@@ -19,19 +19,19 @@ void MergeOne::show()
         _strip->setPixelColor(r, cr);
     } else {
         uint32_t c = _strip->getPixelColor(l);
-        c = ColorSuperposition::add(c, cl);
+        c = ColorSuperPosition(c, cl);
         _strip->setPixelColor(l, c);
         c = _strip->getPixelColor(r);
-        c = ColorSuperposition::add(c, cr);
+        c = ColorSuperPosition(c, cr);
         _strip->setPixelColor(r, c);
     }
 
     --r;
     ++l;
     if (r < 0) { // Force the strip clerance
-        needsClear = true;
-        complete = true;
+        _needsClear = true;
+        _complete = true;
         return;
     }
-    complete = false;
+    _complete = false;
 }

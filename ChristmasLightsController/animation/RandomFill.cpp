@@ -27,7 +27,7 @@ void RandomFill::show()
                 _strip->clear();
                 w += 71;
                 init();
-                complete = true;
+                _complete = true;
                 return;
             } else {
                 clr = true;
@@ -38,7 +38,7 @@ void RandomFill::show()
             newDot(clr);
         }
     }
-    complete = false;
+    _complete = false;
 }
 
 void RandomFill::newDot(bool clr)

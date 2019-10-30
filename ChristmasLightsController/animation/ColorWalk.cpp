@@ -6,8 +6,6 @@
 ColorWalk::ColorWalk(AbstractLedStrip* strip, byte duration) :
     Animation(strip, duration, 4, 12)
 {
-    minPeriod = 4;
-    maxPeriod = 12;
 }
 
 void ColorWalk::init()

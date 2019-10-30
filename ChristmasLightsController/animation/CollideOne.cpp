@@ -32,7 +32,7 @@ void CollideOne::show()
         ++r;
         if (l < 0) {
             init();
-            complete = true;
+            _complete = true;
             return;
         }
     } else {
@@ -45,5 +45,5 @@ void CollideOne::show()
             boom = true;
         }
     }
-    complete = false;
+    _complete = false;
 }

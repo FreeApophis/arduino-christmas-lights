@@ -25,7 +25,7 @@ void WalkSeven::show()
     w += 71;
     for (int i = curs; i < n; i += period) {
         uint32_t c2 = _strip->getPixelColor(i);
-        c2 = ColorSuperposition::add(c1, c2);
+        c2 = ColorSuperPosition(c1, c2);
         _strip->setPixelColor(i, c2);
     }
 

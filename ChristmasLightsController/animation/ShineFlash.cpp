@@ -63,11 +63,11 @@ void ShineFlash::show()
         if (mode >= 3) {
             startNewColor();
             mode = 0;
-            complete = true;
+            _complete = true;
             return;
         }
     }
-    complete = false;
+    _complete = false;
 }
 
 void ShineFlash::startNewColor()

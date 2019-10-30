@@ -48,9 +48,9 @@ void SingleColorSwing::show()
         }
     }
     if (len >= int(_strip->numPixels())) {
-        needsClear = true; // Force the strip clerance
-        complete = true;
+        _needsClear = true; // Force the strip clerance
+        _complete = true;
         return;
     }
-    complete = false;
+    _complete = false;
 }
