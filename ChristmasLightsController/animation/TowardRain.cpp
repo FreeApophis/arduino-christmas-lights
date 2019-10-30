@@ -6,7 +6,7 @@ TowardRain::TowardRain(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void TowardRain::show()
+void TowardRain::Show()
 {
     int n = _strip->numPixels();
     for (int i = n - 2; i >= 2; i -= 2) {

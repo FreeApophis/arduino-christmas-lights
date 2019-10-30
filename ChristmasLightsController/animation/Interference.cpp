@@ -8,14 +8,14 @@ Interference::Interference(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void Interference::init()
+void Interference::Init()
 {
     active = 0;
     tm = 0;
     add();
 }
 
-void Interference::show()
+void Interference::Show()
 {
     int n = _strip->numPixels();
 

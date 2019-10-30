@@ -8,8 +8,8 @@
 class Worms : public BrightnessManipulation, public Animation {
   public:
     Worms(AbstractLedStrip* strip);
-    virtual void init();
-    virtual void show();
+    virtual void Init();
+    virtual void Show();
 
   private:
     void add();

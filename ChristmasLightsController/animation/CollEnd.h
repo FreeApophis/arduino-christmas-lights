@@ -8,8 +8,8 @@
 class CollEnd : public BlendManipulations, public Animation {
   public:
     CollEnd(AbstractLedStrip* strip, byte duration);
-    virtual void init();
-    virtual void show();
+    virtual void Init();
+    virtual void Show();
 
   private:
     void newColors();

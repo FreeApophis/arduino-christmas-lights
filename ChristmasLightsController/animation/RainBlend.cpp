@@ -7,7 +7,7 @@ RainBlend::RainBlend(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void RainBlend::show()
+void RainBlend::Show()
 {
     if (index < int(_strip->numPixels())) {
         _strip->setPixelColor(index, ColorFromColorWheel(((index * 256 / _strip->numPixels())) & 255));

@@ -7,7 +7,7 @@ FlashSeven::FlashSeven(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void FlashSeven::init()
+void FlashSeven::Init()
 {
     w = random(256);
     fwd = random(2);
@@ -16,7 +16,7 @@ void FlashSeven::init()
     curs = 0;
 }
 
-void FlashSeven::show()
+void FlashSeven::Show()
 {
     BrightnessManipulation::changeAll(-64);
 

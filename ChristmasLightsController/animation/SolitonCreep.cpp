@@ -10,7 +10,7 @@ SolitonCreep::SolitonCreep(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void SolitonCreep::init()
+void SolitonCreep::Init()
 {
     w = random(256);
     Crawl::fwd = random(2);
@@ -18,7 +18,7 @@ void SolitonCreep::init()
     newSoliton();
 }
 
-void SolitonCreep::show()
+void SolitonCreep::Show()
 {
     Crawl::step();
 

@@ -10,8 +10,8 @@ class MergeWave : public Animation {
         Animation(strip, 2, 3, 20)
     {
     }
-    virtual void init();
-    virtual void show();
+    virtual void Init();
+    virtual void Show();
 
   private:
     int l, r;

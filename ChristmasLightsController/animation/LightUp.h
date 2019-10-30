@@ -9,13 +9,13 @@ class LightUp : public BrightnessManipulation, public Animation {
   public:
     LightUp(AbstractLedStrip* strip, byte duration);
 
-    virtual void init()
+    virtual void Init()
     {
         sp = 1;
         inc = sp;
         newColor();
     }
-    virtual void show();
+    virtual void Show();
 
   private:
     void newColor();

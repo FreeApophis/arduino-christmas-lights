@@ -8,7 +8,7 @@ RandomFade::RandomFade(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void RandomFade::show()
+void RandomFade::Show()
 {
     BrightnessManipulation::changeAll(-16);
     byte newDot = random(1, 5);

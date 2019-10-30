@@ -8,7 +8,7 @@ CollMdl::CollMdl(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void CollMdl::init()
+void CollMdl::Init()
 {
     ml = (_strip->numPixels() - 1) / 2;
     mr = ml + 1;
@@ -16,7 +16,7 @@ void CollMdl::init()
     clr = false;
 }
 
-void CollMdl::show()
+void CollMdl::Show()
 {
     if (clr) {
         _strip->setPixelColor(l, 0);
@@ -24,7 +24,7 @@ void CollMdl::show()
         l--;
         r++;
         if (l < 0) {
-            init();
+            Init();
             _complete = true;
         }
         return;

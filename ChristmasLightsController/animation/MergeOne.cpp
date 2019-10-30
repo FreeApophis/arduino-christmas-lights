@@ -1,7 +1,7 @@
 #include "MergeOne.h"
 #include "../Helper.h"
 
-void MergeOne::init()
+void MergeOne::Init()
 {
     l = 0;
     r = _strip->numPixels();
@@ -12,7 +12,7 @@ void MergeOne::init()
     _strip->clear();
 }
 
-void MergeOne::show()
+void MergeOne::Show()
 {
     if (l < r) {
         _strip->setPixelColor(l, cl);

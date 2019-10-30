@@ -36,7 +36,7 @@ void AnimationManager::init()
 
     _strip->clear();
     a->SetNeedsClear(false);
-    a->init();
+    a->Init();
     _strip->show();
     a->SetNeedsClear(false);
 }
@@ -71,7 +71,7 @@ void AnimationManager::show()
     } else {
         if (a->NeedsClear())
             initClear();
-        a->show();
+        a->Show();
     }
     _strip->show();
 }

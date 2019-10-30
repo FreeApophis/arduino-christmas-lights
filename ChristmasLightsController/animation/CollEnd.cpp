@@ -8,14 +8,14 @@ CollEnd::CollEnd(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void CollEnd::init()
+void CollEnd::Init()
 {
     ml = _strip->numPixels() - 1;
     mr = 0;
     newColors();
 }
 
-void CollEnd::show()
+void CollEnd::Show()
 {
     // blend colors in the both ends
     if (mr > 1) {

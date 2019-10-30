@@ -8,7 +8,7 @@ Sparks::Sparks(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void Sparks::show()
+void Sparks::Show()
 {
     uint32_t c = ColorFromColorWheel(random(265));
     for (char i = 7; i >= 1; --i) {

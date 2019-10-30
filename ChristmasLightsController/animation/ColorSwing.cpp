@@ -7,7 +7,7 @@ ColorSwing::ColorSwing(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void ColorSwing::init()
+void ColorSwing::Init()
 {
     len = 1;
     rnd = random(2);
@@ -22,7 +22,7 @@ void ColorSwing::init()
     index = _strip->numPixels() - len - 1;
 }
 
-void ColorSwing::show()
+void ColorSwing::Show()
 {
     Crawl::step();
     --index;

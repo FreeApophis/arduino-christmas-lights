@@ -8,8 +8,8 @@
 class SolitonCreep : public Crawl, public Animation {
   public:
     SolitonCreep(AbstractLedStrip* strip, byte duration);
-    virtual void init();
-    virtual void show();
+    virtual void Init();
+    virtual void Show();
 
   private:
     void newSoliton();

@@ -9,8 +9,8 @@ class Animation {
 
     Animation(AbstractLedStrip* strip, byte duration, byte minPeriod, byte maxPeriod);
 
-    virtual void init() = 0;
-    virtual void show() = 0;
+    virtual void Init() = 0;
+    virtual void Show() = 0;
 
     bool IsComplete() const;
 
@@ -26,7 +26,7 @@ class Animation {
     AbstractLedStrip* _strip;
     bool _needsClear; // Whether the strip have to be cleaned for the next loop
     bool _complete;   // Whether the animation can be changed to the next one
-private:
+  private:
     byte _minPeriod; // The minimum period in tenth of second to show the stage
     byte _maxPeriod; // The maximum period in tenth of second to show the stage
     byte _showTime;  // The minimum time to show the sequence in 10-secons intervals

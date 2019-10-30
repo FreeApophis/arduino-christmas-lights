@@ -9,8 +9,8 @@ class RandomDrops : public BrightnessManipulation, public Animation {
   public:
     RandomDrops(AbstractLedStrip* strip);
 
-    virtual void init();
-    virtual void show();
+    virtual void Init();
+    virtual void Show();
 
   private:
     void add();

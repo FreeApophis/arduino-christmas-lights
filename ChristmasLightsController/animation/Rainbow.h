@@ -9,12 +9,12 @@ class Rainbow : public BrightnessManipulation, public Animation {
   public:
     Rainbow(AbstractLedStrip* strip, byte duration);
 
-    virtual void init()
+    virtual void Init()
     {
         index = 0;
         rdy = false;
     }
-    virtual void show();
+    virtual void Show();
 
   private:
     byte index;

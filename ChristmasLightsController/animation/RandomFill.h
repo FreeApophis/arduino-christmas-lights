@@ -8,8 +8,8 @@
 class RandomFill : public BrightnessManipulation, public Animation {
   public:
     RandomFill(AbstractLedStrip* strip, byte duration);
-    virtual void init();
-    virtual void show();
+    virtual void Init();
+    virtual void Show();
 
   private:
     void newDot(bool clr);

@@ -8,13 +8,13 @@ RandomDrops::RandomDrops(AbstractLedStrip* strip) :
 {
 }
 
-void RandomDrops::init()
+void RandomDrops::Init()
 {
     num = 0;
     add();
 }
 
-void RandomDrops::show()
+void RandomDrops::Show()
 {
     int n = _strip->numPixels();
     for (byte i = 0; i < num; ++i) {

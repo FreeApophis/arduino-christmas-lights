@@ -8,8 +8,8 @@
 class FlashSeven : public BrightnessManipulation, public Animation {
   public:
     FlashSeven(AbstractLedStrip* strip, byte duration);
-    virtual void init();
-    virtual void show();
+    virtual void Init();
+    virtual void Show();
 
   private:
     char curs;

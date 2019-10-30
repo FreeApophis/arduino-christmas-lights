@@ -6,7 +6,7 @@ LightUp::LightUp(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void LightUp::show()
+void LightUp::Show()
 {
     bool finish = BrightnessManipulation::changeAll(inc);
     if (finish) {

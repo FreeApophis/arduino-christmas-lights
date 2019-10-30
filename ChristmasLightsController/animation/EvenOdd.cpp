@@ -1,7 +1,7 @@
 #include "EvenOdd.h"
 #include "../Helper.h"
 
-void EvenOdd::init()
+void EvenOdd::Init()
 {
     byte indx = random(256);
     cl = ColorFromColorWheel(indx);
@@ -11,7 +11,7 @@ void EvenOdd::init()
     r = _strip->numPixels() - 1; // r is Odd
 }
 
-void EvenOdd::show()
+void EvenOdd::Show()
 {
     _strip->setPixelColor(l, cl);
     _strip->setPixelColor(r, cr);
@@ -23,7 +23,7 @@ void EvenOdd::show()
             l = 0;
             r = _strip->numPixels() - 1; // r is Odd
         } else {
-            init();
+            Init();
             _complete = true;
             return;
         }

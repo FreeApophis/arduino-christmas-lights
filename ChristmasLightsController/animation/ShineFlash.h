@@ -8,8 +8,8 @@
 class ShineFlash : public BrightnessManipulation, public Animation {
   public:
     ShineFlash(AbstractLedStrip* strip, byte duration);
-    virtual void init();
-    virtual void show();
+    virtual void Init();
+    virtual void Show();
 
   private:
     void startNewColor();

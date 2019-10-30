@@ -8,8 +8,8 @@
 class NeoFire : public BlendManipulations, public Animation {
   public:
     NeoFire(AbstractLedStrip* strip, byte duration);
-    virtual void init();
-    virtual void show();
+    virtual void Init();
+    virtual void Show();
 
   private:
     uint32_t color;

@@ -7,7 +7,7 @@ Rainbow::Rainbow(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void Rainbow::show()
+void Rainbow::Show()
 {
     if (!rdy) {
         rdy = true;

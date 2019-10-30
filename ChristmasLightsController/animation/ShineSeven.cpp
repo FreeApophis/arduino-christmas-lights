@@ -8,7 +8,7 @@ ShineSeven::ShineSeven(AbstractLedStrip* strip, byte duration) :
 {
 }
 
-void ShineSeven::init()
+void ShineSeven::Init()
 {
     curs = 0;
     w = random(256);
@@ -16,7 +16,7 @@ void ShineSeven::init()
     startNewColor();
 }
 
-void ShineSeven::show()
+void ShineSeven::Show()
 {
     int n = _strip->numPixels();
     bool finish = true;

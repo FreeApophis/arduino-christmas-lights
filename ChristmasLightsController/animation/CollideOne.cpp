@@ -7,7 +7,7 @@ CollideOne::CollideOne(AbstractLedStrip* strip) :
 {
 }
 
-void CollideOne::init()
+void CollideOne::Init()
 {
     l = 0;
     r = _strip->numPixels() - 1;
@@ -19,7 +19,7 @@ void CollideOne::init()
     boom = false;
 }
 
-void CollideOne::show()
+void CollideOne::Show()
 {
     if (boom) {
         _strip->setPixelColor(l, 0xffffff);
@@ -31,7 +31,7 @@ void CollideOne::show()
         --l;
         ++r;
         if (l < 0) {
-            init();
+            Init();
             _complete = true;
             return;
         }

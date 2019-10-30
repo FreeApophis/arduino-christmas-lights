@@ -7,7 +7,7 @@ NeoFire::NeoFire(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void NeoFire::init()
+void NeoFire::Init()
 {
     color = 0;
     byte m = random(3);
@@ -18,7 +18,7 @@ void NeoFire::init()
     color |= c2 << (m * 8);
 }
 
-void NeoFire::show()
+void NeoFire::Show()
 {
     if (pause > 0) {
         --pause;

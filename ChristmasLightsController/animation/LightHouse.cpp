@@ -6,7 +6,7 @@ LightHouse::LightHouse(AbstractLedStrip* strip):
 {
 }
 
-void LightHouse::init()
+void LightHouse::Init()
 {
     uint32_t c = 0xff;
     for (byte i = 0; i <= 4; ++i) {
@@ -20,7 +20,7 @@ void LightHouse::init()
     dlay = sp;
 }
 
-void LightHouse::show()
+void LightHouse::Show()
 {
     BrightnessManipulation::changeAll(-8);
     if (--dlay > 0)

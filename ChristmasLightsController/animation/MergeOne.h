@@ -10,8 +10,8 @@ class MergeOne : public Animation {
         Animation(strip, duration, 8, 30)
     {
     }
-    virtual void init();
-    virtual void show();
+    virtual void Init();
+    virtual void Show();
 
   private:
     uint32_t cl, cr;

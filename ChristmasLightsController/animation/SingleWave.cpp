@@ -7,7 +7,7 @@ SingleWave::SingleWave(AbstractLedStrip* strip):
 {
 }
 
-void SingleWave::init()
+void SingleWave::Init()
 {
     uint32_t c = ColorFromColorWheel(random(256));
     uint32_t r = c & 0xff;
@@ -36,7 +36,7 @@ void SingleWave::init()
     stp = 0;
 }
 
-void SingleWave::show()
+void SingleWave::Show()
 {
     int n = _strip->numPixels();
     bool finish = true;
@@ -86,7 +86,7 @@ void SingleWave::show()
     if (finish) { // The current color has been light fully
         ++mode;
         if (mode >= 3) {
-            init();
+            Init();
             _complete = true;
             return;
         }

@@ -10,8 +10,8 @@ class Interference : public Animation {
 
   public:
     Interference(AbstractLedStrip* strip, byte duration);
-    virtual void init();
-    virtual void show();
+    virtual void Init();
+    virtual void Show();
 
   private:
     void add();

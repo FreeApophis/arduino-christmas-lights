@@ -8,7 +8,7 @@ RandomFill::RandomFill(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void RandomFill::init()
+void RandomFill::Init()
 {
     w = random(256);
     remain = _strip->numPixels();
@@ -16,7 +16,7 @@ void RandomFill::init()
     newDot(clr);
 }
 
-void RandomFill::show()
+void RandomFill::Show()
 {
     char val = 12;
     if (clr)
@@ -26,7 +26,7 @@ void RandomFill::show()
             if (clr) {
                 _strip->clear();
                 w += 71;
-                init();
+                Init();
                 _complete = true;
                 return;
             } else {

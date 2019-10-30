@@ -8,8 +8,8 @@
 class ColorSwing : public Crawl, public Animation {
   public:
     ColorSwing(AbstractLedStrip* strip, byte duration);
-    virtual void init();
-    virtual void show();
+    virtual void Init();
+    virtual void Show();
 
   private:
     int len, index;

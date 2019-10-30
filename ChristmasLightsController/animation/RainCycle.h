@@ -8,12 +8,12 @@ class RainCycle : public BrightnessManipulation, public Animation {
   public:
     RainCycle(AbstractLedStrip* strip, byte duration);
 
-    virtual void init()
+    virtual void Init()
     {
         index = 0;
         rdy = false;
     }
-    virtual void show();
+    virtual void Show();
 
   private:
     byte index;

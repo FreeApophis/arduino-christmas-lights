@@ -7,7 +7,7 @@ Toward::Toward(AbstractLedStrip* strip, byte duration) :
 {
 }
 
-void Toward::show()
+void Toward::Show()
 {
     int n = _strip->numPixels();
     for (int i = n - 2; i >= 2; i -= 2) {

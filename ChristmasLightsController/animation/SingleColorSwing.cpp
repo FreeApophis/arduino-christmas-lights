@@ -7,7 +7,7 @@ SingleColorSwing::SingleColorSwing(AbstractLedStrip* strip):
 {
 }
 
-void SingleColorSwing::init()
+void SingleColorSwing::Init()
 {
     len = 1;
     w = random(256);
@@ -17,7 +17,7 @@ void SingleColorSwing::init()
     index = len;
 }
 
-void SingleColorSwing::show()
+void SingleColorSwing::Show()
 {
     if (fwd) {
         for (int i = 0; i <= index; ++i) {

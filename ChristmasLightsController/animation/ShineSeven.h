@@ -8,8 +8,8 @@
 class ShineSeven : public BrightnessManipulation, public Animation {
   public:
     ShineSeven(AbstractLedStrip* strip, byte duration);
-    virtual void init();
-    virtual void show();
+    virtual void Init();
+    virtual void Show();
 
   private:
     void startNewColor();

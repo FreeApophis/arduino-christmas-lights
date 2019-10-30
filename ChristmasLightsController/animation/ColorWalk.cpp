@@ -8,7 +8,7 @@ ColorWalk::ColorWalk(AbstractLedStrip* strip, byte duration) :
 {
 }
 
-void ColorWalk::init()
+void ColorWalk::Init()
 {
     index = 0;
     w = random(256);
@@ -16,7 +16,7 @@ void ColorWalk::init()
     period = random(10, 30);
 }
 
-void ColorWalk::show()
+void ColorWalk::Show()
 {
     int n = _strip->numPixels();
     if (fwd) {

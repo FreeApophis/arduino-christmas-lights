@@ -8,7 +8,7 @@ RainCycle::RainCycle(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void RainCycle::show()
+void RainCycle::Show()
 {
     if (!rdy) {
         rdy = true;

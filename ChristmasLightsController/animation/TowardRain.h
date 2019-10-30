@@ -7,8 +7,8 @@
 class TowardRain : public Animation {
   public:
     TowardRain(AbstractLedStrip* strip, byte duration);
-    virtual void init() { w = random(256); }
-    virtual void show();
+    virtual void Init() { w = random(256); }
+    virtual void Show();
 
   private:
     byte w;

@@ -8,7 +8,7 @@ ShineFlash::ShineFlash(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void ShineFlash::init()
+void ShineFlash::Init()
 {
     w = random(256);
     mode = 0;
@@ -16,7 +16,7 @@ void ShineFlash::init()
     startNewColor();
 }
 
-void ShineFlash::show()
+void ShineFlash::Show()
 {
     int n = _strip->numPixels();
     bool finish = true;

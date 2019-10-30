@@ -8,7 +8,7 @@ RainFull::RainFull(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void RainFull::show()
+void RainFull::Show()
 {
     if (!rdy) {
         rdy = true;

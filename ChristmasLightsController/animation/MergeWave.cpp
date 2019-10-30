@@ -1,7 +1,7 @@
 #include "MergeWave.h"
 #include "../Helper.h"
 
-void MergeWave::init()
+void MergeWave::Init()
 {
     l = 0;
     r = _strip->numPixels() - 1;
@@ -10,7 +10,7 @@ void MergeWave::init()
     _strip->clear();
 }
 
-void MergeWave::show()
+void MergeWave::Show()
 {
     if (l < r) {
         _strip->setPixelColor(l, ColorFromColorWheel(l & 255));

@@ -7,7 +7,7 @@ CenterRun::CenterRun(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void CenterRun::init()
+void CenterRun::Init()
 {
     color = ColorFromColorWheel(random(256));
     int n = _strip->numPixels();
@@ -15,7 +15,7 @@ void CenterRun::init()
     m = l = r = random(diff + 2) + ((n * 7) >> 4);
 }
 
-void CenterRun::show()
+void CenterRun::Show()
 {
     if (l >= 0)
         _strip->setPixelColor(l, color);

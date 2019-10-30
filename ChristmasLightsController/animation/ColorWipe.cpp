@@ -11,7 +11,7 @@ ColorWipe::ColorWipe(AbstractLedStrip* strip, byte duration) :
     w = random(256);
 }
 
-void ColorWipe::init()
+void ColorWipe::Init()
 {
     const int p = random(2, 4);
     w += p * 16 + 1;
@@ -21,20 +21,20 @@ void ColorWipe::init()
         index = _strip->numPixels() - 1;
 }
 
-void ColorWipe::show()
+void ColorWipe::Show()
 {
     const uint32_t color = ColorFromColorWheel(w);
 
     if (fwd) {
         if (index > int(_strip->numPixels())) { // Start new sequence with the new color
-            init();
+            Init();
             _complete = true;
             return;
         }
         _strip->setPixelColor(index++, color);
     } else {
         if (index < 0) { // Start new sequence with the new color
-            init();
+            Init();
             _complete = true;
             return;
         }

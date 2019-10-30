@@ -9,14 +9,14 @@ ColorWave::ColorWave(AbstractLedStrip* strip, byte duration) :
 {
 }
 
-void ColorWave::init()
+void ColorWave::Init()
 {
     index = 0;
     rdy = false;
     Crawl::fwd = random(2);
 }
 
-void ColorWave::show()
+void ColorWave::Show()
 {
     if (!rdy) {
         rdy = true;

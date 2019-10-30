@@ -7,7 +7,7 @@ WalkSeven::WalkSeven(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void WalkSeven::init()
+void WalkSeven::Init()
 {
     w = random(256);
     fwd = random(2);
@@ -16,7 +16,7 @@ void WalkSeven::init()
     curs = 0;
 }
 
-void WalkSeven::show()
+void WalkSeven::Show()
 {
     BrightnessManipulation::changeAll(-64);
 

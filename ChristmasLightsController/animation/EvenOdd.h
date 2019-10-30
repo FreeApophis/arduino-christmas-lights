@@ -10,8 +10,8 @@ class EvenOdd : public Animation {
         Animation(strip, duration, 10, 20)
     {
     }
-    virtual void init();
-    virtual void show();
+    virtual void Init();
+    virtual void Show();
 
   private:
     uint32_t cl, cr;

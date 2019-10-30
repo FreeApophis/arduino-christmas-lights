@@ -8,13 +8,13 @@ Worms::Worms(AbstractLedStrip* strip):
 {
 }
 
-void Worms::init()
+void Worms::Init()
 {
     active = 0;
     add();
 }
 
-void Worms::show()
+void Worms::Show()
 {
     int n = _strip->numPixels();
 
