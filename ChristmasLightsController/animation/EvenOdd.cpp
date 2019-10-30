@@ -1,6 +1,15 @@
 #include "EvenOdd.h"
 #include "../Helper.h"
 
+EvenOdd::EvenOdd(AbstractLedStrip* strip, byte duration):
+    Animation(strip, duration, 10, 20),
+    cl(0),
+    cr(0),
+    l(0),
+    r(0)
+{
+}
+
 void EvenOdd::Init()
 {
     byte indx = random(256);

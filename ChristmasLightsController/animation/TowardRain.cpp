@@ -6,6 +6,11 @@ TowardRain::TowardRain(AbstractLedStrip* strip, byte duration):
 {
 }
 
+void TowardRain::Init()
+{
+    w = random(256);
+}
+
 void TowardRain::Show()
 {
     int n = _strip->numPixels();

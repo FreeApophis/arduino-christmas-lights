@@ -3,22 +3,20 @@
 #include "Animation.h"
 #include "../BrightnessManipulation.h"
 #include "../framework.h"
+#include "Worm.h"
 
 // Several worms are moving randomly
 class Worms : public BrightnessManipulation, public Animation {
   public:
     Worms(AbstractLedStrip* strip);
-    virtual void Init();
-    virtual void Show();
+
+    void Init() override;
+    void Show() override;
 
   private:
-    void add();
-    void die(byte index);
-    struct worm {
-        uint32_t color;
-        int pos;
-        bool fwd;
-    };
-    struct worm w[5];
-    byte active;
+    void Add();
+    void Die(byte index);
+
+    Worm _worms[5]{};
+    byte _active{};
 };

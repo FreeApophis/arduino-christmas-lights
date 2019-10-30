@@ -12,6 +12,6 @@ class Crawl {
 
   protected:
     bool fwd; // direction to crawl: false - backward, true - formard
-    uint32_t next_color;
+    uint32_t next_color{};
     AbstractLedStrip* _crawlStrip;
 };

@@ -9,14 +9,10 @@ class Sparks : public BrightnessManipulation, public Animation {
   public:
     Sparks(AbstractLedStrip* strip, byte duration);
 
-    virtual void Init()
-    {
-        for (byte i = 0; i < 8; ++i) {
-            pos[i] = 0;
-        }
-    }
-    virtual void Show();
+    void Init() override;
+
+    void Show() override;
 
   private:
-    uint16_t pos[8];
+    uint16_t _positions[8]{};
 };

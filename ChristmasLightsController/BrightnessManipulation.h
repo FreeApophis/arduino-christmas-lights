@@ -12,7 +12,7 @@ class BrightnessManipulation {
     bool changeAll(int val);
 
   protected:
-    byte color[3];
+    byte color[3]{};
 
   private:
     AbstractLedStrip* _brightStrip;

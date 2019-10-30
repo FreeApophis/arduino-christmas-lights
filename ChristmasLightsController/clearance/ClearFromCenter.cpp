@@ -7,15 +7,15 @@ ClearFromCenter::ClearFromCenter(AbstractLedStrip* strip):
 {
 }
 
-void ClearFromCenter::init()
+void ClearFromCenter::Init()
 {
-    complete = false;
+    _complete = false;
     color = ColorFromColorWheel(random(256));
     l = _strip->numPixels() / 2;
     r = l + 1;
 }
 
-void ClearFromCenter::show()
+void ClearFromCenter::Show()
 {
     if (r < int(_strip->numPixels())) {
         _strip->setPixelColor(r, color);
@@ -29,5 +29,5 @@ void ClearFromCenter::show()
             _strip->setPixelColor(l + 1, 0);
     }
     --l;
-    complete = (l < 0);
+    _complete = (l < 0);
 }

@@ -5,13 +5,13 @@ EatFromCenter::EatFromCenter(AbstractLedStrip* strip) :
 {
 }
 
-void EatFromCenter::init()
+void EatFromCenter::Init()
 {
-    complete = false;
+    _complete = false;
     remain = _strip->numPixels() / 2 + 1;
 }
 
-void EatFromCenter::show()
+void EatFromCenter::Show()
 {
     const int n = _strip->numPixels();
     const int c = n / 2;
@@ -26,5 +26,5 @@ void EatFromCenter::show()
     _strip->setPixelColor(0, 0);
     _strip->setPixelColor(n - 1, 0);
     --remain;
-    complete = (remain <= 0);
+    _complete = (remain <= 0);
 }

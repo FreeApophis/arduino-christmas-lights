@@ -3,15 +3,13 @@
 #include "Animation.h"
 #include "../framework.h"
 
-//---------------------------------------------- Fast merging of Waves ----------------------------------------------------
+// Fast merging of Waves
 class MergeWave : public Animation {
   public:
-    MergeWave(AbstractLedStrip* strip, byte duration) :
-        Animation(strip, 2, 3, 20)
-    {
-    }
-    virtual void Init();
-    virtual void Show();
+    MergeWave(AbstractLedStrip* strip, byte duration);
+
+    void Init() override;
+    void Show() override;
 
   private:
     int l, r;

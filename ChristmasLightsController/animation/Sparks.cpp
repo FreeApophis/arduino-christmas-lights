@@ -2,23 +2,30 @@
 
 #include "../Helper.h"
 
-Sparks::Sparks(AbstractLedStrip* strip, byte duration):
+Sparks::Sparks(AbstractLedStrip* strip, byte duration) :
     BrightnessManipulation(strip),
     Animation(strip, 12, 2, 6)
 {
 }
 
+void Sparks::Init()
+{
+    for (unsigned short& position : _positions) {
+        position = 0;
+    }
+}
+
 void Sparks::Show()
 {
-    uint32_t c = ColorFromColorWheel(random(265));
+    const uint32_t c = ColorFromColorWheel(random(265));
     for (char i = 7; i >= 1; --i) {
         if (i == 6)
-            _strip->setPixelColor(pos[byte(i)], 0);
+            _strip->setPixelColor(_positions[byte(i)], 0);
         else
-            BrightnessManipulation::change(pos[byte(i)], -128);
-        pos[byte(i)] = pos[byte(i - 1)];
+            BrightnessManipulation::change(_positions[byte(i)], -128);
+        _positions[byte(i)] = _positions[byte(i - 1)];
     }
-    int p = random(_strip->numPixels() + 1);
-    pos[0] = p;
+    const int p = random(_strip->numPixels() + 1);
+    _positions[0] = p;
     _strip->setPixelColor(p, c);
 }

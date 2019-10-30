@@ -9,12 +9,12 @@ class RandomDrops : public BrightnessManipulation, public Animation {
   public:
     RandomDrops(AbstractLedStrip* strip);
 
-    virtual void Init();
-    virtual void Show();
+    void Init() override;
+    void Show() override;
 
   private:
     void add();
 
-    struct Drop dr[16];
-    char num;
+    struct Drop dr[16]{};
+    char num{};
 };

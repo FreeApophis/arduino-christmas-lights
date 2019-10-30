@@ -9,15 +9,17 @@ class AbstractLedStrip;
 class Clearance {
   public:
     Clearance(AbstractLedStrip* strip);
-    virtual void init() = 0;
-    virtual void show() = 0;
-    bool isComplete() const;
-    bool fade(uint16_t index, byte val);
-    bool fadeAll(byte val);
+
+    virtual void Init() = 0;
+    virtual void Show() = 0;
+
+    bool IsComplete() const;
+    bool Fade(uint16_t index, byte val);
+    bool FadeAll(byte val);
 
   protected:
     AbstractLedStrip* _strip;
-    bool complete;
+    bool _complete;
 };
 
 

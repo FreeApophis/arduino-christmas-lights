@@ -8,15 +8,16 @@
 class ShineFlash : public BrightnessManipulation, public Animation {
   public:
     ShineFlash(AbstractLedStrip* strip, byte duration);
-    virtual void Init();
-    virtual void Show();
+
+    void Init() override;
+    void Show() override;
 
   private:
     void startNewColor();
-    byte w;
-    byte mode;
-    bool flash;
-    int remain;
-    int indx;
-    char wait;
+    byte w{};
+    byte mode{};
+    bool flash{};
+    int remain{};
+    int indx{};
+    char wait{};
 };

@@ -10,79 +10,79 @@ Worms::Worms(AbstractLedStrip* strip):
 
 void Worms::Init()
 {
-    active = 0;
-    add();
+    _active = 0;
+    Add();
 }
 
 void Worms::Show()
 {
-    int n = _strip->numPixels();
+    const int n = _strip->numPixels();
 
     // fade away
     BrightnessManipulation::changeAll(-32);
 
     // Move existing
-    for (byte wi = 0; wi < active; ++wi) {
-        int np = w[wi].pos - 1;
-        if (w[wi].fwd)
+    for (byte wi = 0; wi < _active; ++wi) {
+        int np = _worms[wi].Position - 1;
+        if (_worms[wi].Forward)
             np += 2;
         if ((np < 0) || (np >= n)) {
-            die(wi);
+            Die(wi);
             --wi;
             continue;
         }
         uint32_t c = _strip->getPixelColor(np);
         if ((c != 0) && (random(10) == 0)) {
-            die(wi);
+            Die(wi);
             --wi;
             continue;
         } else {
-            c = ColorSuperPosition(c, w[wi].color);
-            w[wi].pos = np;
+            c = ColorSuperPosition(c, _worms[wi].Color);
+            _worms[wi].Position = np;
             _strip->setPixelColor(np, c);
         }
     }
 
     if (random(12) == 0)
-        add();
+        Add();
 }
 
-void Worms::add()
+void Worms::Add()
 {
-    if (active >= 5)
+    if (_active >= 5)
         return;
 
-    byte mode = random(3);
-    int n = _strip->numPixels();
+    const byte mode = random(3);
+    const int n = _strip->numPixels();
     switch (mode) {
         case 0: // Run from the start
-            w[active].pos = 0;
+            _worms[_active].Position = 0;
             break;
         case 1: // Run from the end
-            w[active].pos = n - 1;
+            _worms[_active].Position = n - 1;
             break;
         case 2: // Run from the random position
         default:
-            w[active].pos = random(n);
+            _worms[_active].Position = random(n);
             break;
     }
-    w[active].color = ColorFromColorWheel(random(256));
-    if (_strip->getPixelColor(w[active].pos) != 0)
+    _worms[_active].Color = ColorFromColorWheel(random(256));
+    if (_strip->getPixelColor(_worms[_active].Position) != 0)
         return;
-    if (w[active].pos < n / 3) {
-        w[active].fwd = true;
-    } else if ((n - w[active].pos) < n / 3) {
-        w[active].fwd = false;
+    if (_worms[_active].Position < n / 3) {
+        _worms[_active].Forward = true;
+    } else if ((n - _worms[_active].Position) < n / 3) {
+        _worms[_active].Forward = false;
     } else {
-        w[active].fwd = random(2);
+        _worms[_active].Forward = random(2);
     }
-    ++active;
+    ++_active;
 }
 
-void Worms::die(byte index)
+void Worms::Die(const byte index)
 {
-    --active;
-    w[index].color = w[active].color;
-    w[index].pos = w[active].pos;
-    w[index].fwd = w[active].fwd;
+    --_active;
+    _worms[index].Color = _worms[_active].Color;
+    _worms[index].Position = _worms[_active].Position;
+    _worms[index].Forward = _worms[_active].Forward;
 }

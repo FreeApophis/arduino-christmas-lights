@@ -6,11 +6,11 @@
 class ClearFromCenter : public Clearance {
   public:
     ClearFromCenter(AbstractLedStrip* strip);
-    virtual void init();
-    virtual void show();
+    void Init() override;
+    void Show() override;
 
   private:
-    uint32_t color;
-    int l, r;
-    bool fwd;
+    uint32_t color{};
+    int l{}, r{};
+    bool fwd{};
 };

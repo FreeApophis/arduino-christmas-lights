@@ -9,11 +9,12 @@
 class RandomCreep : public Crawl, public Animation {
   public:
     RandomCreep(AbstractLedStrip* strip, byte duration);
-    virtual void Init();
-    virtual void Show();
+
+    void Init() override;
+    void Show() override;
 
   private:
-    byte space; // space between the color dots
-    int change_direction;
-    byte cnt;
+    byte space{}; // space between the color dots
+    int change_direction{};
+    byte cnt{};
 };

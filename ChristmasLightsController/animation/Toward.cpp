@@ -9,13 +9,13 @@ Toward::Toward(AbstractLedStrip* strip, byte duration) :
 
 void Toward::Show()
 {
-    int n = _strip->numPixels();
+    const int n = _strip->numPixels();
     for (int i = n - 2; i >= 2; i -= 2) {
-        uint32_t c = _strip->getPixelColor(i - 2);
+        const uint32_t c = _strip->getPixelColor(i - 2);
         _strip->setPixelColor(i, c);
     }
     for (int i = 1; i < n - 1; i += 2) {
-        uint32_t c = _strip->getPixelColor(i + 2);
+        const uint32_t c = _strip->getPixelColor(i + 2);
         _strip->setPixelColor(i, c);
     }
     if (random(16) == 0) {

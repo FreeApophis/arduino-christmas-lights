@@ -1,10 +1,19 @@
 #include "Rainbow.h"
+
 #include "../Helper.h"
 
-Rainbow::Rainbow(AbstractLedStrip* strip, byte duration):
+Rainbow::Rainbow(AbstractLedStrip* strip, byte duration) :
     BrightnessManipulation(strip),
-    Animation(strip, duration, 2, 8)
+    Animation(strip, duration, 2, 8),
+    index(0),
+    rdy(false)
 {
+}
+
+void Rainbow::Init()
+{
+    index = 0;
+    rdy = false;
 }
 
 void Rainbow::Show()

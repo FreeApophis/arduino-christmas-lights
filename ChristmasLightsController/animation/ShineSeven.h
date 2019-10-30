@@ -8,12 +8,13 @@
 class ShineSeven : public BrightnessManipulation, public Animation {
   public:
     ShineSeven(AbstractLedStrip* strip, byte duration);
-    virtual void Init();
-    virtual void Show();
+
+    void Init() override;
+    void Show() override;
 
   private:
     void startNewColor();
-    byte curs;
-    byte w;
-    byte base;
+    byte curs{};
+    byte w{};
+    byte base{};
 };

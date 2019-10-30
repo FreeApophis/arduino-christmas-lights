@@ -9,8 +9,9 @@ class AbstractLedStrip;
 class ColorWipe : public Animation {
   public:
     ColorWipe(AbstractLedStrip* strip, byte duration);
-    virtual void Init();
-    virtual void Show();
+
+    void Init() override;
+    void Show() override;
 
     ~ColorWipe() = default;
 

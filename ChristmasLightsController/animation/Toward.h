@@ -7,9 +7,10 @@
 class Toward : public Animation {
   public:
     Toward(AbstractLedStrip* strip, byte duration);
-    virtual void Init() { w = random(256); }
-    virtual void Show();
+
+    void Init() override { w = random(256); }
+    void Show() override;
 
   private:
-    byte w;
+    byte w{};
 };

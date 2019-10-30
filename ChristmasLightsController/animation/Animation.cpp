@@ -20,7 +20,7 @@ bool Animation::NeedsClear() const
     return _needsClear;
 }
 
-void Animation::SetNeedsClear(bool clear)
+void Animation::SetNeedsClear(const bool clear)
 {
     _needsClear = clear;
 }

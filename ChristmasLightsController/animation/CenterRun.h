@@ -7,8 +7,9 @@
 class CenterRun : public Animation {
   public:
     CenterRun(AbstractLedStrip* strip, byte duration);
-    virtual void Init();
-    virtual void Show();
+
+    void Init() override;
+    void Show() override;
 
   private:
     uint32_t color;

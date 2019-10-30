@@ -4,7 +4,12 @@
 #include <cstdlib>
 
 Interference::Interference(AbstractLedStrip* strip, byte duration):
-    Animation(strip, 6, 10, 6)
+    Animation(strip, 6, 10, 6),
+    tm(0),
+    pos{},
+    start{},
+    w{},
+    active(0)
 {
 }
 
@@ -17,12 +22,12 @@ void Interference::Init()
 
 void Interference::Show()
 {
-    int n = _strip->numPixels();
+    const int n = _strip->numPixels();
 
     for (int i = 0; i < n; ++i) {
         uint32_t c = 0;
         for (byte j = 0; j < active; ++j) {
-            uint32_t c1 = clr(i, j);
+            const uint32_t c1 = clr(i, j);
             c = ColorSuperPosition(c, c1);
         }
         _strip->setPixelColor(i, c);
@@ -50,19 +55,19 @@ void Interference::add()
 uint32_t Interference::clr(int p, byte source)
 {
     uint32_t c = 0;
-    int s_pos = pos[source];
+    const int s_pos = pos[source];
     int e = tm - start[source];
     e -= abs(p - s_pos);
     if (e < 0)
         return c; // The wave is not here yet
     e %= 64;      // The wave period
-    byte elm = 0;
+    byte elm;
     if (e < 32) // Half way
         elm = (31 - e) << 3;
     else
         elm = (e - 64) << 3;
 
-    uint32_t color = ColorFromColorWheel(w[source]);
+    const uint32_t color = ColorFromColorWheel(w[source]);
     for (byte i = 0; i < 3; ++i) {
         int max_c = (color >> (8 * i)) & 0xff;
         max_c -= elm;

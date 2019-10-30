@@ -3,7 +3,12 @@
 #include "../Helper.h"
 
 CollideOne::CollideOne(AbstractLedStrip* strip) :
-    Animation(strip, 2, 1, 3)
+    Animation(strip, 2, 1, 3),
+    cl(0),
+    cr(0),
+    l(0),
+    r(0),
+    boom(false)
 {
 }
 

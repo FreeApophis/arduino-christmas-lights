@@ -7,9 +7,9 @@ class EatFromCenter : public Clearance {
   public:
     EatFromCenter(AbstractLedStrip* strip);
 
-    virtual void init();
-    virtual void show();
+    void Init() override;
+    void Show() override;
 
   private:
-    int remain;
+    int remain{};
 };

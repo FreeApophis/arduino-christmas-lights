@@ -9,13 +9,14 @@
 class WalkSeven : public BrightnessManipulation, public Animation {
   public:
     WalkSeven(AbstractLedStrip* strip, byte duration);
-    virtual void Init();
-    virtual void Show();
+
+    void Init() override;
+    void Show() override;
 
   private:
-    char curs;
-    byte w;
-    bool fwd;
-    int ch_dir;
-    byte period;
+    char curs{};
+    byte w{};
+    bool fwd{};
+    int ch_dir{};
+    byte period{};
 };

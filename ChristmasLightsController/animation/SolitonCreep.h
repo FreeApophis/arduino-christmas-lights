@@ -8,14 +8,15 @@
 class SolitonCreep : public Crawl, public Animation {
   public:
     SolitonCreep(AbstractLedStrip* strip, byte duration);
-    virtual void Init();
-    virtual void Show();
+
+    void Init() override;
+    void Show() override;
 
   private:
     void newSoliton();
-    int space;            // space between the solitons
-    int change_direction; // the time to change direction
-    uint32_t dot[5];
-    int sol;
-    byte w;
+    int space{};            // space between the solitons
+    int change_direction{}; // the time to change direction
+    uint32_t dot[5]{};
+    int sol{};
+    byte w{};
 };

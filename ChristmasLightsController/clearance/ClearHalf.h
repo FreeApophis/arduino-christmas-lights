@@ -7,9 +7,10 @@ class ClearHalf : public Clearance {
   public:
     ClearHalf(AbstractLedStrip* strip) :
         Clearance(strip) {}
-    virtual void init();
-    virtual void show();
+
+    void Init() override;
+    void Show() override;
 
   private:
-    int one_step;
+    int one_step{};
 };

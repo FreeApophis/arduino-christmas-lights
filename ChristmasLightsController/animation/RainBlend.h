@@ -8,8 +8,9 @@
 class RainBlend : public BlendManipulations, public Animation {
   public:
     RainBlend(AbstractLedStrip* strip, byte duration);
-    virtual void Init() { index = 0; }
-    virtual void Show();
+
+    void Init() override { index = 0; }
+    void Show() override;
 
   private:
     int index;

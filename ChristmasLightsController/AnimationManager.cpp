@@ -4,18 +4,18 @@
 
 #include <cstdint>
 
-AnimationManager::AnimationManager(Animation* animations[], byte a_size, Clearance* c[], byte clr_size, AbstractLedStrip* strip) :
+AnimationManager::AnimationManager(Animation* animations[], byte a_size, Clearance* clearances[], byte clr_size, AbstractLedStrip* strip) :
     Shuffle(a_size),
-    _animations(animations)
+    _animations(animations),
+    _clearances(clearances)
 {
-    clearance = c;
     num_clr = clr_size;
     stp = 0;
     do_clear = false;
     aIndex = 0;
 }
 
-void AnimationManager::init()
+void AnimationManager::Init()
 {
     if (!_animations[aIndex]->NeedsClear()) {
         aIndex = Shuffle::next();
@@ -41,14 +41,14 @@ void AnimationManager::init()
     a->SetNeedsClear(false);
 }
 
-void AnimationManager::show()
+void AnimationManager::Show()
 {
     uint32_t ms = millis();
     if (!do_clear && (ms > next) && a->IsComplete()) { // The current animation is timed out
-        if (isClean())
-            init();
+        if (IsClean())
+            Init();
         else
-            initClear();
+            InitClear();
     }
 
     if (ms < stp) {
@@ -61,51 +61,51 @@ void AnimationManager::show()
         stp = ms + stp_period;
 
     if (do_clear) {
-        if (c->isComplete()) {
+        if (c->IsComplete()) {
             do_clear = false;
             if (ms > next)
                 a->SetNeedsClear (false); // It is too late to continue the animation
-            init();
+            Init();
         } else
-            c->show(); // Keep running clear session till it ends
+            c->Show(); // Keep running clear session till it ends
     } else {
         if (a->NeedsClear())
-            initClear();
+            InitClear();
         a->Show();
     }
     _strip->show();
 }
 
-void AnimationManager::menu()
+void AnimationManager::Menu()
 {
     stp_period--;
     if (stp_period < 1)
         stp_period = 1;
 }
 
-void AnimationManager::menu_l()
+void AnimationManager::MenuL()
 {
-    initClear();
+    InitClear();
 }
 
-void AnimationManager::incr()
+void AnimationManager::Increment()
 {
     stp_period++;
     if (stp_period > 20)
         stp_period = 20;
 }
 
-void AnimationManager::initClear()
+void AnimationManager::InitClear()
 {
     do_clear = true; // Start clearing sequence
     byte ni = random(num_clr);
-    c = clearance[ni];
-    c->init();
+    c = _clearances[ni];
+    c->Init();
     stp = 0;
     clr_stp_period = random(3, 10) * 10;
 }
 
-bool AnimationManager::isClean()
+bool AnimationManager::IsClean()
 {
     for (uint16_t i = 0; i < _strip->numPixels(); ++i)
         if (_strip->getPixelColor(i))

@@ -4,26 +4,26 @@
 
 Clearance::Clearance(AbstractLedStrip* strip) :
     _strip(strip),
-    complete(false)
+    _complete(false)
 {
 }
 
-bool Clearance::fadeAll(byte val)
+bool Clearance::FadeAll(byte val)
 {
     bool finish = true;
     for (uint16_t i = 0; i < _strip->numPixels(); ++i) {
-        if (!fade(i, val))
+        if (!Fade(i, val))
             finish = false;
     }
     return finish;
 }
 
-bool Clearance::isComplete() const
+bool Clearance::IsComplete() const
 {
-    return complete;
+    return _complete;
 }
 
-bool Clearance::fade(uint16_t index, byte val)
+bool Clearance::Fade(uint16_t index, byte val)
 {
     uint32_t c = _strip->getPixelColor(index);
     byte bound = 0;

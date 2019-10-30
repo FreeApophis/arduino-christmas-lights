@@ -7,12 +7,13 @@
 class SingleColorSwing : public Animation {
   public:
     SingleColorSwing(AbstractLedStrip* strip);
-    virtual void Init();
-    virtual void Show();
+
+    void Init() override;
+    void Show() override;
 
   private:
-    uint32_t color;
-    int len, index;
-    bool fwd;
-    byte w;
+    uint32_t color{};
+    int len{}, index{};
+    bool fwd{};
+    byte w{};
 };

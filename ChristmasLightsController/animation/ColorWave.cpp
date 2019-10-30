@@ -5,7 +5,9 @@
 ColorWave::ColorWave(AbstractLedStrip* strip, byte duration) :
     Crawl(strip),
     BrightnessManipulation(strip),
-    Animation(strip, duration, 2, 8)
+    Animation(strip, duration, 2, 8),
+    index(0),
+    rdy(false)
 {
 }
 

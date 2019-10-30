@@ -3,7 +3,12 @@
 
 FlashSeven::FlashSeven(AbstractLedStrip* strip, byte duration):
     BrightnessManipulation(strip),
-    Animation(strip, 9, 4, 8)
+    Animation(strip, 9, 4, 8),
+    curs(0),
+    w(0),
+    fwd(false),
+    ch_dir(0),
+    period(0)
 {
 }
 
@@ -20,7 +25,7 @@ void FlashSeven::Show()
 {
     BrightnessManipulation::changeAll(-64);
 
-    int n = _strip->numPixels();
+    const int n = _strip->numPixels();
     for (int i = curs; i < n; i += period) {
         BrightnessManipulation::change(i, -128);
     }
@@ -31,7 +36,7 @@ void FlashSeven::Show()
         --curs;
     curs %= period;
 
-    uint32_t c = ColorFromColorWheel(w);
+    const uint32_t c = ColorFromColorWheel(w);
     w += 71;
     for (int i = curs; i < n; i += period) {
         _strip->setPixelColor(i, c);

@@ -7,8 +7,9 @@
 class CollideOne : public Animation {
   public:
     CollideOne(AbstractLedStrip* strip);
-    virtual void Init();
-    virtual void Show();
+
+    void Init() override;
+    void Show() override;
 
   private:
     uint32_t cl, cr;

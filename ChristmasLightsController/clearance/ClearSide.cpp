@@ -7,9 +7,9 @@ ClearSide::ClearSide(AbstractLedStrip* strip) :
 {
 }
 
-void ClearSide::init()
+void ClearSide::Init()
 {
-    complete = false;
+    _complete = false;
     color = ColorFromColorWheel(random(256));
     fwd = random(2);
     if (fwd) {
@@ -19,7 +19,7 @@ void ClearSide::init()
     }
 }
 
-void ClearSide::show()
+void ClearSide::Show()
 {
     if (fwd) {
         if (index < int(_strip->numPixels())) {
@@ -28,7 +28,7 @@ void ClearSide::show()
                 _strip->setPixelColor(index - 1, 0);
         }
         ++index;
-        complete = (index >= int(_strip->numPixels()));
+        _complete = (index >= int(_strip->numPixels()));
     } else {
         if (index >= 0) {
             _strip->setPixelColor(index, color);
@@ -36,6 +36,6 @@ void ClearSide::show()
                 _strip->setPixelColor(index + 1, 0);
         }
         --index;
-        complete = (index < 0);
+        _complete = (index < 0);
     }
 }

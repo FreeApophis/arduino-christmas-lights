@@ -2,10 +2,18 @@
 
 #include "../Helper.h"
 
-RainCycle::RainCycle(AbstractLedStrip* strip, byte duration):
+RainCycle::RainCycle(AbstractLedStrip* strip, byte duration) :
     BrightnessManipulation(strip),
-    Animation(strip, duration, 2, 8)
+    Animation(strip, duration, 2, 8),
+    index(0),
+    rdy(false)
 {
+}
+
+void RainCycle::Init()
+{
+    index = 0;
+    rdy = false;
 }
 
 void RainCycle::Show()

@@ -8,6 +8,12 @@ RainFull::RainFull(AbstractLedStrip* strip, byte duration):
 {
 }
 
+void RainFull::Init()
+{
+    index = random(256);
+    rdy = false;
+}
+
 void RainFull::Show()
 {
     if (!rdy) {

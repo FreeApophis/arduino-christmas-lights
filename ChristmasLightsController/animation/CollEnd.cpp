@@ -4,7 +4,13 @@
 
 CollEnd::CollEnd(AbstractLedStrip* strip, byte duration):
     BlendManipulations(strip),
-    Animation(strip, 10, 1, 6)
+    Animation(strip, 10, 1, 6),
+    cl(0),
+    cr(0),
+    l(0),
+    r(0),
+    ml(0),
+    mr(0)
 {
 }
 

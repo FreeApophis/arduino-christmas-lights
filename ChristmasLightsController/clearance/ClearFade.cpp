@@ -5,13 +5,13 @@ ClearFade::ClearFade(AbstractLedStrip* strip) :
 {
 }
 
-void ClearFade::init()
+void ClearFade::Init()
 {
-    complete = false;
+    _complete = false;
     decrement = random(4, 16);
 }
 
-void ClearFade::show()
+void ClearFade::Show()
 {
-    complete = Clearance::fadeAll(decrement);
+    _complete = Clearance::FadeAll(decrement);
 }

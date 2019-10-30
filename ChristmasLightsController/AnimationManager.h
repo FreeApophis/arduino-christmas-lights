@@ -8,26 +8,27 @@
 class AnimationManager : public Shuffle {
   public:
     AnimationManager(Animation* animations[], byte a_size, Clearance* c[], byte clr_size, AbstractLedStrip* strip);
-    void init();
-    void show();
-    void menu();
-    void menu_l();
+    void Init();
+    void Show();
+    void Menu();
+    void MenuL();
 
-    void incr();
+    void Increment();
 
   private:
-    SimulatedLedStrip* _strip;
-    void initClear();
-    bool isClean();
+    void InitClear();
+    bool IsClean();
+
+    SimulatedLedStrip* _strip{};
     Animation** _animations;
-    Clearance** clearance;
+    Clearance** _clearances;
     byte num_clr;
     uint32_t stp = 0;
-    uint16_t stp_period;
-    uint16_t clr_stp_period;
-    uint32_t next;
+    uint16_t stp_period{};
+    uint16_t clr_stp_period{};
+    uint32_t next{};
     byte aIndex;
-    Animation* a;
-    Clearance* c;
+    Animation* a{};
+    Clearance* c{};
     bool do_clear; // Whether cleaning the strip
 };

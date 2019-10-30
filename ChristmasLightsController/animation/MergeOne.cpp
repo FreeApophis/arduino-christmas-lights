@@ -1,6 +1,15 @@
 #include "MergeOne.h"
 #include "../Helper.h"
 
+MergeOne::MergeOne(AbstractLedStrip* strip, byte duration):
+    Animation(strip, duration, 8, 30),
+    cl(0),
+    cr(0),
+    l(0),
+    r(0)
+{
+}
+
 void MergeOne::Init()
 {
     l = 0;

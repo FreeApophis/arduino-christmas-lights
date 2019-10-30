@@ -3,15 +3,19 @@
 #include "../Helper.h"
 
 CenterRun::CenterRun(AbstractLedStrip* strip, byte duration):
-    Animation(strip, duration, 4, 20)
+    Animation(strip, duration, 4, 20),
+    color(0),
+    m(0),
+    l(0),
+    r(0)
 {
 }
 
 void CenterRun::Init()
 {
     color = ColorFromColorWheel(random(256));
-    int n = _strip->numPixels();
-    int diff = n >> 3;
+    const int n = _strip->numPixels();
+    const int diff = n >> 3;
     m = l = r = random(diff + 2) + ((n * 7) >> 4);
 }
 

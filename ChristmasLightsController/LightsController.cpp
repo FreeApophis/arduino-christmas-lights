@@ -1,7 +1,7 @@
 #include "LightsController.h"
 
 #include "AnimationManager.h"
-#include "SimulatedLedStrip.h"
+
 #include "animation/Animation.h"
 #include "animation/CenterRun.h"
 #include "animation/CollEnd.h"
@@ -45,10 +45,22 @@
 #include "clearance/EatFromCenter.h"
 #include "framework.h"
 
-const byte NEO_BRGHT = 100;
-//const byte NEO_PIN = 6; // Pin of Neopixel Strip
-const byte StripSize = 100; // Length of Neopixel Strip
-const byte min_time = 30;   // Minimal sequence show time (secons)
+#ifdef ARDUINO
+#else
+#    include "SimulatedLedStrip.h"
+#endif
+
+
+const byte PixelBrightness = 100;
+
+// Pin of Neopixel Strip
+//const byte NEO_PIN = 6; 
+
+// Length of Neopixel Strip
+const byte NumberOfPixels = 100; 
+
+// seconds
+const byte MinimalSequenceShowTime = 30;   
 //
 //// Parameter 1 = number of pixels in strip
 //// Parameter 2 = Arduino pin number (most are valid)
@@ -57,45 +69,45 @@ const byte min_time = 30;   // Minimal sequence show time (secons)
 ////   NEO_KHZ400  400 KHz (classic 'v1' (not v2) FLORA pixels, WS2811 drivers)
 ////   NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)
 ////   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
-//Adafruit_NeoPixel strip = Adafruit_NeoPixel(StripSize, NEO_PIN, NEO_GRB + NEO_KHZ800);
+//Adafruit_NeoPixel strip = Adafruit_NeoPixel(NumberOfPixels, NEO_PIN, NEO_GRB + NEO_KHZ800);
 
-SimulatedLedStrip strip(StripSize);
+SimulatedLedStrip strip(NumberOfPixels);
 
 // Instantiate Animations
-ColorWipe colorWipe(&strip, min_time);
-ColorWalk colorWalk(&strip, min_time);
-RandomCreep randomCreep(&strip, min_time);
-Rainbow rainbow(&strip, min_time);
-RainCycle rainCycle(&strip, min_time);
-RainFull rainFull(&strip, min_time);
-ColorWave colorWave(&strip, min_time);
-LightUp lightUp(&strip, min_time);
-Sparks sparks(&strip, min_time);
-RandomFade randomFade(&strip, min_time);
-CenterRun centerRun(&strip, min_time);
-ShineSeven shineSeven(&strip, min_time);
-WalkSeven walkSeven(&strip, min_time);
-FlashSeven flashSeven(&strip, min_time);
-ShineFlash shineFlash(&strip, min_time);
-MergeOne mergeOn(&strip, min_time);
-MergeWave mergeWave(&strip, min_time);
+ColorWipe colorWipe(&strip, MinimalSequenceShowTime);
+ColorWalk colorWalk(&strip, MinimalSequenceShowTime);
+RandomCreep randomCreep(&strip, MinimalSequenceShowTime);
+Rainbow rainbow(&strip, MinimalSequenceShowTime);
+RainCycle rainCycle(&strip, MinimalSequenceShowTime);
+RainFull rainFull(&strip, MinimalSequenceShowTime);
+ColorWave colorWave(&strip, MinimalSequenceShowTime);
+LightUp lightUp(&strip, MinimalSequenceShowTime);
+Sparks sparks(&strip, MinimalSequenceShowTime);
+RandomFade randomFade(&strip, MinimalSequenceShowTime);
+CenterRun centerRun(&strip, MinimalSequenceShowTime);
+ShineSeven shineSeven(&strip, MinimalSequenceShowTime);
+WalkSeven walkSeven(&strip, MinimalSequenceShowTime);
+FlashSeven flashSeven(&strip, MinimalSequenceShowTime);
+ShineFlash shineFlash(&strip, MinimalSequenceShowTime);
+MergeOne mergeOn(&strip, MinimalSequenceShowTime);
+MergeWave mergeWave(&strip, MinimalSequenceShowTime);
 CollideOne collideOne(&strip);
-NeoFire neoFire(&strip, min_time);
-EvenOdd evenOdd(&strip, min_time);
-CollMdl collMdl(&strip, min_time);
-CollEnd collEnd(&strip, min_time);
-RainBlend rainBlend(&strip, min_time);
-ColorSwing swing(&strip, min_time);
-SingleColorSwing SingleColorSwing(&strip);
-RandomFill randomFill(&strip, min_time);
+NeoFire neoFire(&strip, MinimalSequenceShowTime);
+EvenOdd evenOdd(&strip, MinimalSequenceShowTime);
+CollMdl collMdl(&strip, MinimalSequenceShowTime);
+CollEnd collEnd(&strip, MinimalSequenceShowTime);
+RainBlend rainBlend(&strip, MinimalSequenceShowTime);
+ColorSwing swing(&strip, MinimalSequenceShowTime);
+SingleColorSwing singleColorSwing(&strip);
+RandomFill randomFill(&strip, MinimalSequenceShowTime);
 SingleWave singleWave(&strip);
 Worms worms(&strip);
-Interference interfer(&strip, min_time);
-Toward toward(&strip, min_time);
-TowardRain towardRain(&strip, min_time);
+Interference interfer(&strip, MinimalSequenceShowTime);
+Toward toward(&strip, MinimalSequenceShowTime);
+TowardRain towardRain(&strip, MinimalSequenceShowTime);
 LightHouse lightHouse(&strip);
 RandomDrops randomDrops(&strip);
-SolitonCreep solitonCreep(&strip, min_time);
+SolitonCreep solitonCreep(&strip, MinimalSequenceShowTime);
 
 // Instantiate Clearance Animations
 ClearSide clrSide(&strip);
@@ -129,7 +141,7 @@ Animation* animations[] = {
     &collEnd,
     &rainBlend,
     &swing,
-    &SingleColorSwing,
+    &singleColorSwing,
     &randomFill,
     &singleWave,
     &worms,
@@ -153,7 +165,7 @@ const byte num_clr = sizeof(clearances) / sizeof(Clearance*);
 
 AnimationManager mgr(animations, num_anim, clearances, num_clr, &strip);
 
-void setup()
+void randomize()
 {
     //Serial.begin(9600);
 
@@ -164,14 +176,19 @@ void setup()
     //    rnd += analogRead(i);
     //}
     //randomSeed(rnd);
+}
+
+void setup()
+{
+    randomize();
 
     strip.begin();
-    strip.setBrightness(NEO_BRGHT);
+    strip.setBrightness(PixelBrightness);
     strip.show(); // Initialize all pixels to 'off'
-    mgr.init();
+    mgr.Init();
 }
 
 void loop()
 {
-    mgr.show();
+    mgr.Show();
 }

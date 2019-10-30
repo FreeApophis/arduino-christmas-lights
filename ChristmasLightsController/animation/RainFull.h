@@ -9,14 +9,10 @@ class RainFull : public BrightnessManipulation, public Animation {
   public:
     RainFull(AbstractLedStrip* strip, byte duration);
 
-    virtual void Init()
-    {
-        index = random(256);
-        rdy = false;
-    }
-    virtual void Show();
+    void Init() override;
+    void Show() override;
 
   private:
-    byte index;
-    bool rdy;
+    byte index{};
+    bool rdy{};
 };

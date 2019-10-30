@@ -2,13 +2,22 @@
 
 LightUp::LightUp(AbstractLedStrip* strip, byte duration):
     BrightnessManipulation(strip),
-    Animation(strip, 12, 6, 24)
+    Animation(strip, 12, 6, 24),
+    sp(0),
+    inc(0)
 {
+}
+
+void LightUp::Init()
+{
+    sp = 1;
+    inc = sp;
+    NewColor();
 }
 
 void LightUp::Show()
 {
-    bool finish = BrightnessManipulation::changeAll(inc);
+    const bool finish = BrightnessManipulation::changeAll(inc);
     if (finish) {
         if (inc > 0)
             inc = -8;
@@ -17,13 +26,13 @@ void LightUp::Show()
             inc = sp;
             if (sp > 8) {
                 sp = 1;
-                newColor();
+                NewColor();
             }
         }
     }
 }
 
-void LightUp::newColor()
+void LightUp::NewColor()
 {
     uint32_t c = 0;
     for (byte i = 0; i < 3; ++i) {

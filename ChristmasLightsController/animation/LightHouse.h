@@ -8,8 +8,9 @@
 class LightHouse : public BrightnessManipulation, public Animation {
   public:
     LightHouse(AbstractLedStrip* strip);
-    virtual void Init();
-    virtual void Show();
+
+    void Init() override;
+    void Show() override;
 
   private:
     uint32_t dot[5];

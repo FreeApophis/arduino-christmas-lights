@@ -11,5 +11,5 @@ class BlendManipulations {
     uint32_t sub(uint32_t color1, uint32_t color2);
     void blendPixel(uint16_t p);
 private:
-    AbstractLedStrip*  _blendStrip;
+    AbstractLedStrip*  _blendStrip{};
 };

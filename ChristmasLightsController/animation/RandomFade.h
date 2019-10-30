@@ -8,6 +8,7 @@
 class RandomFade : public BrightnessManipulation, public Animation {
   public:
     RandomFade(AbstractLedStrip* strip, byte duration);
-    virtual void Init() {}
-    virtual void Show();
+
+    void Init() override {}
+    void Show() override;
 };

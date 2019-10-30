@@ -7,8 +7,9 @@
 class ColorWalk : public Animation {
   public:
     ColorWalk(AbstractLedStrip* strip, byte duration);
-    virtual void Init();
-    virtual void Show();
+
+    void Init() override;
+    void Show() override;
 
   private:
     int index;

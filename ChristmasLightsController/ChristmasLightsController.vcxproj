@@ -184,6 +184,7 @@
     <ClInclude Include="animation\Toward.h" />
     <ClInclude Include="animation\TowardRain.h" />
     <ClInclude Include="animation\WalkSeven.h" />
+    <ClInclude Include="animation\Worm.h" />
     <ClInclude Include="animation\Worms.h" />
     <ClInclude Include="BlendManipulations.h" />
     <ClInclude Include="BrightnessManipulation.h" />

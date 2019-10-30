@@ -8,8 +8,9 @@
 class CollMdl : public BlendManipulations, public Animation {
   public:
     CollMdl(AbstractLedStrip* strip, byte duration);
-    virtual void Init();
-    virtual void Show();
+
+    void Init() override;
+    void Show() override;
 
   private:
     void newColors();

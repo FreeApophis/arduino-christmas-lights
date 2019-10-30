@@ -6,11 +6,11 @@
 class ClearSide : public Clearance {
   public:
     ClearSide(AbstractLedStrip* strip);
-    virtual void init();
-    virtual void show();
+    void Init() override;
+    void Show() override;
 
   private:
-    uint32_t color;
-    int index;
-    bool fwd;
+    uint32_t color{};
+    int index{};
+    bool fwd{};
 };

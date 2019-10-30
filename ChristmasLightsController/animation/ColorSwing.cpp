@@ -3,7 +3,11 @@
 
 ColorSwing::ColorSwing(AbstractLedStrip* strip, byte duration):
     Crawl(strip),
-    Animation(strip, 10, 3, 10)
+    Animation(strip, 10, 3, 10),
+    len(0),
+    index(0),
+    w(0),
+    rnd(false)
 {
 }
 

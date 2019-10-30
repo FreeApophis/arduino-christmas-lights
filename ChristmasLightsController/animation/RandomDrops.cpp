@@ -18,14 +18,14 @@ void RandomDrops::Show()
 {
     int n = _strip->numPixels();
     for (byte i = 0; i < num; ++i) {
-        if (++dr[i].tm > 7) { // Delete old drops
-            dr[i].pos = dr[byte(num - 1)].pos;
-            dr[i].tm = dr[byte(num - 1)].tm;
+        if (++dr[i].TimeFrame > 7) { // Delete old drops
+            dr[i].Position = dr[byte(num - 1)].Position;
+            dr[i].TimeFrame = dr[byte(num - 1)].TimeFrame;
             --num;
             --i;
             continue;
         }
-        int p = dr[i].pos - dr[i].tm;
+        int p = dr[i].Position - dr[i].TimeFrame;
         if (p < 0)
             p += n;
         uint32_t c1 = _strip->getPixelColor(p + 1);
@@ -34,17 +34,17 @@ void RandomDrops::Show()
         c2 = ColorSuperPosition(c1, c2);
         _strip->setPixelColor(p, c2);
 
-        p = dr[i].pos + dr[i].tm;
+        p = dr[i].Position + dr[i].TimeFrame;
         if (p >= n)
             p -= n;
         c1 = _strip->getPixelColor(p - 1);
-        if (dr[i].tm > 1)
+        if (dr[i].TimeFrame > 1)
             BrightnessManipulation::change(p - 1, -32);
         c2 = _strip->getPixelColor(p);
         c2 = ColorSuperPosition(c1, c2);
         _strip->setPixelColor(p, c2);
 
-        BrightnessManipulation::change(dr[i].pos, -64);
+        BrightnessManipulation::change(dr[i].Position, -64);
     }
 
     BrightnessManipulation::changeAll(-32);
@@ -62,7 +62,7 @@ void RandomDrops::add()
         return;
     c = ColorFromColorWheel(random(256));
     _strip->setPixelColor(pos, c);
-    dr[byte(num)].pos = pos;
-    dr[byte(num)].tm = 0;
+    dr[byte(num)].Position = pos;
+    dr[byte(num)].TimeFrame = 0;
     num++;
 }

@@ -3,7 +3,8 @@
 
 RainBlend::RainBlend(AbstractLedStrip* strip, byte duration):
     BlendManipulations(strip),
-    Animation(strip, duration, 1, 6)
+    Animation(strip, duration, 1, 6),
+    index(0)
 {
 }
 

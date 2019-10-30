@@ -6,12 +6,10 @@
 // Slow merging of two colors
 class MergeOne : public Animation {
   public:
-    MergeOne(AbstractLedStrip* strip, byte duration) :
-        Animation(strip, duration, 8, 30)
-    {
-    }
-    virtual void Init();
-    virtual void Show();
+    MergeOne(AbstractLedStrip* strip, byte duration);
+
+    void Init() override;
+    void Show() override;
 
   private:
     uint32_t cl, cr;

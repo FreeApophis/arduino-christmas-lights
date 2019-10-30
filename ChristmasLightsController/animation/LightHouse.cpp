@@ -2,7 +2,13 @@
 
 LightHouse::LightHouse(AbstractLedStrip* strip):
     BrightnessManipulation(strip),
-    Animation(strip, 6, 2, 10)
+    Animation(strip, 6, 2, 10),
+    dot{},
+    pos(0),
+    stp(0),
+    incr(0),
+    sp(0),
+    dlay(0)
 {
 }
 

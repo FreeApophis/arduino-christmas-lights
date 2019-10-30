@@ -1,6 +1,15 @@
 #include "MergeWave.h"
 #include "../Helper.h"
 
+MergeWave::MergeWave(AbstractLedStrip* strip, byte duration):
+    Animation(strip, 2, 3, 20),
+    l(0),
+    r(0),
+    index(0),
+    len(0)
+{
+}
+
 void MergeWave::Init()
 {
     l = 0;

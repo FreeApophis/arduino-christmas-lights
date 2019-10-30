@@ -8,8 +8,9 @@
 class ColorWave : public Crawl, public BrightnessManipulation, public Animation {
   public:
     ColorWave(AbstractLedStrip* strip, byte duration);
-    virtual void Init();
-    virtual void Show();
+
+    void Init() override;
+    void Show() override;
 
   private:
     byte index;

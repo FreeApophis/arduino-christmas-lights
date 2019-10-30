@@ -7,9 +7,9 @@ class ClearFade : public Clearance {
   public:
     ClearFade(AbstractLedStrip* strip);
 
-    virtual void init();
-    virtual void show();
+    void Init() override;
+    void Show() override;
 
   private:
-    byte decrement;
+    byte decrement{};
 };
