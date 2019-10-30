@@ -17,3 +17,16 @@ uint32_t ColorFromColorWheel(byte WheelPos)
     WheelPos -= 170;
     return ToColor(WheelPos * 3, 255 - WheelPos * 3, 0);
 }
+
+uint32_t ColorSuperPosition(uint32_t color1, uint32_t color2)
+{
+    uint32_t c = 0;
+    for (byte i = 0; i < 3; ++i) {
+        uint32_t p = color1 >> (i * 8);
+        p += color2 >> (i * 8);
+        p &= 0xff;
+        p <<= i * 8;
+        c |= p;
+    }
+    return c;
+}

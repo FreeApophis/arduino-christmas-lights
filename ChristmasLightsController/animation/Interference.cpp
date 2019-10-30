@@ -3,6 +3,11 @@
 #include "../Helper.h"
 #include <cstdlib>
 
+Interference::Interference(AbstractLedStrip* strip, byte duration):
+    Animation(strip, 6, 10, 6)
+{
+}
+
 void Interference::init()
 {
     active = 0;
@@ -18,7 +23,7 @@ void Interference::show()
         uint32_t c = 0;
         for (byte j = 0; j < active; ++j) {
             uint32_t c1 = clr(i, j);
-            c = ColorSuperposition::add(c, c1);
+            c = ColorSuperPosition(c, c1);
         }
         _strip->setPixelColor(i, c);
     }

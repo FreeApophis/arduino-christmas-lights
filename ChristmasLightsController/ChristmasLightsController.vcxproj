@@ -193,7 +193,6 @@
     <ClInclude Include="clearance\ClearHalf.h" />
     <ClInclude Include="clearance\ClearSide.h" />
     <ClInclude Include="clearance\EatFromCenter.h" />
-    <ClInclude Include="ColorSuperposition.h" />
     <ClInclude Include="Crawl.h" />
     <ClInclude Include="Shuffle.h" />
     <ClInclude Include="Helper.h" />
@@ -247,7 +246,6 @@
     <ClCompile Include="clearance\ClearSide.cpp" />
     <ClCompile Include="clearance\EatFromCenter.cpp" />
     <ClCompile Include="framework.cpp" />
-    <ClCompile Include="ColorSuperposition.cpp" />
     <ClCompile Include="Crawl.cpp" />
     <ClCompile Include="Shuffle.cpp" />
     <ClCompile Include="dllmain.cpp" />

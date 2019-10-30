@@ -60,9 +60,6 @@
     <ClInclude Include="BlendManipulations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ColorSuperposition.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="animation\RandomCreep.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -216,9 +213,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BlendManipulations.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ColorSuperposition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="animation\RandomCreep.cpp">

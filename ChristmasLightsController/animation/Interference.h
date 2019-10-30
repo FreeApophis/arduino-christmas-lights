@@ -1,19 +1,15 @@
 #pragma once
 
 #include "Animation.h"
-#include "../ColorSuperposition.h"
 #include "../framework.h"
 
 
 constexpr int num_inter = 3;
     //---------------------------------------------- Show interference from many sources ----------------------------------
-class Interference : public ColorSuperposition, public Animation {
+class Interference : public Animation {
 
   public:
-    Interference(AbstractLedStrip* strip, byte duration) :
-        Animation(strip, 6, 10, 6)
-    {
-    }
+    Interference(AbstractLedStrip* strip, byte duration);
     virtual void init();
     virtual void show();
 
