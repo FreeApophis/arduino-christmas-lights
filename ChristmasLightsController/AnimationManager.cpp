@@ -6,6 +6,7 @@
 
 AnimationManager::AnimationManager(Animation* animations[], byte a_size, Clearance* clearances[], byte clr_size, AbstractLedStrip* strip) :
     Shuffle(a_size),
+    _strip(strip),
     _animations(animations),
     _clearances(clearances)
 {
@@ -64,7 +65,7 @@ void AnimationManager::Show()
         if (c->IsComplete()) {
             do_clear = false;
             if (ms > next)
-                a->SetNeedsClear (false); // It is too late to continue the animation
+                a->SetNeedsClear(false); // It is too late to continue the animation
             Init();
         } else
             c->Show(); // Keep running clear session till it ends

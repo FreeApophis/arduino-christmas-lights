@@ -2,10 +2,9 @@
 
 #include <cstdint>
 
-
 SimulatedLedStrip::SimulatedLedStrip(byte stripSize)
 {
-    _pixels.resize(stripSize);
+    _pixels.resize(stripSize, 0);
 }
 
 uint16_t SimulatedLedStrip::numPixels() const
@@ -15,12 +14,16 @@ uint16_t SimulatedLedStrip::numPixels() const
 
 inline uint32_t SimulatedLedStrip::getPixelColor(uint16_t n) const
 {
-    return _pixels[n];
+    if (n < _pixels.size()) {
+        return _pixels[n];
+    }
 }
 
 void SimulatedLedStrip::setPixelColor(uint16_t n, uint32_t c)
 {
-    _pixels[n] = c;
+    if (n < _pixels.size()) {
+        _pixels[n] = c;
+    }
 }
 
 void SimulatedLedStrip::clear()
@@ -42,4 +45,9 @@ void SimulatedLedStrip::begin()
 void SimulatedLedStrip::setBrightness(uint8_t brightness)
 {
     // we don't care for brightness in the simulator...
+}
+
+std::vector<uint32_t>& SimulatedLedStrip::CurrentPixels()
+{
+    return _pixels;
 }

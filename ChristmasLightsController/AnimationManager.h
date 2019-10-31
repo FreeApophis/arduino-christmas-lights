@@ -19,7 +19,7 @@ class AnimationManager : public Shuffle {
     void InitClear();
     bool IsClean();
 
-    SimulatedLedStrip* _strip{};
+    AbstractLedStrip* _strip{};
     Animation** _animations;
     Clearance** _clearances;
     byte num_clr;

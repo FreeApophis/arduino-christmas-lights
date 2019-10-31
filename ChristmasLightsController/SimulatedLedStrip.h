@@ -20,6 +20,8 @@ public:
 
     ~SimulatedLedStrip() = default;
 
+    std::vector<uint32_t>& CurrentPixels();
+
   private:
     std::vector<uint32_t> _pixels;
 };

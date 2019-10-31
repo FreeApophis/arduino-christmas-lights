@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChristmasLightsSimulator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="MainWindow" Height="300" Width="1200">
+    <Canvas Name="MainCanvas">
+        <Label Name="FrameLabel" Canvas.Bottom="10" Content="Frame: 0"></Label>
+    </Canvas>
 </Window>

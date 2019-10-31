@@ -1,7 +1,6 @@
 #include "LightsController.h"
 
 #include "AnimationManager.h"
-
 #include "animation/Animation.h"
 #include "animation/CenterRun.h"
 #include "animation/CollEnd.h"
@@ -50,17 +49,16 @@
 #    include "SimulatedLedStrip.h"
 #endif
 
-
 const byte PixelBrightness = 100;
 
 // Pin of Neopixel Strip
-//const byte NEO_PIN = 6; 
+//const byte NEO_PIN = 6;
 
 // Length of Neopixel Strip
-const byte NumberOfPixels = 100; 
+const byte NumberOfPixels = 100;
 
 // seconds
-const byte MinimalSequenceShowTime = 30;   
+const byte MinimalSequenceShowTime = 30;
 //
 //// Parameter 1 = number of pixels in strip
 //// Parameter 2 = Arduino pin number (most are valid)
@@ -178,7 +176,7 @@ void randomize()
     //randomSeed(rnd);
 }
 
-void setup()
+uint16_t setup()
 {
     randomize();
 
@@ -186,9 +184,14 @@ void setup()
     strip.setBrightness(PixelBrightness);
     strip.show(); // Initialize all pixels to 'off'
     mgr.Init();
+
+    return strip.numPixels();
 }
 
-void loop()
+uint32_t* loop()
 {
     mgr.Show();
+
+    incrementMillis();
+    return strip.CurrentPixels().data();
 }
