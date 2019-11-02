@@ -1,11 +1,12 @@
 #pragma once
 
 #include "Crawl.h"
-#include "framework.h"
 #include "animation/Animation.h"
 
+#include "framework.h"
+
 // Color swing
-class ColorSwing : public Crawl, public Animation {
+class ColorSwing : public Animation {
   public:
     ColorSwing(AbstractLedStrip* strip, byte duration);
 
@@ -13,6 +14,7 @@ class ColorSwing : public Crawl, public Animation {
     void Show() override;
 
   private:
+    Crawl _crawl;
     int len, index;
     byte w;
     bool rnd;

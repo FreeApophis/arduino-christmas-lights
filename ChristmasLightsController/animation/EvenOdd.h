@@ -3,7 +3,7 @@
 #include "animation/Animation.h"
 #include "framework.h"
 
-//---------------------------------------------- Even and odd position leds are moving towards each other ---------------
+// Even and odd position leds are moving towards each other
 class EvenOdd : public Animation {
   public:
     EvenOdd(AbstractLedStrip* strip, byte duration);

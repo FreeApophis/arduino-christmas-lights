@@ -12,7 +12,9 @@ class CollideOne : public Animation {
     void Show() override;
 
   private:
-    uint32_t cl, cr;
-    int l, r;
-    bool boom;
+    uint32_t _leftColor;
+    uint32_t _rightColor;
+    int _left;
+    int _right;
+    bool _isBooom;
 };

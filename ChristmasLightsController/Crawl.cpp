@@ -1,25 +1,52 @@
 #include "Crawl.h"
 
-Crawl::Crawl(AbstractLedStrip* strip) :
-    fwd(true),
-    _crawlStrip(strip)
+Crawl::Crawl() :
+    _nextColor(0),
+    _crawlDirection(CrawlDirection::Forward)
 {
 }
 
-void Crawl::step()
+void Crawl::SetDirection(CrawlDirection direction)
 {
-    if (fwd) { // creep forward
-        for (int i = _crawlStrip->numPixels() - 1; i > 0; --i) {
-            uint32_t c = _crawlStrip->getPixelColor(i - 1);
-            _crawlStrip->setPixelColor(i, c);
+    _crawlDirection = direction;
+}
+
+void Crawl::ToggleDirection()
+{
+    _crawlDirection = _crawlDirection == CrawlDirection::Forward
+                          ? CrawlDirection::Backward
+                          : CrawlDirection::Forward;
+}
+
+CrawlDirection Crawl::GetDirection() const
+{
+    return _crawlDirection;
+}
+
+void Crawl::SetNextColor(uint32_t color)
+{
+    _nextColor = color;
+}
+
+uint32_t Crawl::NextColor() const
+{
+    return _nextColor;
+}
+
+void Crawl::Step(AbstractLedStrip* strip)
+{
+    if (_crawlDirection == CrawlDirection::Forward) {
+        for (int i = strip->numPixels() - 1; i > 0; --i) {
+            uint32_t c = strip->getPixelColor(i - 1);
+            strip->setPixelColor(i, c);
         }
-        _crawlStrip->setPixelColor(0, next_color);
+        strip->setPixelColor(0, _nextColor);
     } else { // creep backward
-        int last = _crawlStrip->numPixels() - 1;
+        const int last = strip->numPixels() - 1;
         for (int i = 0; i < last; ++i) {
-            uint32_t c = _crawlStrip->getPixelColor(i + 1);
-            _crawlStrip->setPixelColor(i, c);
+            uint32_t c = strip->getPixelColor(i + 1);
+            strip->setPixelColor(i, c);
         }
-        _crawlStrip->setPixelColor(last, next_color);
+        strip->setPixelColor(last, _nextColor);
     }
 }

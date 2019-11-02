@@ -2,33 +2,32 @@
 
 #include "ColorManipulation.h"
 
-RandomCreep::RandomCreep(AbstractLedStrip* strip, byte duration):
-    Crawl(strip),
+RandomCreep::RandomCreep(AbstractLedStrip* strip, byte duration) :
     Animation(strip, duration, 6, 24)
 {
 }
 
 void RandomCreep::Init()
 {
-    space = random(2, 5);
-    change_direction = random(100, 500);
-    cnt = 0;
+    _space = random(2, 5);
+    _changeDirection = random(100, 500);
+    _count = 0;
 }
 
 void RandomCreep::Show()
 {
-    --change_direction;
-    if (change_direction <= 0) {
-        Crawl::fwd = !Crawl::fwd;
+    --_changeDirection;
+    if (_changeDirection <= 0) {
+        _crawl.ToggleDirection();
         Init();
     }
 
-    next_color = 0;
-    ++cnt;
-    if (cnt > space) {
-        cnt = 0;
-        next_color = ColorFromColorWheel(random(256));
+    _crawl.SetNextColor(0);
+    ++_count;
+    if (_count > _space) {
+        _count = 0;
+        _crawl.SetNextColor(ColorFromColorWheel(random(256)));
     }
 
-    Crawl::step();
+    _crawl.Step(_strip);
 }

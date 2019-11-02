@@ -3,7 +3,7 @@
 #include "AbstractLedStrip.h"
 #include "framework.h"
 
-//---------------------------------------------- Brighttess manipulation --------------------------------------------------
+ // Brightness manipulation
 class BrightnessManipulation {
   public:
     BrightnessManipulation(AbstractLedStrip* strip);

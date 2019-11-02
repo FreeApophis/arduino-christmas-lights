@@ -1,13 +1,13 @@
 #pragma once
 
 #include "animation/Animation.h"
+
 #include "framework.h"
 
-
 constexpr int num_inter = 3;
-    //---------------------------------------------- Show interference from many sources ----------------------------------
-class Interference : public Animation {
 
+// Show interference from many sources
+class Interference : public Animation {
   public:
     Interference(AbstractLedStrip* strip, byte duration);
 

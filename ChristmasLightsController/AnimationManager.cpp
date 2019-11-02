@@ -43,17 +43,17 @@ void AnimationManager::Init()
 {
     _currentAnimation = _animations[_shuffle.next()];
 
-    if (!_currentAnimation->NeedsClear()) {
+    if (!_currentAnimation->NeedsClearance()) {
         _nextAnimation = NextAnimationTime();
     }
 
     SetStepSettings();
 
     _strip->clear();
-    _currentAnimation->SetNeedsClear(false);
+    _currentAnimation->SetNeedsClearance(false);
     _currentAnimation->Init();
     _strip->show();
-    _currentAnimation->SetNeedsClear(false);
+    _currentAnimation->SetNeedsClearance(false);
 }
 
 void AnimationManager::Show()
@@ -85,7 +85,7 @@ void AnimationManager::AdvanceAnimation()
 
     _nextStep = ms + _stepPeriod;
 
-    if (_currentAnimation->NeedsClear()) {
+    if (_currentAnimation->NeedsClearance()) {
         InitClear();
     }
 
@@ -108,7 +108,7 @@ void AnimationManager::AdvanceClearance()
     if (_currentClearance->IsComplete()) {
         _clearing = false;
         if (ms > _nextAnimation) {
-            _currentAnimation->SetNeedsClear(false); // It is too late to continue the animation
+            _currentAnimation->SetNeedsClearance(false); // It is too late to continue the animation
         }
         Init();
     } else {

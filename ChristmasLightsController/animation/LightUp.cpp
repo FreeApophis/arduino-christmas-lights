@@ -37,7 +37,7 @@ void LightUp::NewColor()
     uint32_t c = 0;
     for (byte i = 0; i < 3; ++i) {
         c <<= 8;
-        byte d = random(16) << 4;
+        const byte d = random(16) << 4;
         c |= d;
     }
     BrightnessManipulation::setColor(c);

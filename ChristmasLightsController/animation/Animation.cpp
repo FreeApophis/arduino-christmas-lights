@@ -2,7 +2,7 @@
 
 Animation::Animation(AbstractLedStrip* strip, byte duration, byte minPeriod, byte maxPeriod) :
     _strip(strip),
-    _needsClear(false),
+    _needsClearance(false),
     _complete(true),
     _minPeriod(minPeriod),
     _maxPeriod(maxPeriod),
@@ -15,14 +15,14 @@ bool Animation::IsComplete() const
     return _complete;
 }
 
-bool Animation::NeedsClear() const
+bool Animation::NeedsClearance() const
 {
-    return _needsClear;
+    return _needsClearance;
 }
 
-void Animation::SetNeedsClear(const bool clear)
+void Animation::SetNeedsClearance(const bool clear)
 {
-    _needsClear = clear;
+    _needsClearance = clear;
 }
 
 uint32_t Animation::ShowTime() const

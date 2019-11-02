@@ -4,7 +4,7 @@
 #include "BrightnessManipulation.h"
 #include "framework.h"
 
-//---------------------------------------------- Light up with the random color than fade out -----------------------------
+// Light up with the random color than fade out
 class LightUp : public BrightnessManipulation, public Animation {
   public:
     LightUp(AbstractLedStrip* strip, byte duration);

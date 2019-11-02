@@ -1,8 +1,8 @@
-#include "CollMdl.h"
+#include "WalkToCenter.h"
 
 #include "ColorManipulation.h"
 
-CollMdl::CollMdl(AbstractLedStrip* strip, byte duration):
+WalkToCenter::WalkToCenter(AbstractLedStrip* strip, byte duration):
     Animation(strip, 8, 1, 6),
     cl(0),
     cr(0),
@@ -14,7 +14,7 @@ CollMdl::CollMdl(AbstractLedStrip* strip, byte duration):
 {
 }
 
-void CollMdl::Init()
+void WalkToCenter::Init()
 {
     ml = (_strip->numPixels() - 1) / 2;
     mr = ml + 1;
@@ -22,7 +22,7 @@ void CollMdl::Init()
     clr = false;
 }
 
-void CollMdl::Show()
+void WalkToCenter::Show()
 {
     if (clr) {
         _strip->setPixelColor(l, 0);
@@ -72,7 +72,7 @@ void CollMdl::Show()
     _complete = false;
 }
 
-void CollMdl::newColors()
+void WalkToCenter::newColors()
 {
     cl = ColorFromColorWheel(random(256));
     cr = ColorFromColorWheel(random(256));

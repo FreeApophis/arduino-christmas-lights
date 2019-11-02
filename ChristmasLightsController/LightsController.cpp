@@ -3,8 +3,8 @@
 #include "AnimationManager.h"
 #include "animation/Animation.h"
 #include "animation/CenterRun.h"
-#include "animation/CollEnd.h"
-#include "animation/CollMdl.h"
+#include "animation/WalkAcross.h"
+#include "animation/WalkToCenter.h"
 #include "animation/CollideOne.h"
 #include "animation/ColorSwing.h"
 #include "animation/ColorWalk.h"
@@ -73,9 +73,7 @@ SimulatedLedStrip strip(NumberOfPixels);
 
 // Instantiate Animations
 CenterRun centerRun(&strip, MinimalSequenceShowTime);
-CollEnd collEnd(&strip, MinimalSequenceShowTime);
 CollideOne collideOne(&strip);
-CollMdl collMdl(&strip, MinimalSequenceShowTime);
 ColorSwing colorSwing(&strip, MinimalSequenceShowTime);
 ColorWalk colorWalk(&strip, MinimalSequenceShowTime);
 ColorWave colorWave(&strip, MinimalSequenceShowTime);
@@ -89,9 +87,9 @@ MergeOne mergeOn(&strip, MinimalSequenceShowTime);
 MergeWave mergeWave(&strip, MinimalSequenceShowTime);
 NeoFire neoFire(&strip, MinimalSequenceShowTime);
 RainBlend rainBlend(&strip, MinimalSequenceShowTime);
-Rainbow rainbow(&strip, MinimalSequenceShowTime);
 RainCycle rainCycle(&strip, MinimalSequenceShowTime);
 RainFull rainFull(&strip, MinimalSequenceShowTime);
+Rainbow rainbow(&strip, MinimalSequenceShowTime);
 RandomCreep randomCreep(&strip, MinimalSequenceShowTime);
 RandomDrops randomDrops(&strip);
 RandomFade randomFade(&strip, MinimalSequenceShowTime);
@@ -104,11 +102,13 @@ SolitonCreep solitonCreep(&strip, MinimalSequenceShowTime);
 Sparks sparks(&strip, MinimalSequenceShowTime);
 Toward toward(&strip, MinimalSequenceShowTime);
 TowardRain towardRain(&strip, MinimalSequenceShowTime);
+WalkAcross walkAcross(&strip, MinimalSequenceShowTime);
 WalkSeven walkSeven(&strip, MinimalSequenceShowTime);
+WalkToCenter walkToCenter(&strip, MinimalSequenceShowTime);
 Worms worms(&strip);
 
 // Instantiate Clearance Animations
-ClearSide clrSide(&strip);
+ClearSide clearSide(&strip);
 ClearFromCenter clearFromCenter(&strip);
 ClearFade clearFade(&strip);
 EatFromCenter eatFromCenter(&strip);
@@ -116,9 +116,7 @@ ClearHalf clearHalf(&strip);
 
 Animation* animations[] = {
     //&centerRun,
-    &collEnd,
     //&collideOne,
-    //&collMdl,
     //&colorWalk,
     //&colorWave,
     //&colorWipe,
@@ -131,7 +129,7 @@ Animation* animations[] = {
     //&mergeWave,
     //&neoFire,
     //&rainBlend,
-    //&rainbow,
+    &rainbow,
     //&rainCycle,
     //&rainFull,
     //&randomCreep,
@@ -147,12 +145,14 @@ Animation* animations[] = {
     //&colorSwing,
     //&toward,
     //&towardRain,
+    //&walkAcross,
     //&walkSeven,
+    //&walkToCenter,
     //&worms,
 };
 
 Clearance* clearances[] = {
-    &clrSide,
+    &clearSide,
     &clearFromCenter,
     &clearFade,
     &eatFromCenter,

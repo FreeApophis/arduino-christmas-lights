@@ -38,7 +38,7 @@ void MergeOne::Show()
     --r;
     ++l;
     if (r < 0) { // Force the strip clerance
-        _needsClear = true;
+        _needsClearance = true;
         _complete = true;
         return;
     }

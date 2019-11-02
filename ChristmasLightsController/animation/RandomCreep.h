@@ -1,12 +1,12 @@
 #pragma once
 
+#include "Crawl.h"
 #include "animation/Animation.h"
 
-#include "Crawl.h"
 #include "framework.h"
 
 // creep the random sequence up or down
-class RandomCreep : public Crawl, public Animation {
+class RandomCreep : public Animation {
   public:
     RandomCreep(AbstractLedStrip* strip, byte duration);
 
@@ -14,7 +14,8 @@ class RandomCreep : public Crawl, public Animation {
     void Show() override;
 
   private:
-    byte space{}; // space between the color dots
-    int change_direction{};
-    byte cnt{};
+    Crawl _crawl;
+    byte _space; // space between the color dots
+    int _changeDirection;
+    byte _count{};
 };

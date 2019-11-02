@@ -4,9 +4,9 @@
 #include "framework.h"
 
 // Random colors from left and right move to the center
-class CollMdl : public Animation {
+class WalkToCenter : public Animation {
   public:
-    CollMdl(AbstractLedStrip* strip, byte duration);
+    WalkToCenter(AbstractLedStrip* strip, byte duration);
 
     void Init() override;
     void Show() override;

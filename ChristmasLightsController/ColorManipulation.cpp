@@ -2,6 +2,8 @@
 
 #include "framework.h"
 
+#include <cmath>
+
 uint32_t ToColor(const uint8_t r, const uint8_t g, const uint8_t b)
 {
     return static_cast<uint32_t>(r) << 16 | static_cast<uint32_t>(g) << 8 | b;
@@ -30,18 +32,24 @@ uint32_t AddColors(const uint32_t color1, const uint32_t color2)
         constrain(ExtractBlue(color1) + ExtractBlue(color2), 0, 255));
 }
 
+// The color function is a follows for x:
+// first 1/6 (0 - 42): linear from 0 to 255
+// next 1/3 (43 - 127): constant 255
+// next 1/6 (128 - 170): linear from 255 to 0
+// last 1/3 (170 - 255): constant 0
+// b is moving the function in x direction...
+byte ColorFunction(int x, int b)
+{
+    return static_cast<byte>(constrain(516 - abs(85 / 14 * (x - 85 - b)), 0, 255));
+}
+
 // Input a value 0 to 255 to get a color value. The colours are a transition r - g - b - back to r.
 uint32_t ColorFromColorWheel(const byte position)
 {
-    if (position < 85) {
-        return ToColor(255 - 3 * position, 3 * position, 0);
-    }
-
-    if (position >= 170) {
-        return ToColor(0, 510 - 3 * position, 3 * position - 255);
-    }
-
-    return ToColor(3 * position - 510, 0, 765 - 3 * position);
+    return ToColor(
+        ColorFunction(position, 0), 
+        ColorFunction(position, 85), 
+        ColorFunction(position, position > 63 ? 170 : -85));
 }
 
 uint32_t ColorSuperPosition(const uint32_t color1, const uint32_t color2)

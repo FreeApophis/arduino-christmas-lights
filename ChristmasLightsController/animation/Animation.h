@@ -15,8 +15,8 @@ class Animation {
 
     bool IsComplete() const;
 
-    bool NeedsClear() const;
-    void SetNeedsClear(bool clear);
+    bool NeedsClearance() const;
+    void SetNeedsClearance(bool clear);
 
     uint32_t ShowTime() const;
 
@@ -25,7 +25,7 @@ class Animation {
 
   protected:
     AbstractLedStrip* _strip;
-    bool _needsClear; // Whether the strip have to be cleaned for the next loop
+    bool _needsClearance; // Whether the strip have to be cleaned for the next loop
     bool _complete;   // Whether the animation can be changed to the next one
 
   private:

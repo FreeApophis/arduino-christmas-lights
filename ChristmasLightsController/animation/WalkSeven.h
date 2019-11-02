@@ -1,11 +1,11 @@
 #pragma once
 
-
-#include "animation/Animation.h"
 #include "BrightnessManipulation.h"
+#include "animation/Animation.h"
+
 #include "framework.h"
 
-//---------------------------------------------- Rapid walking by the different colors -----------------------------------
+// Rapid walking by the different colors
 class WalkSeven : public BrightnessManipulation, public Animation {
   public:
     WalkSeven(AbstractLedStrip* strip, byte duration);

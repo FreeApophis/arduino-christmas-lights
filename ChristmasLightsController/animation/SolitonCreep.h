@@ -13,6 +13,7 @@ class SolitonCreep : public Crawl, public Animation {
     void Show() override;
 
   private:
+    Crawl _crawl;
     void newSoliton();
     int space{};            // space between the solitons
     int change_direction{}; // the time to change direction

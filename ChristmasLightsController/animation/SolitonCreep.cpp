@@ -4,8 +4,7 @@
 
 #include <cstdlib>
 
-SolitonCreep::SolitonCreep(AbstractLedStrip* strip, byte duration):
-    Crawl(strip),
+SolitonCreep::SolitonCreep(AbstractLedStrip* strip, byte duration) :
     Animation(strip, 9, 6, 14)
 {
 }
@@ -13,23 +12,21 @@ SolitonCreep::SolitonCreep(AbstractLedStrip* strip, byte duration):
 void SolitonCreep::Init()
 {
     w = random(256);
-    Crawl::fwd = random(2);
+    _crawl.SetDirection(RandomDirection());
     change_direction = random(200, 500);
     newSoliton();
 }
 
 void SolitonCreep::Show()
 {
-    Crawl::step();
+    _crawl.Step(_strip);
 
     if (--change_direction <= 0) {
-        Crawl::fwd = !Crawl::fwd;
+        _crawl.ToggleDirection();
         change_direction = random(200, 500);
     }
 
-    int pos = _strip->numPixels() - 1;
-    if (Crawl::fwd)
-        pos = 0;
+    const int pos = StartPosition(_crawl.GetDirection(), _strip->numPixels() - 1);
 
     if (sol <= 4) {
         int i = abs(sol);
@@ -66,8 +63,7 @@ void SolitonCreep::newSoliton()
     }
     space = random(3, 10);
 
-    int pos = _strip->numPixels() - 1;
-    if (Crawl::fwd)
-        pos = 0;
-    _strip->setPixelColor(pos, dot[4]);
+    const int position = StartPosition(_crawl.GetDirection(), _strip->numPixels() - 1);
+
+    _strip->setPixelColor(position, dot[4]);
 }

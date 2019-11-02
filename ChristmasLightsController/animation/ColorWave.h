@@ -5,7 +5,7 @@
 
 // show the color Wave using rainbowCycle
 
-class ColorWave : public Crawl, public BrightnessManipulation, public Animation {
+class ColorWave : public BrightnessManipulation, public Animation {
   public:
     ColorWave(AbstractLedStrip* strip, byte duration);
 
@@ -13,6 +13,7 @@ class ColorWave : public Crawl, public BrightnessManipulation, public Animation 
     void Show() override;
 
   private:
-    byte index;
-    bool rdy;
+    Crawl _crawl;
+    byte _index;
+    bool _isReady;
 };

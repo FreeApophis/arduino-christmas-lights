@@ -5,9 +5,9 @@
 #include "framework.h"
 
 // Random colors from left and right move to the other end
-class CollEnd : public Animation {
+class WalkAcross : public Animation {
   public:
-    CollEnd(AbstractLedStrip* strip, byte duration);
+    WalkAcross(AbstractLedStrip* strip, byte duration);
 
     void Init() override;
     void Show() override;
@@ -19,5 +19,5 @@ class CollEnd : public Animation {
     int _left;
     int _right;
     int _borderLeft;
-    int _border_right;
+    int _borderRight;
 };

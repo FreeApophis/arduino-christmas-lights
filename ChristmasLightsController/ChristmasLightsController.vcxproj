@@ -155,9 +155,9 @@
     <ClInclude Include="AbstractLedStrip.h" />
     <ClInclude Include="animation\Animation.h" />
     <ClInclude Include="animation\CenterRun.h" />
-    <ClInclude Include="animation\CollEnd.h" />
+    <ClInclude Include="animation\WalkAcross.h" />
     <ClInclude Include="animation\CollideOne.h" />
-    <ClInclude Include="animation\CollMdl.h" />
+    <ClInclude Include="animation\WalkToCenter.h" />
     <ClInclude Include="animation\ColorSwing.h" />
     <ClInclude Include="animation\ColorWalk.h" />
     <ClInclude Include="animation\ColorWave.h" />
@@ -199,6 +199,7 @@
     <ClInclude Include="clearance\EatFromCenter.h" />
     <ClInclude Include="ColorManipulation.h" />
     <ClInclude Include="Crawl.h" />
+    <ClInclude Include="CrawlDirection.h" />
     <ClInclude Include="Shuffle.h" />
     <ClInclude Include="SimulatedLedStrip.h" />
     <ClInclude Include="framework.h" />
@@ -208,9 +209,9 @@
     <ClCompile Include="AnimationManager.cpp" />
     <ClCompile Include="animation\Animation.cpp" />
     <ClCompile Include="animation\CenterRun.cpp" />
-    <ClCompile Include="animation\CollEnd.cpp" />
+    <ClCompile Include="animation\WalkAcross.cpp" />
     <ClCompile Include="animation\CollideOne.cpp" />
-    <ClCompile Include="animation\CollMdl.cpp" />
+    <ClCompile Include="animation\WalkToCenter.cpp" />
     <ClCompile Include="animation\ColorSwing.cpp" />
     <ClCompile Include="animation\ColorWalk.cpp" />
     <ClCompile Include="animation\ColorWave.cpp" />
@@ -249,6 +250,7 @@
     <ClCompile Include="clearance\ClearSide.cpp" />
     <ClCompile Include="clearance\EatFromCenter.cpp" />
     <ClCompile Include="ColorManipulation.cpp" />
+    <ClCompile Include="CrawlDirection.cpp" />
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="Crawl.cpp" />
     <ClCompile Include="Shuffle.cpp" />

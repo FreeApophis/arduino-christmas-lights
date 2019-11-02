@@ -4,50 +4,50 @@
 
 CollideOne::CollideOne(AbstractLedStrip* strip) :
     Animation(strip, 2, 1, 3),
-    cl(0),
-    cr(0),
-    l(0),
-    r(0),
-    boom(false)
+    _leftColor(0),
+    _rightColor(0),
+    _left(0),
+    _right(0),
+    _isBooom(false)
 {
 }
 
 void CollideOne::Init()
 {
-    l = 0;
-    r = _strip->numPixels() - 1;
+    _left = 0;
+    _right = _strip->numPixels() - 1;
     byte w = random(256);
-    cl = ColorFromColorWheel(w);
+    _leftColor = ColorFromColorWheel(w);
     w += random(8, 16);
-    cr = ColorFromColorWheel(w);
+    _rightColor = ColorFromColorWheel(w);
     _strip->clear();
-    boom = false;
+    _isBooom = false;
 }
 
 void CollideOne::Show()
 {
-    if (boom) {
-        _strip->setPixelColor(l, 0xffffff);
-        _strip->setPixelColor(r, 0xffffff);
-        if ((r - l) >= 12) {
-            _strip->setPixelColor(l + 6, 0);
-            _strip->setPixelColor(r - 6, 0);
+    if (_isBooom) {
+        _strip->setPixelColor(_left, 0xffffff);
+        _strip->setPixelColor(_right, 0xffffff);
+        if ((_right - _left) >= 12) {
+            _strip->setPixelColor(_left + 6, 0);
+            _strip->setPixelColor(_right - 6, 0);
         }
-        --l;
-        ++r;
-        if (l < 0) {
+        --_left;
+        ++_right;
+        if (_left < 0) {
             Init();
             _complete = true;
             return;
         }
     } else {
-        if (l < r) {
-            _strip->setPixelColor(l, cl);
-            _strip->setPixelColor(r, cr);
-            --r;
-            ++l;
+        if (_left < _right) {
+            _strip->setPixelColor(_left, _leftColor);
+            _strip->setPixelColor(_right, _rightColor);
+            --_right;
+            ++_left;
         } else {
-            boom = true;
+            _isBooom = true;
         }
     }
     _complete = false;

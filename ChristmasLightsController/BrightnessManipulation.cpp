@@ -28,11 +28,11 @@ bool BrightnessManipulation::change(uint16_t index, int val)
 {
     uint32_t c = _brightStrip->getPixelColor(index);
     byte bound = 0;
-    int e = 256 + val;
+    const int e = 256 + val;
     for (char s = 2; s >= 0; --s) {
         long cc = c >> (s * 8);
         cc &= 0xff;
-        long cs = cc;
+        const long cs = cc;
         cc *= e;
         cc >>= 8;
         if (cs == cc)

@@ -1,8 +1,8 @@
 #include "ColorSwing.h"
+
 #include "ColorManipulation.h"
 
-ColorSwing::ColorSwing(AbstractLedStrip* strip, byte duration):
-    Crawl(strip),
+ColorSwing::ColorSwing(AbstractLedStrip* strip, byte duration) :
     Animation(strip, 10, 3, 10),
     len(0),
     index(0),
@@ -21,14 +21,14 @@ void ColorSwing::Init()
         c = ColorFromColorWheel(w);
     }
     _strip->setPixelColor(0, c);
-    Crawl::fwd = true;
-    Crawl::next_color = 0;
+    _crawl.SetDirection(CrawlDirection::Forward);
+    _crawl.SetNextColor(0);
     index = _strip->numPixels() - len - 1;
 }
 
 void ColorSwing::Show()
 {
-    Crawl::step();
+    _crawl.Step(_strip);
     --index;
 
     if (index < 0) {
@@ -37,15 +37,16 @@ void ColorSwing::Show()
             w += 4;
             c = ColorFromColorWheel(w);
         }
-        if (Crawl::fwd)
+        if (_crawl.GetDirection() == CrawlDirection::Forward) {
             _strip->setPixelColor(_strip->numPixels() - len - 1, c);
-        else
+        } else {
             _strip->setPixelColor(len, c);
+        }
         ++len;
-        Crawl::fwd = !Crawl::fwd;
+        _crawl.ToggleDirection();
         index = _strip->numPixels() - len - 1;
         if (len >= int(_strip->numPixels())) {
-            _needsClear = true; // Force the strip clerance
+            _needsClearance = true; // Force the strip clerance
             _complete = true;
             return;
         }

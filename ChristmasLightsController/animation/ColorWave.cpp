@@ -3,37 +3,39 @@
 #include "ColorManipulation.h"
 
 ColorWave::ColorWave(AbstractLedStrip* strip, byte duration) :
-    Crawl(strip),
     BrightnessManipulation(strip),
     Animation(strip, duration, 2, 8),
-    index(0),
-    rdy(false)
+    _index(0),
+    _isReady(false)
 {
 }
 
+
 void ColorWave::Init()
 {
-    index = 0;
-    rdy = false;
-    Crawl::fwd = random(2);
+    _index = 0;
+    _isReady = false;
+
+    _crawl.SetDirection(RandomDirection());
 }
 
 void ColorWave::Show()
 {
-    if (!rdy) {
-        rdy = true;
+    if (!_isReady) {
+        _isReady = true;
         for (uint16_t i = 0; i < _strip->numPixels(); ++i) {
             BrightnessManipulation::setColor(ColorFromColorWheel(((i * 256 / _strip->numPixels())) & 255));
             if (!BrightnessManipulation::change(i, 2))
-                rdy = false;
+                _isReady = false;
         }
         return;
     }
 
-    Crawl::step();
-    if (Crawl::fwd)
-        _strip->setPixelColor(0, ColorFromColorWheel(index & 255));
-    else
-        _strip->setPixelColor(_strip->numPixels() - 1, ColorFromColorWheel(index & 255));
-    ++index;
+    _crawl.Step(_strip);
+    if (_crawl.GetDirection() == CrawlDirection::Forward) {
+        _strip->setPixelColor(0, ColorFromColorWheel(_index & 255));
+    } else {
+        _strip->setPixelColor(_strip->numPixels() - 1, ColorFromColorWheel(_index & 255));
+    }
+    ++_index;
 }
