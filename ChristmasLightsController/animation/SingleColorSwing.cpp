@@ -1,6 +1,6 @@
 #include "SingleColorSwing.h"
 
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 SingleColorSwing::SingleColorSwing(AbstractLedStrip* strip):
     Animation(strip, 10, 3, 10)

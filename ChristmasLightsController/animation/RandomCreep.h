@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Animation.h"
+#include "animation/Animation.h"
 
-#include "../Crawl.h"
-#include "../framework.h"
+#include "Crawl.h"
+#include "framework.h"
 
 // creep the random sequence up or down
 class RandomCreep : public Crawl, public Animation {

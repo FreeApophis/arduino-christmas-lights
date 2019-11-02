@@ -1,6 +1,6 @@
 #include "RandomFill.h"
 
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 RandomFill::RandomFill(AbstractLedStrip* strip, byte duration):
     BrightnessManipulation(strip),

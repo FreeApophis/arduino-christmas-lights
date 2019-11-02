@@ -1,6 +1,6 @@
 #include "ClearSide.h"
 
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 ClearSide::ClearSide(AbstractLedStrip* strip) :
     Clearance(strip)

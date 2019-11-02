@@ -1,6 +1,6 @@
 #include "ColorWave.h"
 
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 ColorWave::ColorWave(AbstractLedStrip* strip, byte duration) :
     Crawl(strip),

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../Crawl.h"
-#include "../framework.h"
-#include "Animation.h"
+#include "Crawl.h"
+#include "framework.h"
+#include "animation/Animation.h"
 
 // Color swing
 class ColorSwing : public Crawl, public Animation {

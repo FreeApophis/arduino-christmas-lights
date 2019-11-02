@@ -1,6 +1,6 @@
 #include "RandomFade.h"
 
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 RandomFade::RandomFade(AbstractLedStrip* strip, byte duration):
     BrightnessManipulation(strip),

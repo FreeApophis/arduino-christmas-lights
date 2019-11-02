@@ -1,11 +1,10 @@
 #pragma once
 
-#include "Animation.h"
-#include "../BlendManipulations.h"
-#include "../framework.h"
+#include "animation/Animation.h"
+#include "framework.h"
 
 // Neo fire animation by Robert Ulbricht
-class NeoFire : public BlendManipulations, public Animation {
+class NeoFire : public Animation {
   public:
     NeoFire(AbstractLedStrip* strip, byte duration);
 

@@ -1,7 +1,7 @@
 #pragma once
-#include "../BrightnessManipulation.h"
-#include "../Crawl.h"
-#include "Animation.h"
+#include "BrightnessManipulation.h"
+#include "Crawl.h"
+#include "animation/Animation.h"
 
 // show the color Wave using rainbowCycle
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Animation.h"
-#include "../framework.h"
+#include "animation/Animation.h"
+#include "framework.h"
 
 // Fast merging of Waves
 class MergeWave : public Animation {

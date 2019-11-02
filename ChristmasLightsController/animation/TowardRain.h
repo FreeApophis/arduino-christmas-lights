@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Animation.h"
-#include "../framework.h"
+#include "animation/Animation.h"
+#include "framework.h"
 
 // Rainbow colors toward each other
 class TowardRain : public Animation {

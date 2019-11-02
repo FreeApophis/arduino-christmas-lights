@@ -1,6 +1,6 @@
 #include "Rainbow.h"
 
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 Rainbow::Rainbow(AbstractLedStrip* strip, byte duration) :
     BrightnessManipulation(strip),

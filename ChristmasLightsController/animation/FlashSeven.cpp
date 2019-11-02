@@ -1,5 +1,5 @@
 #include "FlashSeven.h"
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 FlashSeven::FlashSeven(AbstractLedStrip* strip, byte duration):
     BrightnessManipulation(strip),

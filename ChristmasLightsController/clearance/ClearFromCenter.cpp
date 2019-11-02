@@ -1,6 +1,6 @@
 #include "ClearFromCenter.h"
 
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 ClearFromCenter::ClearFromCenter(AbstractLedStrip* strip):
     Clearance(strip)

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Animation.h"
-#include "../Crawl.h"
-#include "../framework.h"
+#include "animation/Animation.h"
+#include "Crawl.h"
+#include "framework.h"
 
 // Solitons are creaping up or down
 class SolitonCreep : public Crawl, public Animation {

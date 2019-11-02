@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Animation.h"
-#include "../BrightnessManipulation.h"
-#include "../framework.h"
+#include "animation/Animation.h"
+#include "BrightnessManipulation.h"
+#include "framework.h"
 
 // Slow shining and flash by the different colors
 class ShineFlash : public BrightnessManipulation, public Animation {

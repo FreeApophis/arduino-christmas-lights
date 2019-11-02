@@ -1,4 +1,4 @@
-#include "Animation.h"
+#include "animation/Animation.h"
 
 Animation::Animation(AbstractLedStrip* strip, byte duration, byte minPeriod, byte maxPeriod) :
     _strip(strip),

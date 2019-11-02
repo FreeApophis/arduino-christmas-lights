@@ -1,11 +1,10 @@
 #pragma once
 
-#include "Animation.h"
-#include "../BlendManipulations.h"
-#include "../framework.h"
+#include "animation/Animation.h"
+#include "framework.h"
 
 // Rainbow colors blend
-class RainBlend : public BlendManipulations, public Animation {
+class RainBlend : public Animation {
   public:
     RainBlend(AbstractLedStrip* strip, byte duration);
 

@@ -1,5 +1,5 @@
 #include "EvenOdd.h"
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 EvenOdd::EvenOdd(AbstractLedStrip* strip, byte duration):
     Animation(strip, duration, 10, 20),

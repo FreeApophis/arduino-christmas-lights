@@ -1,14 +1,17 @@
 #pragma once
 
-#include "../framework.h"
-#include "../AbstractLedStrip.h"
+#include "AbstractLedStrip.h"
+
+#include "framework.h"
+
 #include <cstdint>
 
 class AbstractLedStrip;
 
 class Clearance {
   public:
-    Clearance(AbstractLedStrip* strip);
+    explicit Clearance(AbstractLedStrip* strip);
+    virtual ~Clearance() = default;
 
     virtual void Init() = 0;
     virtual void Show() = 0;
@@ -21,5 +24,3 @@ class Clearance {
     AbstractLedStrip* _strip;
     bool _complete;
 };
-
-

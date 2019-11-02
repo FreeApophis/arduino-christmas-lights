@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Animation.h"
-#include "../BrightnessManipulation.h"
-#include "../framework.h"
+#include "animation/Animation.h"
+#include "BrightnessManipulation.h"
+#include "framework.h"
 
 //---------------------------------------------- Light up with the random color than fade out -----------------------------
 class LightUp : public BrightnessManipulation, public Animation {

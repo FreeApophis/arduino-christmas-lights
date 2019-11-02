@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../framework.h"
-#include "Animation.h"
+#include "framework.h"
+#include "animation/Animation.h"
 
 class AbstractLedStrip;
 

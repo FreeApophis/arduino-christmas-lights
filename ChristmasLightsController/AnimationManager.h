@@ -7,29 +7,28 @@
 
 class AnimationManager {
   public:
-    AnimationManager(Animation* animations[], byte a_size, Clearance* c[], byte clr_size, AbstractLedStrip* strip);
+    AnimationManager(AbstractLedStrip* strip, Animation* animations[], byte numberOfAnimations, Clearance* clearances[], byte numberOfClearances);
     void Init();
     void Show();
-    void Menu();
-    void MenuL();
-
-    void Increment();
 
   private:
     void InitClear();
     bool IsClean();
+    void SetStepSettings();
+    uint32_t NextAnimationTime() const;
+    void AdvanceAnimation();
+    void AdvanceClearance();
 
     Shuffle _shuffle;
-    AbstractLedStrip* _strip{};
+    AbstractLedStrip* _strip;
     Animation** _animations;
     Clearance** _clearances;
-    byte num_clr;
-    uint32_t stp = 0;
-    uint16_t stp_period{};
-    uint16_t clr_stp_period{};
-    uint32_t next{};
-    byte aIndex;
-    Animation* a{};
-    Clearance* c{};
-    bool do_clear; // Whether cleaning the strip
+    byte _numberOfClearances;
+    uint32_t _nextStep;
+    uint16_t _stepPeriod;
+    uint32_t _nextAnimation;
+    uint16_t _clearStepPeriod;
+    Animation* _currentAnimation;
+    Clearance* _currentClearance;
+    bool _clearing;
 };

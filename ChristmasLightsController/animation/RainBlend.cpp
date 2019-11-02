@@ -1,8 +1,7 @@
 #include "RainBlend.h"
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 RainBlend::RainBlend(AbstractLedStrip* strip, byte duration):
-    BlendManipulations(strip),
     Animation(strip, duration, 1, 6),
     index(0)
 {
@@ -16,5 +15,5 @@ void RainBlend::Show()
         return;
     }
     for (uint16_t i = 0; i < _strip->numPixels(); ++i)
-        BlendManipulations::blendPixel(i);
+        _strip->setPixelColor(i, Shimmer(_strip->getPixelColor(i)));
 }

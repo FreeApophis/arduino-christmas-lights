@@ -1,6 +1,6 @@
 #include "Interference.h"
 
-#include "../Helper.h"
+#include "ColorManipulation.h"
 #include <cstdlib>
 
 Interference::Interference(AbstractLedStrip* strip, byte duration):

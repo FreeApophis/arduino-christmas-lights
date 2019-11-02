@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Animation.h"
-#include "../BrightnessManipulation.h"
-#include "../framework.h"
+#include "animation/Animation.h"
+#include "BrightnessManipulation.h"
+#include "framework.h"
 
 // Rapid flashing by the differenc colors
 class FlashSeven : public BrightnessManipulation, public Animation {

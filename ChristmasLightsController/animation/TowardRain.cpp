@@ -1,5 +1,5 @@
 #include "TowardRain.h"
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 TowardRain::TowardRain(AbstractLedStrip* strip, byte duration):
     Animation(strip, 8, 10, 20)

@@ -1,6 +1,6 @@
 #include "ShineFlash.h"
 
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 ShineFlash::ShineFlash(AbstractLedStrip* strip, byte duration):
     BrightnessManipulation(strip),

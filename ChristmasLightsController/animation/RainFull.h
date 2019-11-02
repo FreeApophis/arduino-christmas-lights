@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Animation.h"
-#include "../BrightnessManipulation.h"
-#include "../framework.h"
+#include "animation/Animation.h"
+#include "BrightnessManipulation.h"
+#include "framework.h"
 
 // show the rainbow colors on the entire strip
 class RainFull : public BrightnessManipulation, public Animation {

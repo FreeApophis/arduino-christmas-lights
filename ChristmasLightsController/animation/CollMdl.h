@@ -1,11 +1,10 @@
 #pragma once
 
-#include "Animation.h"
-#include "../BlendManipulations.h"
-#include "../framework.h"
+#include "animation/Animation.h"
+#include "framework.h"
 
 // Random colors from left and right move to the center
-class CollMdl : public BlendManipulations, public Animation {
+class CollMdl : public Animation {
   public:
     CollMdl(AbstractLedStrip* strip, byte duration);
 

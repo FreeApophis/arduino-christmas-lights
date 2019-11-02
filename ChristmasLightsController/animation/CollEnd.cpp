@@ -1,51 +1,51 @@
 #include "CollEnd.h"
-#include "../Helper.h"
 
+#include "ColorManipulation.h"
 
-CollEnd::CollEnd(AbstractLedStrip* strip, byte duration):
-    BlendManipulations(strip),
+CollEnd::CollEnd(AbstractLedStrip* strip, byte duration) :
     Animation(strip, 10, 1, 6),
-    cl(0),
-    cr(0),
-    l(0),
-    r(0),
-    ml(0),
-    mr(0)
+    _leftColor(0),
+    _rightColor(0),
+    _left(0),
+    _right(0),
+    _borderLeft(0),
+    _border_right(0)
 {
 }
 
 void CollEnd::Init()
 {
-    ml = _strip->numPixels() - 1;
-    mr = 0;
+    _borderLeft = _strip->numPixels() - 1;
+    _border_right = 0;
     newColors();
 }
 
 void CollEnd::Show()
 {
     // blend colors in the both ends
-    if (mr > 1) {
-        for (int i = 0; i < mr; ++i)
-            BlendManipulations::blendPixel(i);
-        for (uint16_t i = ml; i < _strip->numPixels(); ++i)
-            BlendManipulations::blendPixel(i);
+    if (_border_right > 1) {
+        for (int i = 0; i < _border_right; ++i) {
+            _strip->setPixelColor(i, Shimmer(_strip->getPixelColor(i)));
+        }
+        for (uint16_t i = _borderLeft; i < _strip->numPixels(); ++i)
+            _strip->setPixelColor(i, Shimmer(_strip->getPixelColor(i)));
     }
 
     // New colors are moving to the other end
-    if (l <= ml) {
-        if (l > (mr + 1))
-            _strip->setPixelColor(l - 2, 0);
-        _strip->setPixelColor(l, cl);
+    if (_left <= _borderLeft) {
+        if (_left > (_border_right + 1))
+            _strip->setPixelColor(_left - 2, 0);
+        _strip->setPixelColor(_left, _leftColor);
     }
-    if (r >= mr) {
-        if (r < (ml - 1))
-            _strip->setPixelColor(r + 2, 0);
-        _strip->setPixelColor(r, cr);
+    if (_right >= _border_right) {
+        if (_right < (_borderLeft - 1))
+            _strip->setPixelColor(_right + 2, 0);
+        _strip->setPixelColor(_right, _rightColor);
     }
-    if ((l >= ml) && (r <= mr)) {
-        ml--;
-        mr++;
-        if (ml < 0) {
+    if ((_left >= _borderLeft) && (_right <= _border_right)) {
+        _borderLeft--;
+        _border_right++;
+        if (_borderLeft < 0) {
             _needsClear = true; // Force the strip clerance
             _complete = true;
             return;
@@ -53,15 +53,15 @@ void CollEnd::Show()
         newColors();
         return;
     }
-    l++;
-    r--;
+    _left++;
+    _right--;
     _complete = false;
 }
 
 void CollEnd::newColors()
 {
-    cl = ColorFromColorWheel(random(256));
-    cr = ColorFromColorWheel(random(256));
-    l = mr;
-    r = ml;
+    _leftColor = ColorFromColorWheel(random(256));
+    _rightColor = ColorFromColorWheel(random(256));
+    _left = _border_right;
+    _right = _borderLeft;
 }

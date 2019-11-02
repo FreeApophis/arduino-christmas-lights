@@ -89,6 +89,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;CHRISTMASLIGHTSCONTROLLER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -103,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;CHRISTMASLIGHTSCONTROLLER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -119,6 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;CHRISTMASLIGHTSCONTROLLER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -137,6 +140,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;CHRISTMASLIGHTSCONTROLLER_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -186,7 +190,6 @@
     <ClInclude Include="animation\WalkSeven.h" />
     <ClInclude Include="animation\Worm.h" />
     <ClInclude Include="animation\Worms.h" />
-    <ClInclude Include="BlendManipulations.h" />
     <ClInclude Include="BrightnessManipulation.h" />
     <ClInclude Include="clearance\Clearance.h" />
     <ClInclude Include="clearance\ClearFade.h" />
@@ -194,9 +197,9 @@
     <ClInclude Include="clearance\ClearHalf.h" />
     <ClInclude Include="clearance\ClearSide.h" />
     <ClInclude Include="clearance\EatFromCenter.h" />
+    <ClInclude Include="ColorManipulation.h" />
     <ClInclude Include="Crawl.h" />
     <ClInclude Include="Shuffle.h" />
-    <ClInclude Include="Helper.h" />
     <ClInclude Include="SimulatedLedStrip.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="LightsController.h" />
@@ -238,7 +241,6 @@
     <ClCompile Include="animation\TowardRain.cpp" />
     <ClCompile Include="animation\WalkSeven.cpp" />
     <ClCompile Include="animation\Worms.cpp" />
-    <ClCompile Include="BlendManipulations.cpp" />
     <ClCompile Include="BrightnessManipulation.cpp" />
     <ClCompile Include="clearance\Clearance.cpp" />
     <ClCompile Include="clearance\ClearFade.cpp" />
@@ -246,11 +248,11 @@
     <ClCompile Include="clearance\ClearHalf.cpp" />
     <ClCompile Include="clearance\ClearSide.cpp" />
     <ClCompile Include="clearance\EatFromCenter.cpp" />
+    <ClCompile Include="ColorManipulation.cpp" />
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="Crawl.cpp" />
     <ClCompile Include="Shuffle.cpp" />
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="Helper.cpp" />
     <ClCompile Include="LightsController.cpp" />
     <ClCompile Include="SimulatedLedStrip.cpp" />
   </ItemGroup>

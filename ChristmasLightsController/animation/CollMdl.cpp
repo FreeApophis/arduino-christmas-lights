@@ -1,9 +1,8 @@
 #include "CollMdl.h"
 
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 CollMdl::CollMdl(AbstractLedStrip* strip, byte duration):
-    BlendManipulations(strip),
     Animation(strip, 8, 1, 6),
     cl(0),
     cr(0),
@@ -39,8 +38,10 @@ void CollMdl::Show()
 
     // blend colors in the middle
     if ((mr - ml) > 1) {
-        for (int i = ml; i < mr; ++i)
-            BlendManipulations::blendPixel(i);
+        for (int i = ml; i < mr; ++i) {
+            _strip->setPixelColor(i, Shimmer(_strip->getPixelColor(i)));
+
+        }
     }
 
     // New colors are moving to the center

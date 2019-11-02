@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Animation.h"
-#include "../BrightnessManipulation.h"
-#include "../framework.h"
+#include "animation/Animation.h"
+#include "BrightnessManipulation.h"
+#include "framework.h"
 
 // Slow single wave moving in random direction
 class LightHouse : public BrightnessManipulation, public Animation {

@@ -1,6 +1,6 @@
 #include "RandomCreep.h"
 
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 RandomCreep::RandomCreep(AbstractLedStrip* strip, byte duration):
     Crawl(strip),

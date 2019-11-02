@@ -1,5 +1,5 @@
 #include "WalkSeven.h"
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 WalkSeven::WalkSeven(AbstractLedStrip* strip, byte duration):
     BrightnessManipulation(strip),

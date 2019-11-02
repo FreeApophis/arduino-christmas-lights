@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Animation.h"
-#include "../BrightnessManipulation.h"
+#include "animation/Animation.h"
+#include "BrightnessManipulation.h"
 #include "Drop.h"
 
 // Random dropped color dot fading out from epicenter

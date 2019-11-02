@@ -1,5 +1,5 @@
 #include "Worms.h"
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 
 Worms::Worms(AbstractLedStrip* strip):

@@ -1,6 +1,6 @@
 #include "Clearance.h"
 
-#include "../AbstractLedStrip.h"
+#include "AbstractLedStrip.h"
 
 Clearance::Clearance(AbstractLedStrip* strip) :
     _strip(strip),

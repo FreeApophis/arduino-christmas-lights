@@ -1,5 +1,5 @@
 #include "MergeOne.h"
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 MergeOne::MergeOne(AbstractLedStrip* strip, byte duration):
     Animation(strip, duration, 8, 30),

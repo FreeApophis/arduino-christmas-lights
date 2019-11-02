@@ -1,5 +1,5 @@
 #include "SingleWave.h"
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 SingleWave::SingleWave(AbstractLedStrip* strip):
     BrightnessManipulation(strip),

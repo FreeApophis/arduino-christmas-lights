@@ -1,6 +1,6 @@
 #include "Sparks.h"
 
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 Sparks::Sparks(AbstractLedStrip* strip, byte duration) :
     BrightnessManipulation(strip),

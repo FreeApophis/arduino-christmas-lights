@@ -1,6 +1,6 @@
 #include "RainFull.h"
 
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 RainFull::RainFull(AbstractLedStrip* strip, byte duration):
     BrightnessManipulation(strip),

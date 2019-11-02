@@ -1,5 +1,5 @@
 #include "MergeWave.h"
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 MergeWave::MergeWave(AbstractLedStrip* strip, byte duration):
     Animation(strip, 2, 3, 20),

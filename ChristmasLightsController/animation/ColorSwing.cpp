@@ -1,5 +1,5 @@
 #include "ColorSwing.h"
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 ColorSwing::ColorSwing(AbstractLedStrip* strip, byte duration):
     Crawl(strip),

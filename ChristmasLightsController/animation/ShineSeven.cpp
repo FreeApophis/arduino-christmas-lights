@@ -1,6 +1,6 @@
 #include "ShineSeven.h"
 
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 ShineSeven::ShineSeven(AbstractLedStrip* strip, byte duration) :
     BrightnessManipulation(strip),

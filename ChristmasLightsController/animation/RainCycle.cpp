@@ -1,6 +1,6 @@
 #include "RainCycle.h"
 
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 RainCycle::RainCycle(AbstractLedStrip* strip, byte duration) :
     BrightnessManipulation(strip),

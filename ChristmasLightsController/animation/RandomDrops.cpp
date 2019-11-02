@@ -1,6 +1,6 @@
 #include "RandomDrops.h"
 
-#include "../Helper.h"
+#include "ColorManipulation.h"
 
 RandomDrops::RandomDrops(AbstractLedStrip* strip) :
     BrightnessManipulation(strip),
