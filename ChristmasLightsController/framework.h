@@ -17,3 +17,11 @@ unsigned long millis();
 void delay(unsigned long);
 
 uint32_t ToColor(uint8_t r, uint8_t g, uint8_t b);
+
+template<class T>
+void swap(T& a, T& b) noexcept
+{
+    T c(a);
+    a = b;
+    b = c;
+}

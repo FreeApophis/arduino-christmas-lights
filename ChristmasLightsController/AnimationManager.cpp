@@ -56,10 +56,11 @@ void AnimationManager::Show()
         delay(1);
         return;
     }
-    if (do_clear)
+    if (do_clear) {
         stp = ms + clr_stp_period;
-    else
+    } else {
         stp = ms + stp_period;
+    }
 
     if (do_clear) {
         if (c->IsComplete()) {
@@ -80,8 +81,9 @@ void AnimationManager::Show()
 void AnimationManager::Menu()
 {
     stp_period--;
-    if (stp_period < 1)
+    if (stp_period < 1) {
         stp_period = 1;
+    }
 }
 
 void AnimationManager::MenuL()
@@ -92,8 +94,9 @@ void AnimationManager::MenuL()
 void AnimationManager::Increment()
 {
     stp_period++;
-    if (stp_period > 20)
+    if (stp_period > 20) {
         stp_period = 20;
+    }
 }
 
 void AnimationManager::InitClear()
