@@ -1,5 +1,6 @@
 #include "SimulatedLedStrip.h"
 
+#ifdef _MSC_VER
 #include <cstdint>
 
 SimulatedLedStrip::SimulatedLedStrip(byte stripSize)
@@ -53,3 +54,4 @@ std::vector<uint32_t>& SimulatedLedStrip::CurrentPixels()
 {
     return _pixels;
 }
+#endif

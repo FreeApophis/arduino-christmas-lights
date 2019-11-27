@@ -2,8 +2,9 @@
 
 #include "framework.h"
 
-#include <cstdint>
-
+#ifdef _MSC_VER
+#    include <cstdint>
+#endif
 AnimationManager::AnimationManager(Animation* animations[], byte a_size, Clearance* clearances[], byte clr_size, AbstractLedStrip* strip) :
     _shuffle(a_size),
     _strip(strip),

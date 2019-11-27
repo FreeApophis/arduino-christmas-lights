@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef _MSC_VER
+
 #include "AbstractLedStrip.h"
 #include "framework.h"
 
@@ -25,5 +27,6 @@ public:
   private:
     std::vector<uint32_t> _pixels;
 };
+#endif
 
 

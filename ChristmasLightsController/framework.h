@@ -1,9 +1,11 @@
 #pragma once
 
+#ifdef _MSC_VER
 #define WIN32_LEAN_AND_MEAN // Exclude rarely-used stuff from Windows headers
 // Windows Header Files
-#include <cstdint>
 #include <windows.h>
+#include <cstdlib>
+#include <cstdint>
 
 using byte = unsigned char;
 
@@ -15,5 +17,6 @@ int random(int minVal, int maxVal);
 void incrementMillis();
 unsigned long millis();
 void delay(unsigned long);
-
-uint32_t ToColor(uint8_t r, uint8_t g, uint8_t b);
+#else
+#    include <arduino.h>
+#endif

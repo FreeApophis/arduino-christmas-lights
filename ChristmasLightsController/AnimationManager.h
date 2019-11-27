@@ -2,8 +2,8 @@
 
 #include "Shuffle.h"
 #include "SimulatedLedStrip.h"
-#include "animation/Animation.h"
-#include "clearance/Clearance.h"
+#include "Animation.h"
+#include "Clearance.h"
 
 class AnimationManager {
   public:

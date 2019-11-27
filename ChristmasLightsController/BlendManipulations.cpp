@@ -1,5 +1,7 @@
 #include "BlendManipulations.h"
 
+#include "Helper.h"
+
 BlendManipulations::BlendManipulations(AbstractLedStrip* strip)
 {
 }

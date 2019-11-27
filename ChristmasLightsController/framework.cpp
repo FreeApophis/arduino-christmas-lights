@@ -1,5 +1,6 @@
 #include "framework.h"
 
+#ifdef _MSC_VER
 #include <random>
 
 std::random_device randomDevice;
@@ -17,11 +18,6 @@ int random(int minVal, int maxVal)
     return dist(mt);
 }
 
-uint32_t ToColor(uint8_t r, uint8_t g, uint8_t b)
-{
-    return static_cast<uint32_t>(r) << 16 | static_cast<uint32_t>(g) << 8 | b;
-}
-
 long _millis = 0;
 
 void incrementMillis()
@@ -37,3 +33,4 @@ unsigned long millis()
 void delay(unsigned long)
 {
 }
+#endif

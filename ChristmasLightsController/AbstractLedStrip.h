@@ -1,6 +1,7 @@
 #pragma once
 
-#include <cstdint>
+#ifdef _MSC_VER
+#    include <cstdint>
 
 class AbstractLedStrip {
   public:
@@ -15,3 +16,7 @@ class AbstractLedStrip {
   protected:
     ~AbstractLedStrip() = default;
 };
+#else
+#    include <Adafruit_NeoPixel.h>
+#    define AbstractLedStrip Adafruit_NeoPixel
+#endif

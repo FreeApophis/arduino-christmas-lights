@@ -1,53 +1,53 @@
 #include "LightsController.h"
 
+#ifdef _MSC_VER
+
 #include "AnimationManager.h"
-#include "animation/Animation.h"
-#include "animation/CenterRun.h"
-#include "animation/CollEnd.h"
-#include "animation/CollMdl.h"
-#include "animation/CollideOne.h"
-#include "animation/ColorSwing.h"
-#include "animation/ColorWalk.h"
-#include "animation/ColorWave.h"
-#include "animation/ColorWipe.h"
-#include "animation/EvenOdd.h"
-#include "animation/FlashSeven.h"
-#include "animation/Interference.h"
-#include "animation/LightHouse.h"
-#include "animation/LightUp.h"
-#include "animation/MergeOne.h"
-#include "animation/MergeWave.h"
-#include "animation/NeoFire.h"
-#include "animation/RainBlend.h"
-#include "animation/RainCycle.h"
-#include "animation/RainFull.h"
-#include "animation/Rainbow.h"
-#include "animation/RandomCreep.h"
-#include "animation/RandomDrops.h"
-#include "animation/RandomFade.h"
-#include "animation/RandomFill.h"
-#include "animation/ShineFlash.h"
-#include "animation/ShineSeven.h"
-#include "animation/SingleColorSwing.h"
-#include "animation/SingleWave.h"
-#include "animation/SolitonCreep.h"
-#include "animation/Sparks.h"
-#include "animation/Toward.h"
-#include "animation/TowardRain.h"
-#include "animation/WalkSeven.h"
-#include "animation/Worms.h"
-#include "clearance/ClearFade.h"
-#include "clearance/ClearFromCenter.h"
-#include "clearance/ClearHalf.h"
-#include "clearance/ClearSide.h"
-#include "clearance/Clearance.h"
-#include "clearance/EatFromCenter.h"
+#include "Animation.h"
+#include "CenterRun.h"
+#include "CollEnd.h"
+#include "CollMdl.h"
+#include "CollideOne.h"
+#include "ColorSwing.h"
+#include "ColorWalk.h"
+#include "ColorWave.h"
+#include "ColorWipe.h"
+#include "EvenOdd.h"
+#include "FlashSeven.h"
+#include "Interference.h"
+#include "LightHouse.h"
+#include "LightUp.h"
+#include "MergeOne.h"
+#include "MergeWave.h"
+#include "NeoFire.h"
+#include "RainBlend.h"
+#include "RainCycle.h"
+#include "RainFull.h"
+#include "Rainbow.h"
+#include "RandomCreep.h"
+#include "RandomDrops.h"
+#include "RandomFade.h"
+#include "RandomFill.h"
+#include "ShineFlash.h"
+#include "ShineSeven.h"
+#include "SingleColorSwing.h"
+#include "SingleWave.h"
+#include "SolitonCreep.h"
+#include "Sparks.h"
+#include "StaticColor.h"
+#include "Toward.h"
+#include "TowardRain.h"
+#include "WalkSeven.h"
+#include "Worms.h"
+#include "ClearFade.h"
+#include "ClearFromCenter.h"
+#include "ClearHalf.h"
+#include "ClearSide.h"
+#include "Clearance.h"
+#include "EatFromCenter.h"
 #include "framework.h"
 
-#ifdef ARDUINO
-#else
-#    include "SimulatedLedStrip.h"
-#endif
+#include "SimulatedLedStrip.h"
 
 const byte PixelBrightness = 100;
 
@@ -67,9 +67,13 @@ const byte MinimalSequenceShowTime = 30;
 ////   NEO_KHZ400  400 KHz (classic 'v1' (not v2) FLORA pixels, WS2811 drivers)
 ////   NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)
 ////   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
-//Adafruit_NeoPixel strip = Adafruit_NeoPixel(NumberOfPixels, NEO_PIN, NEO_GRB + NEO_KHZ800);
+//
 
+#ifdef _MSC_VER
 SimulatedLedStrip strip(NumberOfPixels);
+#else
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(NumberOfPixels, NEO_PIN, NEO_GRB + NEO_KHZ800);
+#endif
 
 // Instantiate Animations
 ColorWipe colorWipe(&strip, MinimalSequenceShowTime);
@@ -106,6 +110,7 @@ TowardRain towardRain(&strip, MinimalSequenceShowTime);
 LightHouse lightHouse(&strip);
 RandomDrops randomDrops(&strip);
 SolitonCreep solitonCreep(&strip, MinimalSequenceShowTime);
+StaticColor staticColor(&strip, MinimalSequenceShowTime);
 
 // Instantiate Clearance Animations
 ClearSide clrSide(&strip);
@@ -149,6 +154,7 @@ Animation* animations[] = {
     &lightHouse,
     &randomDrops,
     &solitonCreep,
+    &staticColor,
 };
 
 Clearance* clearances[] = {
@@ -195,3 +201,4 @@ uint32_t* loop()
     incrementMillis();
     return strip.CurrentPixels().data();
 }
+#endif

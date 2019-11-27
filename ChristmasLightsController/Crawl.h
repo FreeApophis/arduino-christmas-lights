@@ -2,8 +2,9 @@
 
 #include "AbstractLedStrip.h"
 
-#include <cstdint>
-
+#ifdef _MSC_VER
+#    include <cstdint>
+#endif
 // creep the sequence up or down, superclass
 class Crawl {
   public:

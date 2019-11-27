@@ -2,6 +2,11 @@
 
 #include "framework.h"
 
+uint32_t ToColor(uint8_t r, uint8_t g, uint8_t b)
+{
+    return static_cast<uint32_t>(r) << 16 | static_cast<uint32_t>(g) << 8 | b;
+}
+
 // Input a value 0 to 255 to get a color value. The colours are a transition r - g - b - back to r.
 uint32_t ColorFromColorWheel(byte WheelPos)
 {
