@@ -4,7 +4,7 @@
 #include "../framework.h"
 
 // Lights run from the center
-class CenterRun : public Animation {
+class CenterRun final : public Animation {
   public:
     CenterRun(AbstractLedStrip* strip, byte duration);
 
@@ -12,6 +12,8 @@ class CenterRun : public Animation {
     void Show() override;
 
   private:
-    uint32_t color;
-    int m, l, r;
+    uint32_t _color;
+    int _left;
+    int _middle;
+    int _right;
 };
