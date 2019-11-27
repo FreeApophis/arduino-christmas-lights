@@ -11,6 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="..\x64\Debug\ChristmasLightsController.dll" Link="ChristmasLightsController.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ChristmasLightsController\ChristmasLightsController.vcxproj" />
   </ItemGroup>
 
