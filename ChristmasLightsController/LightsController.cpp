@@ -1,10 +1,9 @@
 #include "LightsController.h"
 
 #include "AnimationManager.h"
+#include "ColorManipulation.h"
 #include "animation/Animation.h"
 #include "animation/CenterRun.h"
-#include "animation/WalkAcross.h"
-#include "animation/WalkToCenter.h"
 #include "animation/CollideOne.h"
 #include "animation/ColorSwing.h"
 #include "animation/ColorWalk.h"
@@ -32,9 +31,12 @@
 #include "animation/SingleWave.h"
 #include "animation/SolitonCreep.h"
 #include "animation/Sparks.h"
+#include "animation/StaticColor.h"
 #include "animation/Toward.h"
 #include "animation/TowardRain.h"
+#include "animation/WalkAcross.h"
 #include "animation/WalkSeven.h"
+#include "animation/WalkToCenter.h"
 #include "animation/Worms.h"
 #include "clearance/ClearFade.h"
 #include "clearance/ClearFromCenter.h"
@@ -42,6 +44,7 @@
 #include "clearance/ClearSide.h"
 #include "clearance/Clearance.h"
 #include "clearance/EatFromCenter.h"
+
 #include "framework.h"
 
 #ifdef ARDUINO
@@ -100,6 +103,9 @@ SingleColorSwing singleColorSwing(&strip);
 SingleWave singleWave(&strip);
 SolitonCreep solitonCreep(&strip, MinimalSequenceShowTime);
 Sparks sparks(&strip, MinimalSequenceShowTime);
+StaticColor redColor(&strip, MinimalSequenceShowTime, ToColor(255, 0, 0));
+StaticColor greenColor(&strip, MinimalSequenceShowTime, ToColor(0, 255, 0));
+StaticColor blueColor(&strip, MinimalSequenceShowTime, ToColor(0, 0, 255));
 Toward toward(&strip, MinimalSequenceShowTime);
 TowardRain towardRain(&strip, MinimalSequenceShowTime);
 WalkAcross walkAcross(&strip, MinimalSequenceShowTime);
@@ -129,7 +135,7 @@ Animation* animations[] = {
     //&mergeWave,
     //&neoFire,
     //&rainBlend,
-    &rainbow,
+    //&rainbow,
     //&rainCycle,
     //&rainFull,
     //&randomCreep,
@@ -149,6 +155,9 @@ Animation* animations[] = {
     //&walkSeven,
     //&walkToCenter,
     //&worms,
+    &redColor,
+    &greenColor,
+    &blueColor,
 };
 
 Clearance* clearances[] = {
