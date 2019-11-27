@@ -181,6 +181,7 @@
     <ClInclude Include="animation\SingleWave.h" />
     <ClInclude Include="animation\SolitonCreep.h" />
     <ClInclude Include="animation\Sparks.h" />
+    <ClInclude Include="animation\StaticColor.h" />
     <ClInclude Include="animation\Toward.h" />
     <ClInclude Include="animation\TowardRain.h" />
     <ClInclude Include="animation\WalkSeven.h" />
@@ -234,6 +235,7 @@
     <ClCompile Include="animation\SingleWave.cpp" />
     <ClCompile Include="animation\SolitonCreep.cpp" />
     <ClCompile Include="animation\Sparks.cpp" />
+    <ClCompile Include="animation\StaticColor.cpp" />
     <ClCompile Include="animation\Toward.cpp" />
     <ClCompile Include="animation\TowardRain.cpp" />
     <ClCompile Include="animation\WalkSeven.cpp" />
