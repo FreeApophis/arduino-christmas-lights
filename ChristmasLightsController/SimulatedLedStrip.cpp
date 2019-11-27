@@ -17,6 +17,8 @@ inline uint32_t SimulatedLedStrip::getPixelColor(uint16_t n) const
     if (n < _pixels.size()) {
         return _pixels[n];
     }
+
+    return 0;
 }
 
 void SimulatedLedStrip::setPixelColor(uint16_t n, uint32_t c)
