@@ -1,10 +1,17 @@
 #include "Shuffle.h"
 
+Shuffle::Shuffle(byte numberOfAnimations)
+{
+    for (byte i = 0; i < numberOfAnimations; ++i)
+        index[i] = i;
+    _current = num_anim = numberOfAnimations;
+}
+
 byte Shuffle::next()
 {
-    if (curr >= num_anim)
+    if (_current >= num_anim)
         randomize();
-    return index[curr++];
+    return index[_current++];
 }
 
 void Shuffle::randomize()
@@ -18,5 +25,5 @@ void Shuffle::randomize()
             index[p1] = t;
         }
     }
-    curr = 0;
+    _current = 0;
 }

@@ -5,7 +5,7 @@
 #include "animation/Animation.h"
 #include "clearance/Clearance.h"
 
-class AnimationManager : public Shuffle {
+class AnimationManager {
   public:
     AnimationManager(Animation* animations[], byte a_size, Clearance* c[], byte clr_size, AbstractLedStrip* strip);
     void Init();
@@ -19,6 +19,7 @@ class AnimationManager : public Shuffle {
     void InitClear();
     bool IsClean();
 
+    Shuffle _shuffle;
     AbstractLedStrip* _strip{};
     Animation** _animations;
     Clearance** _clearances;

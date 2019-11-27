@@ -5,7 +5,7 @@
 #include <cstdint>
 
 AnimationManager::AnimationManager(Animation* animations[], byte a_size, Clearance* clearances[], byte clr_size, AbstractLedStrip* strip) :
-    Shuffle(a_size),
+    _shuffle(a_size),
     _strip(strip),
     _animations(animations),
     _clearances(clearances)
@@ -19,7 +19,7 @@ AnimationManager::AnimationManager(Animation* animations[], byte a_size, Clearan
 void AnimationManager::Init()
 {
     if (!_animations[aIndex]->NeedsClear()) {
-        aIndex = Shuffle::next();
+        aIndex = _shuffle.next();
         //aIndex = 18;
         a = _animations[aIndex];
 
