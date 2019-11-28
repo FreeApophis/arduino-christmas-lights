@@ -200,7 +200,7 @@
     <ClInclude Include="clearance\EatFromCenter.h" />
     <ClInclude Include="manipulation\ColorManipulation.h" />
     <ClInclude Include="manipulation\Crawl.h" />
-    <ClInclude Include="CrawlDirection.h" />
+    <ClInclude Include="manipulation\CrawlDirection.h" />
     <ClInclude Include="Shuffle.h" />
     <ClInclude Include="SimulatedLedStrip.h" />
     <ClInclude Include="framework.h" />
@@ -252,7 +252,7 @@
     <ClCompile Include="clearance\ClearSide.cpp" />
     <ClCompile Include="clearance\EatFromCenter.cpp" />
     <ClCompile Include="manipulation\ColorManipulation.cpp" />
-    <ClCompile Include="CrawlDirection.cpp" />
+    <ClCompile Include="manipulation\CrawlDirection.cpp" />
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="manipulation\Crawl.cpp" />
     <ClCompile Include="Shuffle.cpp" />
