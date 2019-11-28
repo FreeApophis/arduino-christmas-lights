@@ -6,7 +6,7 @@
 #include <cstdint>
 
 // creep the sequence up or down, superclass
-class Crawl {
+class Crawl final {
   public:
     Crawl();
 

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "BrightnessManipulation.h"
+#include "manipulation/BrightnessManipulation.h"
 #include "framework.h"
 #include "animation/Animation.h"
 
 // Fill the strip by the color in random order
-class RandomFill : public BrightnessManipulation, public Animation {
+class RandomFill : public Animation {
   public:
     RandomFill(AbstractLedStrip* strip, byte duration);
 
@@ -14,6 +14,7 @@ class RandomFill : public BrightnessManipulation, public Animation {
 
   private:
     void newDot(bool clr);
+    BrightnessManipulation _brightnessManipulation;
     byte w{};
     int remain{};
     uint16_t pos{};

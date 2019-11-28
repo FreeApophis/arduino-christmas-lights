@@ -48,12 +48,6 @@
     <ClInclude Include="animation\ColorWave.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Crawl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BrightnessManipulation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="animation\RandomCreep.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -162,9 +156,6 @@
     <ClInclude Include="animation\Worm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ColorManipulation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="animation\WalkToCenter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -172,6 +163,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CrawlDirection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\StaticColor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="manipulation\BrightnessManipulation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="manipulation\ColorManipulation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="manipulation\Crawl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -204,12 +207,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="animation\ColorWave.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Crawl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BrightnessManipulation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="animation\RandomCreep.cpp">
@@ -317,9 +314,6 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ColorManipulation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="animation\WalkToCenter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -327,6 +321,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CrawlDirection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\StaticColor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="manipulation\BrightnessManipulation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="manipulation\ColorManipulation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="manipulation\Crawl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

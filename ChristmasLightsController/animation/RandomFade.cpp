@@ -1,16 +1,16 @@
 #include "RandomFade.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 RandomFade::RandomFade(AbstractLedStrip* strip, byte duration) :
-    BrightnessManipulation(strip),
-    Animation(0x0114, strip, 12, 6, 24)
+    Animation(0x0114, strip, 12, 6, 24),
+    _brightnessManipulation(strip)
 {
 }
 
 void RandomFade::Show()
 {
-    BrightnessManipulation::changeAll(-16);
+    _brightnessManipulation.changeAll(-16);
     byte newDot = random(1, 5);
     for (byte i = 0; i < newDot; ++i) {
         int p = random(_strip->numPixels() + 1);

@@ -1,6 +1,6 @@
 #include "RainBlend.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 RainBlend::RainBlend(AbstractLedStrip* strip, byte duration) :
     Animation(0x010e, strip, duration, 1, 6),

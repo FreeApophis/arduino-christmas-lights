@@ -1,12 +1,12 @@
 #pragma once
 
 #include "animation/Animation.h"
-#include "BrightnessManipulation.h"
+#include "manipulation/BrightnessManipulation.h"
 #include "framework.h"
 #include "Worm.h"
 
 // Several worms are moving randomly
-class Worms : public BrightnessManipulation, public Animation {
+class Worms : public Animation {
   public:
     Worms(AbstractLedStrip* strip);
 
@@ -17,6 +17,7 @@ class Worms : public BrightnessManipulation, public Animation {
     void Add();
     void Die(byte index);
 
+    BrightnessManipulation _brightnessManipulation;
     Worm _worms[5]{};
     byte _active{};
 };

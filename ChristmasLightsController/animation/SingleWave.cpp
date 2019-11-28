@@ -1,10 +1,10 @@
 #include "SingleWave.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 SingleWave::SingleWave(AbstractLedStrip* strip) :
-    BrightnessManipulation(strip),
-    Animation(0x0119, strip, 12, 4, 20)
+    Animation(0x0119, strip, 12, 4, 20),
+    _brightnessManipulation(strip)
 {
 }
 
@@ -26,7 +26,7 @@ void SingleWave::Init()
         dot[i] = cc;
     }
 
-    BrightnessManipulation::setColor(dot[3]);
+    _brightnessManipulation.setColor(dot[3]);
     c &= 0x10101;
     int n = _strip->numPixels();
     for (int i = 0; i < n; ++i)
@@ -43,7 +43,7 @@ void SingleWave::Show()
     bool finish = true;
     switch (mode) {
         case 0: // Light up
-            finish = BrightnessManipulation::changeAll(4);
+            finish = _brightnessManipulation.changeAll(4);
             break;
         case 1: // move the soliton
             finish = false;
@@ -67,7 +67,7 @@ void SingleWave::Show()
             for (int i = 0; i < n; ++i) {
                 _strip->setPixelColor(i, dot[3]);
             }
-            BrightnessManipulation::changeAll(random(9) - 4);
+            _brightnessManipulation.changeAll(random(9) - 4);
             for (int i = 3; i > 0; --i) {
                 if ((pos - i) >= 0)
                     _strip->setPixelColor(pos - i, dot[i]);
@@ -80,7 +80,7 @@ void SingleWave::Show()
             break;
         case 2: // Fade out
         default:
-            finish = BrightnessManipulation::changeAll(-4);
+            finish = _brightnessManipulation.changeAll(-4);
             break;
     }
 

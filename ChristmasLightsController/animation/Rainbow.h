@@ -1,11 +1,12 @@
 #pragma once
 
 #include "animation/Animation.h"
-#include "BrightnessManipulation.h"
+#include "manipulation/BrightnessManipulation.h"
+
 #include "framework.h"
 
 // show the rainbow (from neopixel example)
-class Rainbow : public BrightnessManipulation, public Animation {
+class Rainbow : public Animation {
   public:
     Rainbow(AbstractLedStrip* strip, byte duration);
 
@@ -13,6 +14,7 @@ class Rainbow : public BrightnessManipulation, public Animation {
     void Show() override;
 
   private:
+    BrightnessManipulation _brightnessManipulation;
     byte index;
     bool rdy;
 };

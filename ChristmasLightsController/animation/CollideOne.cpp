@@ -1,6 +1,6 @@
 #include "CollideOne.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 CollideOne::CollideOne(AbstractLedStrip* strip) :
     Animation(0x0101, strip, 2, 1, 3),

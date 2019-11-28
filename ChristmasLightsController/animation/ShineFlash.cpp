@@ -1,10 +1,10 @@
 #include "ShineFlash.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 ShineFlash::ShineFlash(AbstractLedStrip* strip, byte duration) :
-    BrightnessManipulation(strip),
-    Animation(0x0116, strip, 12, 4, 20)
+    Animation(0x0116, strip, 12, 4, 20),
+    _brightnessManipulation(strip)
 {
 }
 
@@ -22,7 +22,7 @@ void ShineFlash::Show()
     bool finish = true;
     switch (mode) {
         case 0: // Light up
-            finish = BrightnessManipulation::changeAll(4);
+            finish = _brightnessManipulation.changeAll(4);
             if (finish) {
                 flash = true;
                 remain = random(17, 30);
@@ -54,7 +54,7 @@ void ShineFlash::Show()
             break;
         case 2: // Fade out
         default:
-            finish = BrightnessManipulation::changeAll(-4);
+            finish = _brightnessManipulation.changeAll(-4);
             break;
     }
 
@@ -75,7 +75,7 @@ void ShineFlash::startNewColor()
     uint32_t c = ColorFromColorWheel(w);
     c &= 0x7f7f7f;
     w += 17;
-    BrightnessManipulation::setColor(c);
+    _brightnessManipulation.setColor(c);
     c &= 0x10101;
     int n = _strip->numPixels();
     for (int i = 0; i < n; ++i)

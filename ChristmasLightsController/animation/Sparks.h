@@ -1,11 +1,11 @@
 #pragma once
 
 #include "animation/Animation.h"
-#include "BrightnessManipulation.h"
+#include "manipulation/BrightnessManipulation.h"
 #include "framework.h"
 
 // Random sparks
-class Sparks : public BrightnessManipulation, public Animation {
+class Sparks : public Animation {
   public:
     Sparks(AbstractLedStrip* strip, byte duration);
 
@@ -14,5 +14,6 @@ class Sparks : public BrightnessManipulation, public Animation {
     void Show() override;
 
   private:
+    BrightnessManipulation _brightnessManipulation;
     uint16_t _positions[8]{};
 };

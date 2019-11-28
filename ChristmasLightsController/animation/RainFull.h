@@ -1,11 +1,11 @@
 #pragma once
 
 #include "animation/Animation.h"
-#include "BrightnessManipulation.h"
+#include "manipulation/BrightnessManipulation.h"
 #include "framework.h"
 
 // show the rainbow colors on the entire strip
-class RainFull : public BrightnessManipulation, public Animation {
+class RainFull : public Animation {
   public:
     RainFull(AbstractLedStrip* strip, byte duration);
 
@@ -13,6 +13,7 @@ class RainFull : public BrightnessManipulation, public Animation {
     void Show() override;
 
   private:
+    BrightnessManipulation _brightnessManipulation;
     byte index{};
     bool rdy{};
 };

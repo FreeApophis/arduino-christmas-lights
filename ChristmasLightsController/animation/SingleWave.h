@@ -1,11 +1,11 @@
 #pragma once
 
 #include "animation/Animation.h"
-#include "BrightnessManipulation.h"
+#include "manipulation/BrightnessManipulation.h"
 #include "framework.h"
 
 // Show single wave moving in random direction
-class SingleWave : public BrightnessManipulation, public Animation {
+class SingleWave : public Animation {
   public:
     SingleWave(AbstractLedStrip* strip);
 
@@ -13,6 +13,7 @@ class SingleWave : public BrightnessManipulation, public Animation {
     void Show() override;
 
   private:
+    BrightnessManipulation _brightnessManipulation;
     uint32_t dot[5]{};
     int pos{};
     byte stp{};

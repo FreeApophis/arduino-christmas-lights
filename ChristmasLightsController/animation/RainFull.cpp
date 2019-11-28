@@ -1,10 +1,10 @@
 #include "RainFull.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 RainFull::RainFull(AbstractLedStrip* strip, byte duration) :
-    BrightnessManipulation(strip),
-    Animation(0x0110, strip, duration, 6, 24)
+    Animation(0x0110, strip, duration, 6, 24),
+    _brightnessManipulation(strip)
 {
 }
 
@@ -19,8 +19,8 @@ void RainFull::Show()
     if (!rdy) {
         rdy = true;
         for (uint16_t i = 0; i < _strip->numPixels(); ++i) {
-            BrightnessManipulation::setColor(ColorFromColorWheel(index));
-            if (!BrightnessManipulation::change(i, 1))
+            _brightnessManipulation.setColor(ColorFromColorWheel(index));
+            if (!_brightnessManipulation.change(i, 1))
                 rdy = false;
         }
         return;

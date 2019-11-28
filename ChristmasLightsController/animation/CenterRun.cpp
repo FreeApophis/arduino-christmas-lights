@@ -1,6 +1,6 @@
 #include "CenterRun.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 CenterRun::CenterRun(AbstractLedStrip* strip, byte duration) :
     Animation(0x0100, strip, duration, 4, 20),

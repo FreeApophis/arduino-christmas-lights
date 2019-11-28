@@ -1,10 +1,10 @@
 #include "WalkSeven.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 WalkSeven::WalkSeven(AbstractLedStrip* strip, byte duration) :
-    BrightnessManipulation(strip),
-    Animation(0x011f, strip, 9, 8, 15)
+    Animation(0x011f, strip, 9, 8, 15),
+    _brightnessManipulation(strip)
 {
 }
 
@@ -19,7 +19,7 @@ void WalkSeven::Init()
 
 void WalkSeven::Show()
 {
-    BrightnessManipulation::changeAll(-64);
+    _brightnessManipulation.changeAll(-64);
 
     int n = _strip->numPixels();
     uint32_t c1 = ColorFromColorWheel(w);

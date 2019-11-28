@@ -1,12 +1,12 @@
 #pragma once
 
-#include "BrightnessManipulation.h"
 #include "animation/Animation.h"
+#include "manipulation/BrightnessManipulation.h"
 
 #include "framework.h"
 
 // Rapid walking by the different colors
-class WalkSeven : public BrightnessManipulation, public Animation {
+class WalkSeven : public Animation {
   public:
     WalkSeven(AbstractLedStrip* strip, byte duration);
 
@@ -14,6 +14,7 @@ class WalkSeven : public BrightnessManipulation, public Animation {
     void Show() override;
 
   private:
+    BrightnessManipulation _brightnessManipulation;
     char curs{};
     byte w{};
     bool fwd{};

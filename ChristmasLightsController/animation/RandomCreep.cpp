@@ -1,6 +1,6 @@
 #include "RandomCreep.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 RandomCreep::RandomCreep(AbstractLedStrip* strip, byte duration) :
     Animation(0x0112, strip, duration, 6, 24)

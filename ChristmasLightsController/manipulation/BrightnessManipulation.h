@@ -4,7 +4,7 @@
 #include "framework.h"
 
  // Brightness manipulation
-class BrightnessManipulation {
+class BrightnessManipulation final {
   public:
     BrightnessManipulation(AbstractLedStrip* strip);
     void setColor(uint32_t c);

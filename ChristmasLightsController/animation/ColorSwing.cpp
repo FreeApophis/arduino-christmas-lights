@@ -1,6 +1,6 @@
 #include "ColorSwing.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 ColorSwing::ColorSwing(AbstractLedStrip* strip, byte duration) :
     Animation(0x0102, strip, 10, 3, 10),

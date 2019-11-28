@@ -1,6 +1,6 @@
 #include "SolitonCreep.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 #include <cstdlib>
 

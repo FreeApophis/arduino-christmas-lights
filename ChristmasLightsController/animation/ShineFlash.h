@@ -1,11 +1,11 @@
 #pragma once
 
 #include "animation/Animation.h"
-#include "BrightnessManipulation.h"
+#include "manipulation/BrightnessManipulation.h"
 #include "framework.h"
 
 // Slow shining and flash by the different colors
-class ShineFlash : public BrightnessManipulation, public Animation {
+class ShineFlash : public Animation {
   public:
     ShineFlash(AbstractLedStrip* strip, byte duration);
 
@@ -13,6 +13,7 @@ class ShineFlash : public BrightnessManipulation, public Animation {
     void Show() override;
 
   private:
+    BrightnessManipulation _brightnessManipulation;
     void startNewColor();
     byte w{};
     byte mode{};

@@ -1,6 +1,6 @@
 #include "Toward.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 Toward::Toward(AbstractLedStrip* strip, byte duration) :
     Animation(0x011c, strip, 6, 5, 10)

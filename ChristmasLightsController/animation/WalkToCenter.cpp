@@ -1,6 +1,6 @@
 #include "WalkToCenter.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 WalkToCenter::WalkToCenter(AbstractLedStrip* strip, byte duration) :
     Animation(0x0120, strip, 8, 1, 6),

@@ -1,8 +1,8 @@
 #include "LightUp.h"
 
 LightUp::LightUp(AbstractLedStrip* strip, byte duration) :
-    BrightnessManipulation(strip),
     Animation(0x010a, strip, 12, 6, 24),
+    _brightnessManipulation(strip),
     sp(0),
     inc(0)
 {
@@ -17,7 +17,7 @@ void LightUp::Init()
 
 void LightUp::Show()
 {
-    const bool finish = BrightnessManipulation::changeAll(inc);
+    const bool finish = _brightnessManipulation.changeAll(inc);
     if (finish) {
         if (inc > 0)
             inc = -8;
@@ -40,5 +40,5 @@ void LightUp::NewColor()
         const byte d = random(16) << 4;
         c |= d;
     }
-    BrightnessManipulation::setColor(c);
+    _brightnessManipulation.setColor(c);
 }

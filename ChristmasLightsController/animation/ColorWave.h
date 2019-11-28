@@ -1,11 +1,11 @@
 #pragma once
-#include "BrightnessManipulation.h"
-#include "Crawl.h"
+#include "manipulation/BrightnessManipulation.h"
+#include "manipulation/Crawl.h"
 #include "animation/Animation.h"
 
 // show the color Wave using rainbowCycle
 
-class ColorWave : public BrightnessManipulation, public Animation {
+class ColorWave : public Animation {
   public:
     ColorWave(AbstractLedStrip* strip, byte duration);
 
@@ -13,6 +13,7 @@ class ColorWave : public BrightnessManipulation, public Animation {
     void Show() override;
 
   private:
+    BrightnessManipulation _brightnessManipulation;
     Crawl _crawl;
     byte _index;
     bool _isReady;

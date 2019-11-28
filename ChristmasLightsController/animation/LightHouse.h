@@ -1,11 +1,12 @@
 #pragma once
 
 #include "animation/Animation.h"
-#include "BrightnessManipulation.h"
+#include "manipulation/BrightnessManipulation.h"
+
 #include "framework.h"
 
 // Slow single wave moving in random direction
-class LightHouse : public BrightnessManipulation, public Animation {
+class LightHouse : public Animation {
   public:
     LightHouse(AbstractLedStrip* strip);
 
@@ -13,6 +14,7 @@ class LightHouse : public BrightnessManipulation, public Animation {
     void Show() override;
 
   private:
+    BrightnessManipulation _brightnessManipulation;
     uint32_t dot[5];
     int pos;
     byte stp;

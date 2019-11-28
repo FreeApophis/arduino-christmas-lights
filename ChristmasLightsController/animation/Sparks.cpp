@@ -1,10 +1,10 @@
 #include "Sparks.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 Sparks::Sparks(AbstractLedStrip* strip, byte duration) :
-    BrightnessManipulation(strip),
-    Animation(0x011b, strip, 12, 2, 6)
+    Animation(0x011b, strip, 12, 2, 6),
+    _brightnessManipulation(strip)
 {
 }
 
@@ -22,7 +22,7 @@ void Sparks::Show()
         if (i == 6) 
             _strip->setPixelColor(_positions[byte(i)], 0);
         else
-            BrightnessManipulation::change(_positions[byte(i)], -128);
+            _brightnessManipulation.change(_positions[byte(i)], -128);
         _positions[byte(i)] = _positions[byte(i - 1)];
     }
     const int p = random(_strip->numPixels() + 1);

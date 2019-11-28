@@ -1,11 +1,11 @@
 #pragma once
 
 #include "animation/Animation.h"
-#include "Crawl.h"
+#include "manipulation/Crawl.h"
 #include "framework.h"
 
 // Solitons are creaping up or down
-class SolitonCreep : public Crawl, public Animation {
+class SolitonCreep : public Animation {
   public:
     SolitonCreep(AbstractLedStrip* strip, byte duration);
 

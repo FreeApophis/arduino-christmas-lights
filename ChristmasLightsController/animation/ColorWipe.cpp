@@ -1,6 +1,6 @@
 #include "ColorWipe.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 #include "framework.h"
 

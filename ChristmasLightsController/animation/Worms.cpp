@@ -1,10 +1,10 @@
 #include "Worms.h"
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 
 Worms::Worms(AbstractLedStrip* strip):
-    BrightnessManipulation(strip),
-    Animation(0x0121, strip, 9, 10, 20)
+    Animation(0x0121, strip, 9, 10, 20),
+    _brightnessManipulation(strip)
 {
 }
 
@@ -19,7 +19,7 @@ void Worms::Show()
     const int n = _strip->numPixels();
 
     // fade away
-    BrightnessManipulation::changeAll(-32);
+    _brightnessManipulation.changeAll(-32);
 
     // Move existing
     for (byte wi = 0; wi < _active; ++wi) {

@@ -1,10 +1,10 @@
 #include "RandomDrops.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 RandomDrops::RandomDrops(AbstractLedStrip* strip) :
-    BrightnessManipulation(strip),
-    Animation(0x0113, strip, 9, 2, 7)
+    Animation(0x0113, strip, 9, 2, 7),
+    _brightnessManipulation(strip)
 {
 }
 
@@ -29,7 +29,7 @@ void RandomDrops::Show()
         if (p < 0)
             p += n;
         uint32_t c1 = _strip->getPixelColor(p + 1);
-        BrightnessManipulation::change(p + 1, -64);
+        _brightnessManipulation.change(p + 1, -64);
         uint32_t c2 = _strip->getPixelColor(p);
         c2 = ColorSuperPosition(c1, c2);
         _strip->setPixelColor(p, c2);
@@ -39,15 +39,15 @@ void RandomDrops::Show()
             p -= n;
         c1 = _strip->getPixelColor(p - 1);
         if (dr[i].TimeFrame > 1)
-            BrightnessManipulation::change(p - 1, -32);
+            _brightnessManipulation.change(p - 1, -32);
         c2 = _strip->getPixelColor(p);
         c2 = ColorSuperPosition(c1, c2);
         _strip->setPixelColor(p, c2);
 
-        BrightnessManipulation::change(dr[i].Position, -64);
+        _brightnessManipulation.change(dr[i].Position, -64);
     }
 
-    BrightnessManipulation::changeAll(-32);
+    _brightnessManipulation.changeAll(-32);
 
     add();
 }

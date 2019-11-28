@@ -1,7 +1,7 @@
 #include "LightsController.h"
 
 #include "AnimationManager.h"
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 #include "animation/Animation.h"
 #include "animation/CenterRun.h"
 #include "animation/CollideOne.h"

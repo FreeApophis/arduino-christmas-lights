@@ -47,8 +47,8 @@ byte ColorFunction(int x, int b)
 uint32_t ColorFromColorWheel(const byte position)
 {
     return ToColor(
-        ColorFunction(position, 0), 
-        ColorFunction(position, 85), 
+        ColorFunction(position, 0),
+        ColorFunction(position, 85),
         ColorFunction(position, position > 63 ? 170 : -85));
 }
 

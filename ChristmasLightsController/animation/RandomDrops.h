@@ -1,11 +1,11 @@
 #pragma once
 
 #include "animation/Animation.h"
-#include "BrightnessManipulation.h"
+#include "manipulation/BrightnessManipulation.h"
 #include "Drop.h"
 
 // Random dropped color dot fading out from epicenter
-class RandomDrops : public BrightnessManipulation, public Animation {
+class RandomDrops : public Animation {
   public:
     RandomDrops(AbstractLedStrip* strip);
 
@@ -14,7 +14,7 @@ class RandomDrops : public BrightnessManipulation, public Animation {
 
   private:
     void add();
-
+    BrightnessManipulation _brightnessManipulation;
     struct Drop dr[16]{};
     char num{};
 };

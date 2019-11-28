@@ -1,10 +1,10 @@
 #pragma once
 
 #include "animation/Animation.h"
-#include "BrightnessManipulation.h"
+#include "manipulation/BrightnessManipulation.h"
 #include "framework.h"
 
-class RainCycle : public BrightnessManipulation, public Animation {
+class RainCycle : public Animation {
   public:
     RainCycle(AbstractLedStrip* strip, byte duration);
 
@@ -12,6 +12,7 @@ class RainCycle : public BrightnessManipulation, public Animation {
     void Show() override;
 
   private:
+    BrightnessManipulation _brightnessManipulation;
     byte index;
     bool rdy;
 };

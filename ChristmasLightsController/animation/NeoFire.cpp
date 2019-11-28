@@ -1,6 +1,6 @@
 #include "NeoFire.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 NeoFire::NeoFire(AbstractLedStrip* strip, byte duration) :
     Animation(0x010d, strip, duration, 1, 5),

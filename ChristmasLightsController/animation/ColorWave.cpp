@@ -1,10 +1,10 @@
 #include "ColorWave.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 ColorWave::ColorWave(AbstractLedStrip* strip, byte duration) :
-    BrightnessManipulation(strip),
     Animation(0x0104, strip, duration, 2, 8),
+    _brightnessManipulation(strip),
     _index(0),
     _isReady(false)
 {
@@ -23,8 +23,8 @@ void ColorWave::Show()
     if (!_isReady) {
         _isReady = true;
         for (uint16_t i = 0; i < _strip->numPixels(); ++i) {
-            BrightnessManipulation::setColor(ColorFromColorWheel(((i * 256 / _strip->numPixels())) & 255));
-            if (!BrightnessManipulation::change(i, 2))
+            _brightnessManipulation.setColor(ColorFromColorWheel(((i * 256 / _strip->numPixels())) & 255));
+            if (!_brightnessManipulation.change(i, 2))
                 _isReady = false;
         }
         return;

@@ -1,10 +1,10 @@
 #include "RandomFill.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 RandomFill::RandomFill(AbstractLedStrip* strip, byte duration) :
-    BrightnessManipulation(strip),
-    Animation(0x0115, strip, 15, 2, 4)
+    Animation(0x0115, strip, 15, 2, 4),
+    _brightnessManipulation(strip)
 {
 }
 
@@ -21,7 +21,7 @@ void RandomFill::Show()
     char val = 12;
     if (clr)
         val = -12;
-    if (BrightnessManipulation::change(pos, val)) {
+    if (_brightnessManipulation.change(pos, val)) {
         if (remain <= 0) {
             if (clr) {
                 _strip->clear();
@@ -72,6 +72,6 @@ void RandomFill::newDot(bool clr)
             _strip->setPixelColor(i, color);
         remain = 0;
     }
-    BrightnessManipulation::setColor(color);
+    _brightnessManipulation.setColor(color);
     remain--;
 }

@@ -1,11 +1,11 @@
 #pragma once
 
 #include "animation/Animation.h"
-#include "BrightnessManipulation.h"
+#include "manipulation/BrightnessManipulation.h"
 #include "framework.h"
 
 // Light up with the random color than fade out
-class LightUp : public BrightnessManipulation, public Animation {
+class LightUp : public Animation {
   public:
     LightUp(AbstractLedStrip* strip, byte duration);
 
@@ -13,6 +13,7 @@ class LightUp : public BrightnessManipulation, public Animation {
     void Show() override;
 
   private:
+    BrightnessManipulation _brightnessManipulation;
     void NewColor();
 
     byte sp;

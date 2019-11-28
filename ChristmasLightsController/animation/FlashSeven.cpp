@@ -1,10 +1,10 @@
 #include "FlashSeven.h"
 
-#include "ColorManipulation.h"
+#include "manipulation/ColorManipulation.h"
 
 FlashSeven::FlashSeven(AbstractLedStrip* strip, byte duration) :
-    BrightnessManipulation(strip),
     Animation(0x0107, strip, 9, 4, 8),
+    _brightnessManipulation(strip),
     curs(0),
     w(0),
     fwd(false),
@@ -24,11 +24,11 @@ void FlashSeven::Init()
 
 void FlashSeven::Show()
 {
-    BrightnessManipulation::changeAll(-64);
+    _brightnessManipulation.changeAll(-64);
 
     const int n = _strip->numPixels();
     for (int i = curs; i < n; i += period) {
-        BrightnessManipulation::change(i, -128);
+        _brightnessManipulation.change(i, -128);
     }
 
     if (fwd)

@@ -1,8 +1,8 @@
 #include "LightHouse.h"
 
 LightHouse::LightHouse(AbstractLedStrip* strip) :
-    BrightnessManipulation(strip),
     Animation(0x0109, strip, 6, 2, 10),
+    _brightnessManipulation(strip),
     dot{},
     pos(0),
     stp(0),
@@ -19,7 +19,7 @@ void LightHouse::Init()
         dot[i] = c | (c << 8) | (c << 16);
         c >>= 1;
     }
-    BrightnessManipulation::setColor(dot[4]);
+    _brightnessManipulation.setColor(dot[4]);
     pos = random(_strip->numPixels());
     stp = 0;
     sp = random(1, 4);
@@ -28,7 +28,7 @@ void LightHouse::Init()
 
 void LightHouse::Show()
 {
-    BrightnessManipulation::changeAll(-8);
+    _brightnessManipulation.changeAll(-8);
     if (--dlay > 0)
         return;
     dlay = sp;
