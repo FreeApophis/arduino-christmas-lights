@@ -19,11 +19,30 @@ namespace CreateIno
         {
             _lines.AddRange(
                 File
-                    .ReadAllLines(Path.Combine(_sourcePath, relativeFilename), Encoding.UTF8)
+                    .ReadAllLines(SourceDirectory(relativeFilename), Encoding.UTF8)
                     .Select((line, index) => (line, index))
                     .Where(l => IsSelectedLine(l.index, from, to))
                     .Select(l => l.line)
                 );
+        }
+
+        public void AddFileWithoutIncludes(string relativeFilename)
+        {
+            var offset = 1;
+            var nextLine = 1;
+
+            var lastInclude = File
+                .ReadAllLines(SourceDirectory(relativeFilename), Encoding.UTF8)
+                .Select((line, index) => (line, index))
+                .LastOrDefault(l => l.line.StartsWith("#include"))
+                .index;
+
+            AddFile(relativeFilename, lastInclude + offset + nextLine);
+        }
+
+        private string SourceDirectory(string relativeFilename)
+        {
+            return Path.Combine(_sourcePath, "ChristmasLightsController", relativeFilename);
         }
 
         private bool IsSelectedLine(int index, int? from, int? to)
@@ -39,7 +58,12 @@ namespace CreateIno
 
         public void Save(string relativeFilename)
         {
-            File.WriteAllLines(Path.Combine(_sourcePath, relativeFilename), _lines);
+            File.WriteAllLines(TargetDirectory(relativeFilename), _lines);
+        }
+
+        private string TargetDirectory(string relativeFilename)
+        {
+            return Path.Combine(_sourcePath, "christmas-lights", relativeFilename);
         }
     }
 }

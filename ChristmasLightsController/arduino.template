@@ -1,0 +1,36 @@
+template<typename TElement, int NSize>
+int arraySize(TElement (&array)[NSize])
+{
+    return NSize;
+}
+
+AnimationManager mgr(&strip, animations, arraySize(animations), clearances, arraySize(clearances));
+
+void randomize()
+{
+    Serial.begin(9600);
+
+    uint32_t rnd = 0;
+    for (byte i = A0; i < A4; ++i) {
+        pinMode(i, INPUT);
+        rnd <<= 6;
+        rnd += analogRead(i);
+    }
+    randomSeed(rnd);
+}
+
+void setup()
+{
+    randomize();
+
+    strip.begin();
+    strip.setBrightness(PixelBrightness);
+    strip.show();
+
+    mgr.Init(&off);
+}
+
+void loop()
+{
+    mgr.Show();
+}

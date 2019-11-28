@@ -260,6 +260,9 @@
     <ClCompile Include="LightsController.cpp" />
     <ClCompile Include="SimulatedLedStrip.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="arduino.template" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

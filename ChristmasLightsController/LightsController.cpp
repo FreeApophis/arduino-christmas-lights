@@ -133,12 +133,6 @@ SingleWave singleWave(&strip);
 SolitonCreep solitonCreep(&strip, MinimalSequenceShowTime);
 // ID: 0x011b
 Sparks sparks(&strip, MinimalSequenceShowTime);
-// ID: 0xaf00
-StaticColor redColor(&strip, MinimalSequenceShowTime, ToColor(255, 0, 0), 0xaf00);
-// ID: 0xa0f0
-StaticColor greenColor(&strip, MinimalSequenceShowTime, ToColor(0, 255, 0), 0xa0f0);
-// ID: 0xa00f
-StaticColor blueColor(&strip, MinimalSequenceShowTime, ToColor(0, 0, 255), 0xa00f);
 // ID: 0x011c
 Toward toward(&strip, MinimalSequenceShowTime);
 // ID: 0x011d
@@ -151,6 +145,16 @@ WalkSeven walkSeven(&strip, MinimalSequenceShowTime);
 WalkToCenter walkToCenter(&strip, MinimalSequenceShowTime);
 // ID: 0x0121
 Worms worms(&strip);
+
+// ID: 0x0000
+StaticColor off(&strip, MinimalSequenceShowTime, ToColor(0, 0, 0), 0x0000);
+// ID: 0xaf00
+StaticColor redColor(&strip, MinimalSequenceShowTime, ToColor(255, 0, 0), 0xaf00);
+// ID: 0xa0f0
+StaticColor greenColor(&strip, MinimalSequenceShowTime, ToColor(0, 255, 0), 0xa0f0);
+// ID: 0xa00f
+StaticColor blueColor(&strip, MinimalSequenceShowTime, ToColor(0, 0, 255), 0xa00f);
+
 
 // Instantiate Clearance Animations
 ClearSide clearSide(&strip);
@@ -199,6 +203,14 @@ Animation* animations[] = {
     &blueColor,
 };
 
+Clearance* clearances[] = {
+    &clearSide,
+    &clearFromCenter,
+    &clearFade,
+    &eatFromCenter,
+    &clearHalf,
+};
+
 template<typename TElement, int NSize>
 bool CheckAnimationIds(TElement (&animations)[NSize])
 {
@@ -214,14 +226,6 @@ bool CheckAnimationIds(TElement (&animations)[NSize])
     return true;
 }
 
-Clearance* clearances[] = {
-    &clearSide,
-    &clearFromCenter,
-    &clearFade,
-    &eatFromCenter,
-    &clearHalf,
-};
-
 template<typename TElement, int NSize>
 int arraySize(TElement (&array)[NSize])
 {
@@ -232,15 +236,6 @@ AnimationManager mgr(&strip, animations, arraySize(animations), clearances, arra
 
 void randomize()
 {
-    //Serial.begin(9600);
-
-    //uint32_t rnd = 0;
-    //for (byte i = A0; i < A4; ++i) {
-    //    pinMode(i, INPUT);
-    //    rnd <<= 6;
-    //    rnd += analogRead(i);
-    //}
-    //randomSeed(rnd);
 }
 
 uint16_t setup()
@@ -254,7 +249,7 @@ uint16_t setup()
     strip.begin();
     strip.setBrightness(PixelBrightness);
     strip.show(); // Initialize all pixels to 'off'
-    mgr.Init(&blueColor);
+    mgr.Init(&off);
 
     return strip.numPixels();
 }

@@ -15,6 +15,6 @@ class RandomDrops : public Animation {
   private:
     void add();
     BrightnessManipulation _brightnessManipulation;
-    struct Drop dr[16]{};
+    Drop dr[16]{};
     char num{};
 };
