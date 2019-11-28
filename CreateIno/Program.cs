@@ -1,7 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Linq;
-using System.Xml.Linq;
+using Funcky;
 
 namespace CreateIno
 {
@@ -9,11 +8,27 @@ namespace CreateIno
     {
         static void Main(string[] args)
         {
-            InoCreator ino = new InoCreator(args.First());
+            var _ = args.Any()
+                ? CreateInoFile(args)
+                : MissingPath();
+        }
 
-            ino.AddFile("AbstractLedStrip.h", 4, 17);
+        private static Unit MissingPath()
+        {
+            Console.WriteLine("no path set!");
+
+            return new Unit();
+        }
+
+        private static Unit CreateInoFile(string[] args)
+        {
+            var ino = new InoCreator(args.First());
+
+            ino.AddFile("AbstractLedStrip.h");
 
             ino.Save("ChristmasLightsController.ino");
+
+            return new Unit();
         }
     }
 }

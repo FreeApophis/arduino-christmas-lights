@@ -15,15 +15,21 @@ namespace CreateIno
             _sourcePath = sourcePath;
         }
 
-        public void AddFile(string relativeFilename, int from, int to)
+        public void AddFile(string relativeFilename, int? from = null, int? to = null)
         {
-            foreach (var (line, index) in File.ReadAllLines(Path.Combine(_sourcePath, relativeFilename), Encoding.UTF8).Select((line, index) => (line, index)))
-            {
-                if (from <= index + 1 && index < to)
-                {
-                    _lines.Add(line);
-                }
-            }
+            _lines.AddRange(
+                File
+                    .ReadAllLines(Path.Combine(_sourcePath, relativeFilename), Encoding.UTF8)
+                    .Select((line, index) => (line, index))
+                    .Where(l => IsSelectedLine(l.index, from, to))
+                    .Select(l => l.line)
+                );
+        }
+
+        private bool IsSelectedLine(int index, int? from, int? to)
+        {
+            return (!from.HasValue || from.Value <= index + 1) &&
+                   (!to.HasValue || to.Value >= index);
         }
 
         public void AddLine(string line)
