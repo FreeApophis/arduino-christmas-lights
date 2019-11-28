@@ -7,7 +7,7 @@
 // Even and odd position leds are moving towards each other
 class EvenOdd : public Animation {
   public:
-    EvenOdd(AbstractLedStrip* strip, byte duration);
+    EvenOdd(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

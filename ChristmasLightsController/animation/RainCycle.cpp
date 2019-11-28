@@ -2,8 +2,8 @@
 
 #include "manipulation/ColorManipulation.h"
 
-RainCycle::RainCycle(AbstractLedStrip* strip, byte duration) :
-    Animation(0x010f, strip, duration, 2, 8),
+RainCycle::RainCycle(AbstractLedStrip* strip) :
+    Animation(0x010f, strip, 2, 8),
     _brightnessManipulation(strip),
     index(0),
     rdy(false)

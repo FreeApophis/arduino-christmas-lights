@@ -7,7 +7,7 @@
 // Rainbow colors blend
 class RainBlend : public Animation {
   public:
-    RainBlend(AbstractLedStrip* strip, byte duration);
+    RainBlend(AbstractLedStrip* strip);
 
     void Init() override { index = 0; }
     void Show() override;

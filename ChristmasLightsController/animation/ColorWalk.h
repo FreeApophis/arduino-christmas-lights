@@ -7,7 +7,7 @@
 // Walk the dots one after the other with a color
 class ColorWalk : public Animation {
   public:
-    ColorWalk(AbstractLedStrip* strip, byte duration);
+    ColorWalk(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

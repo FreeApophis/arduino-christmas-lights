@@ -2,8 +2,8 @@
 
 #include "manipulation/ColorManipulation.h"
 
-MergeOne::MergeOne(AbstractLedStrip* strip, byte duration) :
-    Animation(0x010b, strip, duration, 8, 30),
+MergeOne::MergeOne(AbstractLedStrip* strip) :
+    Animation(0x010b, strip, 8, 30),
     cl(0),
     cr(0),
     l(0),

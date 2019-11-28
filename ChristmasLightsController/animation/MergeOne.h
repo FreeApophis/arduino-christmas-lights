@@ -7,7 +7,7 @@
 // Slow merging of two colors
 class MergeOne : public Animation {
   public:
-    MergeOne(AbstractLedStrip* strip, byte duration);
+    MergeOne(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

@@ -8,7 +8,7 @@
 // Random sparks
 class Sparks : public Animation {
   public:
-    Sparks(AbstractLedStrip* strip, byte duration);
+    Sparks(AbstractLedStrip* strip);
 
     void Init() override;
 

@@ -2,8 +2,8 @@
 
 #include "manipulation/ColorManipulation.h"
 
-ShineSeven::ShineSeven(AbstractLedStrip* strip, byte duration) :
-    Animation(0x0117, strip, 12, 4, 20),
+ShineSeven::ShineSeven(AbstractLedStrip* strip) :
+    Animation(0x0117, strip, 4, 20),
     _brightnessManipulation(strip)
 {
 }

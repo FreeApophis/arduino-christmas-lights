@@ -8,7 +8,7 @@
 // show the rainbow (from neopixel example)
 class Rainbow : public Animation {
   public:
-    Rainbow(AbstractLedStrip* strip, byte duration);
+    Rainbow(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

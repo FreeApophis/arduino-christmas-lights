@@ -7,7 +7,7 @@
 // Neo fire animation by Robert Ulbricht
 class NeoFire : public Animation {
   public:
-    NeoFire(AbstractLedStrip* strip, byte duration);
+    NeoFire(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

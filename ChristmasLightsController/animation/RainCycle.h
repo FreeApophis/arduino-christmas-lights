@@ -7,7 +7,7 @@
 
 class RainCycle : public Animation {
   public:
-    RainCycle(AbstractLedStrip* strip, byte duration);
+    RainCycle(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

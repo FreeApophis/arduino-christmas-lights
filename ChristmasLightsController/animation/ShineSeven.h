@@ -8,7 +8,7 @@
 // Slow shining by the different colors
 class ShineSeven : public Animation {
   public:
-    ShineSeven(AbstractLedStrip* strip, byte duration);
+    ShineSeven(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

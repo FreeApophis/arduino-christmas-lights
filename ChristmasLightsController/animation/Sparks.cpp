@@ -2,8 +2,8 @@
 
 #include "manipulation/ColorManipulation.h"
 
-Sparks::Sparks(AbstractLedStrip* strip, byte duration) :
-    Animation(0x011b, strip, 12, 2, 6),
+Sparks::Sparks(AbstractLedStrip* strip) :
+    Animation(0x011b, strip, 2, 6),
     _brightnessManipulation(strip)
 {
 }

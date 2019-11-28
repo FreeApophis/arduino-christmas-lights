@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Shuffle.h"
 #include "SimulatedLedStrip.h"
 #include "animation/Animation.h"
 #include "clearance/Clearance.h"
@@ -17,12 +16,10 @@ class AnimationManager {
     void InitClear();
     bool IsClean();
     void SetStepSettings();
-    uint32_t NextAnimationTime() const;
     Animation* NextAnimation();
     void AdvanceAnimation();
     void AdvanceClearance();
 
-    Shuffle _shuffle;
     AbstractLedStrip* _strip;
 
     Animation** _animations;
@@ -31,7 +28,6 @@ class AnimationManager {
     Clearance** _clearances;
     byte _numberOfClearances;
 
-    uint32_t _nextAnimationTime;
     Animation* _nextAnimation;
 
     uint32_t _nextStep;

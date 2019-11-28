@@ -7,7 +7,7 @@
 
 class ColorWave : public Animation {
   public:
-    ColorWave(AbstractLedStrip* strip, byte duration);
+    ColorWave(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

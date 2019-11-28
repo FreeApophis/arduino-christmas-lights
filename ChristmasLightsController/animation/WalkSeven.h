@@ -8,7 +8,7 @@
 // Rapid walking by the different colors
 class WalkSeven : public Animation {
   public:
-    WalkSeven(AbstractLedStrip* strip, byte duration);
+    WalkSeven(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

@@ -3,7 +3,7 @@
 #include "manipulation/ColorManipulation.h"
 
 Worms::Worms(AbstractLedStrip* strip) :
-    Animation(0x0121, strip, 9, 10, 20),
+    Animation(0x0121, strip, 10, 20),
     _brightnessManipulation(strip)
 {
 }

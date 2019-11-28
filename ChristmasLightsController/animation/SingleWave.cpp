@@ -3,7 +3,7 @@
 #include "manipulation/ColorManipulation.h"
 
 SingleWave::SingleWave(AbstractLedStrip* strip) :
-    Animation(0x0119, strip, 12, 4, 20),
+    Animation(0x0119, strip, 4, 20),
     _brightnessManipulation(strip)
 {
 }

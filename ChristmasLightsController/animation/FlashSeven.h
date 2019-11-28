@@ -8,7 +8,7 @@
 // Rapid flashing by the differenc colors
 class FlashSeven : public Animation {
   public:
-    FlashSeven(AbstractLedStrip* strip, byte duration);
+    FlashSeven(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

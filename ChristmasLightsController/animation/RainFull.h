@@ -8,7 +8,7 @@
 // show the rainbow colors on the entire strip
 class RainFull : public Animation {
   public:
-    RainFull(AbstractLedStrip* strip, byte duration);
+    RainFull(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

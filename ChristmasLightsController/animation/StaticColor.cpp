@@ -1,7 +1,7 @@
 #include "StaticColor.h"
 
-StaticColor::StaticColor(AbstractLedStrip* strip, byte duration, int32_t color, uint16_t animationId) :
-    Animation(animationId, strip, duration, 5, 5),
+StaticColor::StaticColor(AbstractLedStrip* strip, int32_t color, uint16_t animationId) :
+    Animation(animationId, strip, 5, 5),
     _color(color)
 {
 }

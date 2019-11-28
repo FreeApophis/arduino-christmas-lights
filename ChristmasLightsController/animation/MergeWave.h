@@ -7,7 +7,7 @@
 // Fast merging of Waves
 class MergeWave : public Animation {
   public:
-    MergeWave(AbstractLedStrip* strip, byte duration);
+    MergeWave(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

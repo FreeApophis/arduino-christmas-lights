@@ -3,7 +3,7 @@
 #include "manipulation/ColorManipulation.h"
 
 RandomDrops::RandomDrops(AbstractLedStrip* strip) :
-    Animation(0x0113, strip, 9, 2, 7),
+    Animation(0x0113, strip, 2, 7),
     _brightnessManipulation(strip)
 {
 }

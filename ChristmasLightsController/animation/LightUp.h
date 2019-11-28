@@ -8,7 +8,7 @@
 // Light up with the random color than fade out
 class LightUp : public Animation {
   public:
-    LightUp(AbstractLedStrip* strip, byte duration);
+    LightUp(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

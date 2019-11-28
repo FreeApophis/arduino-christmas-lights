@@ -7,7 +7,7 @@
 // Random  colors toward each other
 class Toward : public Animation {
   public:
-    Toward(AbstractLedStrip* strip, byte duration);
+    Toward(AbstractLedStrip* strip);
 
     void Init() override { w = random(256); }
     void Show() override;

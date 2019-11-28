@@ -5,13 +5,11 @@
 #include <cstdint>
 
 AnimationManager::AnimationManager(AbstractLedStrip* strip, Animation* animations[], byte numberOfAnimations, Clearance* clearances[], byte numberOfClearances) :
-    _shuffle(numberOfAnimations),
     _strip(strip),
     _animations(animations),
     _numberOfAnimations(numberOfAnimations),
     _clearances(clearances),
     _numberOfClearances(numberOfClearances),
-    _nextAnimationTime(0),
     _nextAnimation(nullptr),
     _nextStep(0),
     _stepPeriod(0),
@@ -28,23 +26,16 @@ void AnimationManager::SetStepSettings()
     const uint16_t stepMinPeriod = 10 * _currentAnimation->MinPeriod();
     const uint16_t stepMaxPeriod = 10 * _currentAnimation->MaxPeriod();
 
+    // this is the minimal period for a singe animation step, higher values -> slower animation
     _stepPeriod = random(stepMinPeriod, stepMaxPeriod + 1);
 
     _nextStep = 0;
 }
 
-uint32_t AnimationManager::NextAnimationTime() const
-{
-    const int32_t showTime = _currentAnimation->ShowTime();
-    const int32_t period = random(showTime, showTime * 3) * 1000;
-
-    return millis() + period;
-}
-
 Animation* AnimationManager::NextAnimation()
 {
     return _nextAnimation == nullptr
-               ? _animations[_shuffle.next()]
+               ? _animations[0] // off animation (should not happen)
                : _nextAnimation;
 }
 
@@ -52,10 +43,6 @@ void AnimationManager::Init(Animation* animation)
 {
     _currentAnimation = animation;
     _nextAnimation = nullptr;
-
-    if (!_currentAnimation->NeedsClearance()) {
-        _nextAnimationTime = NextAnimationTime();
-    }
 
     SetStepSettings();
 
@@ -68,10 +55,14 @@ void AnimationManager::Init(Animation* animation)
 
 void AnimationManager::Show()
 {
-    if (_clearing) {
-        AdvanceClearance();
+    if (millis() < _nextStep) {
+        delay(1);
     } else {
-        AdvanceAnimation();
+        if (_clearing) {
+            AdvanceClearance();
+        } else {
+            AdvanceAnimation();
+        }
     }
 }
 
@@ -84,19 +75,17 @@ void AnimationManager::StartAnimation(uint16_t animationId)
 {
     for (byte index = 0; index < _numberOfAnimations; ++index) {
         if (_animations[index]->AnimationId() == animationId) {
-            _nextAnimationTime = 0;
             _nextAnimation = _animations[index];
-            break;
+            return;
         }
     }
 }
 
 void AnimationManager::AdvanceAnimation()
 {
-    const uint32_t ms = millis();
 
     // The current animation is timed out
-    if (ms > _nextAnimationTime && _currentAnimation->IsComplete()) {
+    if (_nextAnimation != nullptr /* && _currentAnimation->IsComplete() */) {
         if (IsClean()) {
             Init(NextAnimation());
         } else {
@@ -104,11 +93,7 @@ void AnimationManager::AdvanceAnimation()
         }
     }
 
-    if (ms < _nextStep) {
-        delay(1);
-        return;
-    }
-
+    const uint32_t ms = millis();
     _nextStep = ms + _stepPeriod;
 
     if (_currentAnimation->NeedsClearance()) {
@@ -123,19 +108,10 @@ void AnimationManager::AdvanceAnimation()
 void AnimationManager::AdvanceClearance()
 {
     const uint32_t ms = millis();
-
-    if (ms < _nextStep) {
-        delay(1);
-        return;
-    }
-
     _nextStep = ms + _clearStepPeriod;
 
     if (_currentClearance->IsComplete()) {
         _clearing = false;
-        if (ms > _nextAnimationTime) {
-            _currentAnimation->SetNeedsClearance(false); // It is too late to continue the animation
-        }
         Init(NextAnimation());
     } else {
         _currentClearance->Show(); // Keep running clear session till it ends

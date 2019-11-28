@@ -2,8 +2,8 @@
 
 #include "manipulation/ColorManipulation.h"
 
-RainFull::RainFull(AbstractLedStrip* strip, byte duration) :
-    Animation(0x0110, strip, duration, 6, 24),
+RainFull::RainFull(AbstractLedStrip* strip) :
+    Animation(0x0110, strip, 6, 24),
     _brightnessManipulation(strip)
 {
 }

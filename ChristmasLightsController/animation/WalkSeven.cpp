@@ -2,8 +2,8 @@
 
 #include "manipulation/ColorManipulation.h"
 
-WalkSeven::WalkSeven(AbstractLedStrip* strip, byte duration) :
-    Animation(0x011f, strip, 9, 8, 15),
+WalkSeven::WalkSeven(AbstractLedStrip* strip) :
+    Animation(0x011f, strip, 8, 15),
     _brightnessManipulation(strip)
 {
 }

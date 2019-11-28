@@ -9,7 +9,7 @@ constexpr int num_inter = 3;
 // Show interference from many sources
 class Interference : public Animation {
   public:
-    Interference(AbstractLedStrip* strip, byte duration);
+    Interference(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

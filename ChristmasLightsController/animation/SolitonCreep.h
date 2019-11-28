@@ -8,7 +8,7 @@
 // Solitons are creaping up or down
 class SolitonCreep : public Animation {
   public:
-    SolitonCreep(AbstractLedStrip* strip, byte duration);
+    SolitonCreep(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

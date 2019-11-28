@@ -8,7 +8,7 @@
 // Fill the strip by the color in random order
 class RandomFill : public Animation {
   public:
-    RandomFill(AbstractLedStrip* strip, byte duration);
+    RandomFill(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

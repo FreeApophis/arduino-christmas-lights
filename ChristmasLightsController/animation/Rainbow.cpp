@@ -2,8 +2,8 @@
 
 #include "manipulation/ColorManipulation.h"
 
-Rainbow::Rainbow(AbstractLedStrip* strip, byte duration) :
-    Animation(0x0111, strip, duration, 2, 8),
+Rainbow::Rainbow(AbstractLedStrip* strip) :
+    Animation(0x0111, strip, 2, 8),
     _brightnessManipulation(strip),
     index(0),
     rdy(false)

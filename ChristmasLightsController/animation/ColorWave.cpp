@@ -2,8 +2,8 @@
 
 #include "manipulation/ColorManipulation.h"
 
-ColorWave::ColorWave(AbstractLedStrip* strip, byte duration) :
-    Animation(0x0104, strip, duration, 2, 8),
+ColorWave::ColorWave(AbstractLedStrip* strip) :
+    Animation(0x0104, strip, 2, 8),
     _brightnessManipulation(strip),
     _index(0),
     _isReady(false)

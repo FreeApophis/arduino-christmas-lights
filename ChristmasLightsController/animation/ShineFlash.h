@@ -8,7 +8,7 @@
 // Slow shining and flash by the different colors
 class ShineFlash : public Animation {
   public:
-    ShineFlash(AbstractLedStrip* strip, byte duration);
+    ShineFlash(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

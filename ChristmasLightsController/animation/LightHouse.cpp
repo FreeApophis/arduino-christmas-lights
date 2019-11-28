@@ -1,7 +1,7 @@
 #include "LightHouse.h"
 
 LightHouse::LightHouse(AbstractLedStrip* strip) :
-    Animation(0x0109, strip, 6, 2, 10),
+    Animation(0x0109, strip, 2, 10),
     _brightnessManipulation(strip),
     dot{},
     pos(0),

@@ -7,7 +7,7 @@
 // Lights run from the center
 class CenterRun : public Animation {
   public:
-    CenterRun(AbstractLedStrip* strip, byte duration);
+    CenterRun(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

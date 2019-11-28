@@ -7,7 +7,7 @@ class AbstractLedStrip;
 // Fill the dots one after the other with a color
 class ColorWipe : public Animation {
   public:
-    ColorWipe(AbstractLedStrip* strip, byte duration);
+    ColorWipe(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

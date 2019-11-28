@@ -2,8 +2,8 @@
 
 #include "manipulation/ColorManipulation.h"
 
-NeoFire::NeoFire(AbstractLedStrip* strip, byte duration) :
-    Animation(0x010d, strip, duration, 1, 5),
+NeoFire::NeoFire(AbstractLedStrip* strip) :
+    Animation(0x010d, strip, 1, 5),
     color(0),
     pause(0)
 {

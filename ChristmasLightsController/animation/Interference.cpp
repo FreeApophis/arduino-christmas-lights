@@ -4,8 +4,8 @@
 
 #include <cstdlib>
 
-Interference::Interference(AbstractLedStrip* strip, byte duration) :
-    Animation(0x0108, strip, 6, 6, 10),
+Interference::Interference(AbstractLedStrip* strip) :
+    Animation(0x0108, strip, 6, 10),
     tm(0),
     pos{},
     start{},

@@ -3,7 +3,7 @@
 #include "manipulation/ColorManipulation.h"
 
 SingleColorSwing::SingleColorSwing(AbstractLedStrip* strip) :
-    Animation(0x0118, strip, 10, 3, 10)
+    Animation(0x0118, strip, 3, 10)
 {
 }
 

@@ -8,7 +8,7 @@
 // Random sparks fade out
 class RandomFade : public Animation {
   public:
-    RandomFade(AbstractLedStrip* strip, byte duration);
+    RandomFade(AbstractLedStrip* strip);
 
     void Init() override {}
     void Show() override;

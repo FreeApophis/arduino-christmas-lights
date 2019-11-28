@@ -8,7 +8,7 @@
 // Color swing
 class ColorSwing : public Animation {
   public:
-    ColorSwing(AbstractLedStrip* strip, byte duration);
+    ColorSwing(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

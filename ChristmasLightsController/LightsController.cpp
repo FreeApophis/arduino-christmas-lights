@@ -63,9 +63,6 @@ const byte PixelBrightness = 100;
 // Length of Neopixel Strip
 const byte NumberOfPixels = 100;
 
-// seconds
-const byte MinimalSequenceShowTime = 30;
-//
 //// Parameter 1 = number of pixels in strip
 //// Parameter 2 = Arduino pin number (most are valid)
 //// Parameter 3 = pixel type flags, add together as needed:
@@ -79,85 +76,85 @@ SimulatedLedStrip strip(NumberOfPixels);
 
 // Instantiate Animations
 // ID: 0x0100
-CenterRun centerRun(&strip, MinimalSequenceShowTime);
+CenterRun centerRun(&strip);
 // ID: 0x0101
 CollideOne collideOne(&strip);
 // ID: 0x0102
-ColorSwing colorSwing(&strip, MinimalSequenceShowTime);
+ColorSwing colorSwing(&strip);
 // ID: 0x0103
-ColorWalk colorWalk(&strip, MinimalSequenceShowTime);
+ColorWalk colorWalk(&strip);
 // ID: 0x0104
-ColorWave colorWave(&strip, MinimalSequenceShowTime);
+ColorWave colorWave(&strip);
 // ID: 0x0105
-ColorWipe colorWipe(&strip, MinimalSequenceShowTime);
+ColorWipe colorWipe(&strip);
 // ID: 0x0106
-EvenOdd evenOdd(&strip, MinimalSequenceShowTime);
+EvenOdd evenOdd(&strip);
 // ID: 0x0107
-FlashSeven flashSeven(&strip, MinimalSequenceShowTime);
+FlashSeven flashSeven(&strip);
 // ID: 0x0108
-Interference interference(&strip, MinimalSequenceShowTime);
+Interference interference(&strip);
 // ID: 0x0109
 LightHouse lightHouse(&strip);
 // ID: 0x010a
-LightUp lightUp(&strip, MinimalSequenceShowTime);
+LightUp lightUp(&strip);
 // ID: 0x010b
-MergeOne mergeOn(&strip, MinimalSequenceShowTime);
+MergeOne mergeOn(&strip);
 // ID: 0x010c
-MergeWave mergeWave(&strip, MinimalSequenceShowTime);
+MergeWave mergeWave(&strip);
 // ID: 0x010d
-NeoFire neoFire(&strip, MinimalSequenceShowTime);
+NeoFire neoFire(&strip);
 // ID: 0x010e
-RainBlend rainBlend(&strip, MinimalSequenceShowTime);
+RainBlend rainBlend(&strip);
 // ID: 0x010f
-RainCycle rainCycle(&strip, MinimalSequenceShowTime);
+RainCycle rainCycle(&strip);
 // ID: 0x0110
-RainFull rainFull(&strip, MinimalSequenceShowTime);
+RainFull rainFull(&strip);
 // ID: 0x0111
-Rainbow rainbow(&strip, MinimalSequenceShowTime);
+Rainbow rainbow(&strip);
 // ID: 0x0112
-RandomCreep randomCreep(&strip, MinimalSequenceShowTime);
+RandomCreep randomCreep(&strip);
 // ID: 0x0113
 RandomDrops randomDrops(&strip);
 // ID: 0x0114
-RandomFade randomFade(&strip, MinimalSequenceShowTime);
+RandomFade randomFade(&strip);
 // ID: 0x0115
-RandomFill randomFill(&strip, MinimalSequenceShowTime);
+RandomFill randomFill(&strip);
 // ID: 0x0116
-ShineFlash shineFlash(&strip, MinimalSequenceShowTime);
+ShineFlash shineFlash(&strip);
 // ID: 0x0117
-ShineSeven shineSeven(&strip, MinimalSequenceShowTime);
+ShineSeven shineSeven(&strip);
 // ID: 0x0118
 SingleColorSwing singleColorSwing(&strip);
 // ID: 0x0119
 SingleWave singleWave(&strip);
 // ID: 0x011a
-SolitonCreep solitonCreep(&strip, MinimalSequenceShowTime);
+SolitonCreep solitonCreep(&strip);
 // ID: 0x011b
-Sparks sparks(&strip, MinimalSequenceShowTime);
+Sparks sparks(&strip);
 // ID: 0x011c
-Toward toward(&strip, MinimalSequenceShowTime);
+Toward toward(&strip);
 // ID: 0x011d
-TowardRain towardRain(&strip, MinimalSequenceShowTime);
+TowardRain towardRain(&strip);
 // ID: 0x011e
-WalkAcross walkAcross(&strip, MinimalSequenceShowTime);
+WalkAcross walkAcross(&strip);
 // ID: 0x011f
-WalkSeven walkSeven(&strip, MinimalSequenceShowTime);
+WalkSeven walkSeven(&strip);
 // ID: 0x0120
-WalkToCenter walkToCenter(&strip, MinimalSequenceShowTime);
+WalkToCenter walkToCenter(&strip);
 // ID: 0x0121
 Worms worms(&strip);
 
 // ID: 0x0000
-StaticColor off(&strip, MinimalSequenceShowTime, ToColor(0, 0, 0), 0x0000);
+StaticColor off(&strip, ToColor(0, 0, 0), 0x0000);
 // ID: 0xaf00
-StaticColor redColor(&strip, MinimalSequenceShowTime, ToColor(255, 0, 0), 0xaf00);
+StaticColor redColor(&strip, ToColor(255, 0, 0), 0xaf00);
 // ID: 0xa0f0
-StaticColor greenColor(&strip, MinimalSequenceShowTime, ToColor(0, 255, 0), 0xa0f0);
+StaticColor greenColor(&strip, ToColor(0, 255, 0), 0xa0f0);
 // ID: 0xa00f
-StaticColor blueColor(&strip, MinimalSequenceShowTime, ToColor(0, 0, 255), 0xa00f);
+StaticColor blueColor(&strip, ToColor(0, 0, 255), 0xa00f);
 
 // ID: 0xb000
-ChristmasWave christmasWave(&strip, MinimalSequenceShowTime);
+ChristmasWave christmasWave(&strip);
 
 // Instantiate Clearance Animations
 ClearSide clearSide(&strip);
@@ -167,6 +164,7 @@ EatFromCenter eatFromCenter(&strip);
 ClearHalf clearHalf(&strip);
 
 Animation* animations[] = {
+    &off,
     &centerRun,
     &collideOne,
     &colorWalk,
@@ -204,6 +202,7 @@ Animation* animations[] = {
     &redColor,
     &greenColor,
     &blueColor,
+    &christmasWave
 };
 
 Clearance* clearances[] = {
@@ -252,7 +251,7 @@ uint16_t setup()
     strip.begin();
     strip.setBrightness(PixelBrightness);
     strip.show(); // Initialize all pixels to 'off'
-    mgr.Init(&christmasWave);
+    mgr.Init(&centerRun);
 
     return strip.numPixels();
 }

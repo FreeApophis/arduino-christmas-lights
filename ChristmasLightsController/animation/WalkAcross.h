@@ -7,7 +7,7 @@
 // Random colors from left and right move to the other end
 class WalkAcross : public Animation {
   public:
-    WalkAcross(AbstractLedStrip* strip, byte duration);
+    WalkAcross(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

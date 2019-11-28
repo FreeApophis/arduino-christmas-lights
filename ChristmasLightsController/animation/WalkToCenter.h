@@ -7,7 +7,7 @@
 // Random colors from left and right move to the center
 class WalkToCenter : public Animation {
   public:
-    WalkToCenter(AbstractLedStrip* strip, byte duration);
+    WalkToCenter(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

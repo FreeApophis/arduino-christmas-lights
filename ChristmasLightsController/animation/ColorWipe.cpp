@@ -4,8 +4,8 @@
 
 #include "framework.h"
 
-ColorWipe::ColorWipe(AbstractLedStrip* strip, byte duration) :
-    Animation(0x0105, strip, duration, 2, 8),
+ColorWipe::ColorWipe(AbstractLedStrip* strip) :
+    Animation(0x0105, strip, 2, 8),
     index(0),
     fwd(false)
 {

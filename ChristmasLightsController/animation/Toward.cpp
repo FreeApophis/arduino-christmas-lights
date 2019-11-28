@@ -2,8 +2,8 @@
 
 #include "manipulation/ColorManipulation.h"
 
-Toward::Toward(AbstractLedStrip* strip, byte duration) :
-    Animation(0x011c, strip, 6, 5, 10)
+Toward::Toward(AbstractLedStrip* strip) :
+    Animation(0x011c, strip, 5, 10)
 {
 }
 

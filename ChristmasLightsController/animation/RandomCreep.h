@@ -8,7 +8,7 @@
 // creep the random sequence up or down
 class RandomCreep : public Animation {
   public:
-    RandomCreep(AbstractLedStrip* strip, byte duration);
+    RandomCreep(AbstractLedStrip* strip);
 
     void Init() override;
     void Show() override;

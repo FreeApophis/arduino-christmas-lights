@@ -2,8 +2,8 @@
 
 #include "manipulation/ColorManipulation.h"
 
-ShineFlash::ShineFlash(AbstractLedStrip* strip, byte duration) :
-    Animation(0x0116, strip, 12, 4, 20),
+ShineFlash::ShineFlash(AbstractLedStrip* strip) :
+    Animation(0x0116, strip, 4, 20),
     _brightnessManipulation(strip)
 {
 }

@@ -2,8 +2,8 @@
 
 #include "manipulation/ColorManipulation.h"
 
-WalkAcross::WalkAcross(AbstractLedStrip* strip, byte duration) :
-    Animation(0x011e, strip, 10, 1, 6),
+WalkAcross::WalkAcross(AbstractLedStrip* strip) :
+    Animation(0x011e, strip, 1, 6),
     _leftColor(0),
     _rightColor(0),
     _left(0),

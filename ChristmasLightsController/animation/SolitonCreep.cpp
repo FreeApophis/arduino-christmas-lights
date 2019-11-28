@@ -4,8 +4,8 @@
 
 #include <cstdlib>
 
-SolitonCreep::SolitonCreep(AbstractLedStrip* strip, byte duration) :
-    Animation(0x011a, strip, 9, 6, 14)
+SolitonCreep::SolitonCreep(AbstractLedStrip* strip) :
+    Animation(0x011a, strip, 6, 14)
 {
 }
 
