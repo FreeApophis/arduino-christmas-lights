@@ -1,6 +1,7 @@
 #pragma once
 
 #include "animation/Animation.h"
+
 #include "framework.h"
 
 // Random colors from left and right move to the center

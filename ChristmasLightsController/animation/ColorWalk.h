@@ -1,7 +1,8 @@
 #pragma once
-#include "framework.h"
 #include "AbstractLedStrip.h"
 #include "animation/Animation.h"
+
+#include "framework.h"
 
 // Walk the dots one after the other with a color
 class ColorWalk : public Animation {

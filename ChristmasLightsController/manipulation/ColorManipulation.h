@@ -11,4 +11,3 @@ uint32_t ColorSuperPosition(uint32_t color1, uint32_t color2);
 
 uint32_t ColorFromColorWheel(byte positionOnWheel);
 uint32_t Shimmer(uint32_t color);
-

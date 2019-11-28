@@ -16,8 +16,6 @@ void incrementMillis(long millis);
 unsigned long millis();
 void delay(unsigned long);
 
-
-
 template<class T>
 void swap(T& a, T& b) noexcept
 {

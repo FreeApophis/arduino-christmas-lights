@@ -1,9 +1,10 @@
 #pragma once
 
 #include "AbstractLedStrip.h"
+
 #include "framework.h"
 
- // Brightness manipulation
+// Brightness manipulation
 class BrightnessManipulation final {
   public:
     BrightnessManipulation(AbstractLedStrip* strip);

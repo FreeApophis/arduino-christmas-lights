@@ -2,6 +2,7 @@
 
 #include "animation/Animation.h"
 #include "manipulation/BrightnessManipulation.h"
+
 #include "framework.h"
 
 // Random sparks fade out
@@ -11,6 +12,7 @@ class RandomFade : public Animation {
 
     void Init() override {}
     void Show() override;
-private:
+
+  private:
     BrightnessManipulation _brightnessManipulation;
 };

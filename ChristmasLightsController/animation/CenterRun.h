@@ -8,7 +8,7 @@
 class CenterRun : public Animation {
   public:
     CenterRun(AbstractLedStrip* strip, byte duration);
-    
+
     // returns a value in the middle 1/8 of the strip
     int MiddleWithVariations() const;
     void SetParameters(int middle);

@@ -2,6 +2,7 @@
 
 #include "animation/Animation.h"
 #include "manipulation/BrightnessManipulation.h"
+
 #include "framework.h"
 
 class RainCycle : public Animation {

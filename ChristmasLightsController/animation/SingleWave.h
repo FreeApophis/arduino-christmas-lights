@@ -2,6 +2,7 @@
 
 #include "animation/Animation.h"
 #include "manipulation/BrightnessManipulation.h"
+
 #include "framework.h"
 
 // Show single wave moving in random direction

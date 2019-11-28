@@ -1,8 +1,8 @@
 #pragma once
 
+#include "Drop.h"
 #include "animation/Animation.h"
 #include "manipulation/BrightnessManipulation.h"
-#include "Drop.h"
 
 // Random dropped color dot fading out from epicenter
 class RandomDrops : public Animation {

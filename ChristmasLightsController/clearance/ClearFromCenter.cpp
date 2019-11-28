@@ -2,7 +2,7 @@
 
 #include "manipulation/ColorManipulation.h"
 
-ClearFromCenter::ClearFromCenter(AbstractLedStrip* strip):
+ClearFromCenter::ClearFromCenter(AbstractLedStrip* strip) :
     Clearance(strip)
 {
 }

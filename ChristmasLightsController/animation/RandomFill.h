@@ -1,8 +1,9 @@
 #pragma once
 
-#include "manipulation/BrightnessManipulation.h"
-#include "framework.h"
 #include "animation/Animation.h"
+#include "manipulation/BrightnessManipulation.h"
+
+#include "framework.h"
 
 // Fill the strip by the color in random order
 class RandomFill : public Animation {

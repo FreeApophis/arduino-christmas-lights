@@ -1,13 +1,14 @@
 #pragma once
 
 #include "AbstractLedStrip.h"
+
 #include "framework.h"
 
 #include <cstdint>
 #include <vector>
 
 class SimulatedLedStrip : public AbstractLedStrip {
-public:
+  public:
     SimulatedLedStrip(byte stripSize);
 
     uint16_t numPixels() const override;
@@ -25,5 +26,3 @@ public:
   private:
     std::vector<uint32_t> _pixels;
 };
-
-

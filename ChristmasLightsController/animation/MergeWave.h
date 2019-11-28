@@ -1,6 +1,7 @@
 #pragma once
 
 #include "animation/Animation.h"
+
 #include "framework.h"
 
 // Fast merging of Waves

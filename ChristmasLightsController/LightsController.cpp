@@ -1,7 +1,6 @@
 #include "LightsController.h"
 
 #include "AnimationManager.h"
-#include "manipulation/ColorManipulation.h"
 #include "animation/Animation.h"
 #include "animation/CenterRun.h"
 #include "animation/CollideOne.h"
@@ -44,6 +43,7 @@
 #include "clearance/ClearSide.h"
 #include "clearance/Clearance.h"
 #include "clearance/EatFromCenter.h"
+#include "manipulation/ColorManipulation.h"
 
 #include "framework.h"
 
@@ -199,7 +199,6 @@ Animation* animations[] = {
     &blueColor,
 };
 
-
 template<typename TElement, int NSize>
 bool CheckAnimationIds(TElement (&animations)[NSize])
 {
@@ -214,7 +213,6 @@ bool CheckAnimationIds(TElement (&animations)[NSize])
 
     return true;
 }
-
 
 Clearance* clearances[] = {
     &clearSide,
@@ -248,7 +246,7 @@ void randomize()
 uint16_t setup()
 {
     randomize();
-    
+
     if (!CheckAnimationIds(animations)) {
         return 0;
     }
@@ -270,7 +268,7 @@ uint32_t* loop(long millis)
 }
 
 void setAnimation(unsigned short animationId)
-{ 
+{
     mgr.StartAnimation(animationId);
 }
 

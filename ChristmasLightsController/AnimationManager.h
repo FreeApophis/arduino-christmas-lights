@@ -24,7 +24,7 @@ class AnimationManager {
 
     Shuffle _shuffle;
     AbstractLedStrip* _strip;
-    
+
     Animation** _animations;
     byte _numberOfAnimations;
 

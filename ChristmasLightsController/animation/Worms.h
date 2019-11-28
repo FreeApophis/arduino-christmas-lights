@@ -1,9 +1,10 @@
 #pragma once
 
+#include "Worm.h"
 #include "animation/Animation.h"
 #include "manipulation/BrightnessManipulation.h"
+
 #include "framework.h"
-#include "Worm.h"
 
 // Several worms are moving randomly
 class Worms : public Animation {
