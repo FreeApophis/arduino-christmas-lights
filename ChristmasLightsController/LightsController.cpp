@@ -256,7 +256,7 @@ uint16_t setup()
     strip.begin();
     strip.setBrightness(PixelBrightness);
     strip.show(); // Initialize all pixels to 'off'
-    mgr.Init();
+    mgr.Init(&blueColor);
 
     return strip.numPixels();
 }

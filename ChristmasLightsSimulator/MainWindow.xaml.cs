@@ -21,6 +21,8 @@ namespace ChristmasLightsSimulator
 
             CreateLeds(ChristmasLightsController.Setup());
 
+            AnimationDropDown.ItemsSource = _animations.Values;
+
             _lastLoop = DateTime.Now;
             _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(50) };
             _timer.Tick += Loop;
@@ -75,7 +77,7 @@ namespace ChristmasLightsSimulator
 
         private void Loop(object sender, EventArgs e)
         {
-            FrameLabel.Content = $"Frame: {++_frame} / Animation: {ToAnimationName(ChristmasLightsController.CurrentAnimationId())}";
+            FrameLabel.Content = $"Frame: {++_frame} / Animation {ToAnimationName(ChristmasLightsController.CurrentAnimationId())}";
             var elapsed = DateTime.Now - _lastLoop;
             _lastLoop = DateTime.Now;
             foreach (var (color, index) in ChristmasLightsController.Loop(_ellipses.Count, elapsed.Milliseconds).Select((c, i) => (c, i)))
@@ -121,6 +123,20 @@ namespace ChristmasLightsSimulator
         private Ellipse CreateLed()
         {
             return new Ellipse { Width = 15, Height = 15, Fill = Brushes.Red, Stroke = Brushes.Black };
+        }
+
+        private void OnAnimationChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count == 1)
+            {
+                foreach (var (animationId, animationName) in _animations)
+                {
+                    if (animationName == (string)e.AddedItems[0])
+                    {
+                        ChristmasLightsController.SetAnimation(animationId);
+                    }
+                }
+            }
         }
     }
 }

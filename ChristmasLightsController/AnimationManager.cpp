@@ -11,9 +11,10 @@ AnimationManager::AnimationManager(AbstractLedStrip* strip, Animation* animation
     _numberOfAnimations(numberOfAnimations),
     _clearances(clearances),
     _numberOfClearances(numberOfClearances),
+    _nextAnimationTime(0),
+    _nextAnimation(nullptr),
     _nextStep(0),
     _stepPeriod(0),
-    _nextAnimation(0),
     _clearStepPeriod(0),
     _currentAnimation(nullptr),
     _currentClearance(nullptr),
@@ -40,12 +41,20 @@ uint32_t AnimationManager::NextAnimationTime() const
     return millis() + period;
 }
 
-void AnimationManager::Init()
+Animation* AnimationManager::NextAnimation()
 {
-    _currentAnimation = _animations[_shuffle.next()];
+    return _nextAnimation == nullptr
+               ? _animations[_shuffle.next()]
+               : _nextAnimation;
+}
+
+void AnimationManager::Init(Animation* animation)
+{
+    _currentAnimation = animation;
+    _nextAnimation = nullptr;
 
     if (!_currentAnimation->NeedsClearance()) {
-        _nextAnimation = NextAnimationTime();
+        _nextAnimationTime = NextAnimationTime();
     }
 
     SetStepSettings();
@@ -75,7 +84,9 @@ void AnimationManager::StartAnimation(uint16_t animationId)
 {
     for (byte index = 0; index < _numberOfAnimations; ++index) {
         if (_animations[index]->AnimationId() == animationId) {
-            _nextAnimation = index;
+            _nextAnimationTime = 0;
+            _nextAnimation = _animations[index];
+            break;
         }
     }
 }
@@ -85,9 +96,9 @@ void AnimationManager::AdvanceAnimation()
     const uint32_t ms = millis();
 
     // The current animation is timed out
-    if ((ms > _nextAnimation) && _currentAnimation->IsComplete()) {
+    if (ms > _nextAnimationTime && _currentAnimation->IsComplete()) {
         if (IsClean()) {
-            Init();
+            Init(NextAnimation());
         } else {
             InitClear();
         }
@@ -122,10 +133,10 @@ void AnimationManager::AdvanceClearance()
 
     if (_currentClearance->IsComplete()) {
         _clearing = false;
-        if (ms > _nextAnimation) {
+        if (ms > _nextAnimationTime) {
             _currentAnimation->SetNeedsClearance(false); // It is too late to continue the animation
         }
-        Init();
+        Init(NextAnimation());
     } else {
         _currentClearance->Show(); // Keep running clear session till it ends
     }
