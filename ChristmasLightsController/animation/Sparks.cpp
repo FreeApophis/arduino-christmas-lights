@@ -4,7 +4,7 @@
 
 Sparks::Sparks(AbstractLedStrip* strip, byte duration) :
     BrightnessManipulation(strip),
-    Animation(strip, 12, 2, 6)
+    Animation(0x011b, strip, 12, 2, 6)
 {
 }
 
@@ -19,7 +19,7 @@ void Sparks::Show()
 {
     const uint32_t c = ColorFromColorWheel(random(265));
     for (char i = 7; i >= 1; --i) {
-        if (i == 6)
+        if (i == 6) 
             _strip->setPixelColor(_positions[byte(i)], 0);
         else
             BrightnessManipulation::change(_positions[byte(i)], -128);

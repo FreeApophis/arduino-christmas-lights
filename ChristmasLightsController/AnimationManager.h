@@ -10,6 +10,8 @@ class AnimationManager {
     AnimationManager(AbstractLedStrip* strip, Animation* animations[], byte numberOfAnimations, Clearance* clearances[], byte numberOfClearances);
     void Init();
     void Show();
+    uint16_t CurrentAnimationId() const;
+    void StartAnimation(uint16_t animationId);
 
   private:
     void InitClear();
@@ -22,6 +24,7 @@ class AnimationManager {
     Shuffle _shuffle;
     AbstractLedStrip* _strip;
     Animation** _animations;
+    byte _numberOfAnimations;
     Clearance** _clearances;
     byte _numberOfClearances;
     uint32_t _nextStep;

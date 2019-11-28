@@ -12,7 +12,7 @@ using byte = unsigned char;
 int random(int maxVal);
 int random(int minVal, int maxVal);
 
-void incrementMillis();
+void incrementMillis(long millis);
 unsigned long millis();
 void delay(unsigned long);
 

@@ -2,8 +2,8 @@
 
 #include "ColorManipulation.h"
 
-WalkToCenter::WalkToCenter(AbstractLedStrip* strip, byte duration):
-    Animation(strip, 8, 1, 6),
+WalkToCenter::WalkToCenter(AbstractLedStrip* strip, byte duration) :
+    Animation(0x0120, strip, 8, 1, 6),
     cl(0),
     cr(0),
     l(0),
@@ -40,7 +40,6 @@ void WalkToCenter::Show()
     if ((mr - ml) > 1) {
         for (int i = ml; i < mr; ++i) {
             _strip->setPixelColor(i, Shimmer(_strip->getPixelColor(i)));
-
         }
     }
 

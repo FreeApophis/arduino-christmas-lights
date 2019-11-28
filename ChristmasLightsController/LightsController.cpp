@@ -52,6 +52,8 @@
 #    include "SimulatedLedStrip.h"
 #endif
 
+#include <set>
+
 const byte PixelBrightness = 100;
 
 // Pin of Neopixel Strip
@@ -75,42 +77,79 @@ const byte MinimalSequenceShowTime = 30;
 SimulatedLedStrip strip(NumberOfPixels);
 
 // Instantiate Animations
+// ID: 0x0100
 CenterRun centerRun(&strip, MinimalSequenceShowTime);
+// ID: 0x0101
 CollideOne collideOne(&strip);
+// ID: 0x0102
 ColorSwing colorSwing(&strip, MinimalSequenceShowTime);
+// ID: 0x0103
 ColorWalk colorWalk(&strip, MinimalSequenceShowTime);
+// ID: 0x0104
 ColorWave colorWave(&strip, MinimalSequenceShowTime);
+// ID: 0x0105
 ColorWipe colorWipe(&strip, MinimalSequenceShowTime);
+// ID: 0x0106
 EvenOdd evenOdd(&strip, MinimalSequenceShowTime);
+// ID: 0x0107
 FlashSeven flashSeven(&strip, MinimalSequenceShowTime);
+// ID: 0x0108
 Interference interference(&strip, MinimalSequenceShowTime);
+// ID: 0x0109
 LightHouse lightHouse(&strip);
+// ID: 0x010a
 LightUp lightUp(&strip, MinimalSequenceShowTime);
+// ID: 0x010b
 MergeOne mergeOn(&strip, MinimalSequenceShowTime);
+// ID: 0x010c
 MergeWave mergeWave(&strip, MinimalSequenceShowTime);
+// ID: 0x010d
 NeoFire neoFire(&strip, MinimalSequenceShowTime);
+// ID: 0x010e
 RainBlend rainBlend(&strip, MinimalSequenceShowTime);
+// ID: 0x010f
 RainCycle rainCycle(&strip, MinimalSequenceShowTime);
+// ID: 0x0110
 RainFull rainFull(&strip, MinimalSequenceShowTime);
+// ID: 0x0111
 Rainbow rainbow(&strip, MinimalSequenceShowTime);
+// ID: 0x0112
 RandomCreep randomCreep(&strip, MinimalSequenceShowTime);
+// ID: 0x0113
 RandomDrops randomDrops(&strip);
+// ID: 0x0114
 RandomFade randomFade(&strip, MinimalSequenceShowTime);
+// ID: 0x0115
 RandomFill randomFill(&strip, MinimalSequenceShowTime);
+// ID: 0x0116
 ShineFlash shineFlash(&strip, MinimalSequenceShowTime);
+// ID: 0x0117
 ShineSeven shineSeven(&strip, MinimalSequenceShowTime);
+// ID: 0x0118
 SingleColorSwing singleColorSwing(&strip);
+// ID: 0x0119
 SingleWave singleWave(&strip);
+// ID: 0x011a
 SolitonCreep solitonCreep(&strip, MinimalSequenceShowTime);
+// ID: 0x011b
 Sparks sparks(&strip, MinimalSequenceShowTime);
-StaticColor redColor(&strip, MinimalSequenceShowTime, ToColor(255, 0, 0));
-StaticColor greenColor(&strip, MinimalSequenceShowTime, ToColor(0, 255, 0));
-StaticColor blueColor(&strip, MinimalSequenceShowTime, ToColor(0, 0, 255));
+// ID: 0xaf00
+StaticColor redColor(&strip, MinimalSequenceShowTime, ToColor(255, 0, 0), 0xaf00);
+// ID: 0xa0f0
+StaticColor greenColor(&strip, MinimalSequenceShowTime, ToColor(0, 255, 0), 0xa0f0);
+// ID: 0xa00f
+StaticColor blueColor(&strip, MinimalSequenceShowTime, ToColor(0, 0, 255), 0xa00f);
+// ID: 0x011c
 Toward toward(&strip, MinimalSequenceShowTime);
+// ID: 0x011d
 TowardRain towardRain(&strip, MinimalSequenceShowTime);
+// ID: 0x011e
 WalkAcross walkAcross(&strip, MinimalSequenceShowTime);
+// ID: 0x011f
 WalkSeven walkSeven(&strip, MinimalSequenceShowTime);
+// ID: 0x0120
 WalkToCenter walkToCenter(&strip, MinimalSequenceShowTime);
+// ID: 0x0121
 Worms worms(&strip);
 
 // Instantiate Clearance Animations
@@ -121,44 +160,61 @@ EatFromCenter eatFromCenter(&strip);
 ClearHalf clearHalf(&strip);
 
 Animation* animations[] = {
-    //&centerRun,
-    //&collideOne,
-    //&colorWalk,
-    //&colorWave,
-    //&colorWipe,
-    //&evenOdd,
-    //&flashSeven,
-    //&interference,
-    //&lightHouse,
-    //&lightUp,
-    //&mergeOn,
-    //&mergeWave,
-    //&neoFire,
-    //&rainBlend,
-    //&rainbow,
-    //&rainCycle,
-    //&rainFull,
-    //&randomCreep,
-    //&randomDrops,
-    //&randomFade,
-    //&randomFill,
-    //&shineFlash,
-    //&shineSeven,
-    //&singleColorSwing,
-    //&singleWave,
-    //&solitonCreep,
-    //&sparks,
-    //&colorSwing,
-    //&toward,
-    //&towardRain,
-    //&walkAcross,
-    //&walkSeven,
-    //&walkToCenter,
-    //&worms,
+    &centerRun,
+    &collideOne,
+    &colorWalk,
+    &colorWave,
+    &colorWipe,
+    &evenOdd,
+    &flashSeven,
+    &interference,
+    &lightHouse,
+    &lightUp,
+    &mergeOn,
+    &mergeWave,
+    &neoFire,
+    &rainBlend,
+    &rainbow,
+    &rainCycle,
+    &rainFull,
+    &randomCreep,
+    &randomDrops,
+    &randomFade,
+    &randomFill,
+    &shineFlash,
+    &shineSeven,
+    &singleColorSwing,
+    &singleWave,
+    &solitonCreep,
+    &sparks,
+    &colorSwing,
+    &toward,
+    &towardRain,
+    &walkAcross,
+    &walkSeven,
+    &walkToCenter,
+    &worms,
     &redColor,
     &greenColor,
     &blueColor,
 };
+
+
+template<typename TElement, int NSize>
+bool CheckAnimationIds(TElement (&animations)[NSize])
+{
+    std::set<uint16_t> ids;
+    for (const auto animation : animations) {
+        if (ids.find(animation->AnimationId()) == ids.end()) {
+            ids.insert(animation->AnimationId());
+        } else {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 
 Clearance* clearances[] = {
     &clearSide,
@@ -192,6 +248,10 @@ void randomize()
 uint16_t setup()
 {
     randomize();
+    
+    if (!CheckAnimationIds(animations)) {
+        return 0;
+    }
 
     strip.begin();
     strip.setBrightness(PixelBrightness);
@@ -201,10 +261,20 @@ uint16_t setup()
     return strip.numPixels();
 }
 
-uint32_t* loop()
+uint32_t* loop(long millis)
 {
     mgr.Show();
 
-    incrementMillis();
+    incrementMillis(millis);
     return strip.CurrentPixels().data();
+}
+
+void setAnimation(unsigned short animationId)
+{ 
+    mgr.StartAnimation(animationId);
+}
+
+unsigned short currentAnimationId()
+{
+    return mgr.CurrentAnimationId();
 }

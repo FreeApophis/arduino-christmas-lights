@@ -2,9 +2,9 @@
 
 #include "ColorManipulation.h"
 
-RandomFill::RandomFill(AbstractLedStrip* strip, byte duration):
+RandomFill::RandomFill(AbstractLedStrip* strip, byte duration) :
     BrightnessManipulation(strip),
-    Animation(strip, 15, 2, 4)
+    Animation(0x0115, strip, 15, 2, 4)
 {
 }
 

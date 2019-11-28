@@ -3,7 +3,7 @@
 #include "ColorManipulation.h"
 
 RandomCreep::RandomCreep(AbstractLedStrip* strip, byte duration) :
-    Animation(strip, duration, 6, 24)
+    Animation(0x0112, strip, duration, 6, 24)
 {
 }
 

@@ -3,7 +3,7 @@
 #include "ColorManipulation.h"
 
 CenterRun::CenterRun(AbstractLedStrip* strip, byte duration) :
-    Animation(strip, duration, 4, 20),
+    Animation(0x0100, strip, duration, 4, 20),
     _color(0),
     _middle(0),
     _difference(0)

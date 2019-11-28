@@ -2,9 +2,9 @@
 
 #include "ColorManipulation.h"
 
-RandomFade::RandomFade(AbstractLedStrip* strip, byte duration):
+RandomFade::RandomFade(AbstractLedStrip* strip, byte duration) :
     BrightnessManipulation(strip),
-    Animation(strip, 12, 6, 24)
+    Animation(0x0114, strip, 12, 6, 24)
 {
 }
 

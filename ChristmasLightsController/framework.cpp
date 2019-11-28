@@ -20,9 +20,9 @@ int random(int minVal, int maxVal)
 
 long _millis = 0;
 
-void incrementMillis()
+void incrementMillis(long millis)
 {
-    _millis += 100;
+    _millis += millis;
 }
 
 unsigned long millis()

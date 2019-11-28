@@ -1,9 +1,10 @@
 #include "SingleWave.h"
+
 #include "ColorManipulation.h"
 
-SingleWave::SingleWave(AbstractLedStrip* strip):
+SingleWave::SingleWave(AbstractLedStrip* strip) :
     BrightnessManipulation(strip),
-    Animation(strip, 12, 4, 20)
+    Animation(0x0119, strip, 12, 4, 20)
 {
 }
 

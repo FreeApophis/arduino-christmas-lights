@@ -4,7 +4,7 @@
 
 RainCycle::RainCycle(AbstractLedStrip* strip, byte duration) :
     BrightnessManipulation(strip),
-    Animation(strip, duration, 2, 8),
+    Animation(0x010f, strip, duration, 2, 8),
     index(0),
     rdy(false)
 {

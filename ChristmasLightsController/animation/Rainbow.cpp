@@ -4,7 +4,7 @@
 
 Rainbow::Rainbow(AbstractLedStrip* strip, byte duration) :
     BrightnessManipulation(strip),
-    Animation(strip, duration, 2, 8),
+    Animation(0x0111, strip, duration, 2, 8),
     index(0),
     rdy(false)
 {

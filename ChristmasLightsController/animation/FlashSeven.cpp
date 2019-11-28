@@ -1,9 +1,10 @@
 #include "FlashSeven.h"
+
 #include "ColorManipulation.h"
 
-FlashSeven::FlashSeven(AbstractLedStrip* strip, byte duration):
+FlashSeven::FlashSeven(AbstractLedStrip* strip, byte duration) :
     BrightnessManipulation(strip),
-    Animation(strip, 9, 4, 8),
+    Animation(0x0107, strip, 9, 4, 8),
     curs(0),
     w(0),
     fwd(false),

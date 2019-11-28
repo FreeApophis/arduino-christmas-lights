@@ -6,7 +6,7 @@
 
 class StaticColor : public Animation {
   public:
-    StaticColor(AbstractLedStrip* strip, byte duration, int32_t color);
+    StaticColor(AbstractLedStrip* strip, byte duration, int32_t color, uint16_t animationId);
 
     void Init() override;
     void Show() override;

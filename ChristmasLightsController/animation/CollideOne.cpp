@@ -3,7 +3,7 @@
 #include "ColorManipulation.h"
 
 CollideOne::CollideOne(AbstractLedStrip* strip) :
-    Animation(strip, 2, 1, 3),
+    Animation(0x0101, strip, 2, 1, 3),
     _leftColor(0),
     _rightColor(0),
     _left(0),

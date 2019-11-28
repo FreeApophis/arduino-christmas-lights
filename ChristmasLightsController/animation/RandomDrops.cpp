@@ -4,7 +4,7 @@
 
 RandomDrops::RandomDrops(AbstractLedStrip* strip) :
     BrightnessManipulation(strip),
-    Animation(strip, 9, 2, 7)
+    Animation(0x0113, strip, 9, 2, 7)
 {
 }
 

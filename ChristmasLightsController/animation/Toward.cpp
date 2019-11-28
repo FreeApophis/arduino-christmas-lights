@@ -3,7 +3,7 @@
 #include "ColorManipulation.h"
 
 Toward::Toward(AbstractLedStrip* strip, byte duration) :
-    Animation(strip, 6, 5, 10)
+    Animation(0x011c, strip, 6, 5, 10)
 {
 }
 

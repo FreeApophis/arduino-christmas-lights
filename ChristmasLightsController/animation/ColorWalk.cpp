@@ -1,10 +1,11 @@
 #include "ColorWalk.h"
 
 #include "ColorManipulation.h"
+
 #include "framework.h"
 
 ColorWalk::ColorWalk(AbstractLedStrip* strip, byte duration) :
-    Animation(strip, duration, 4, 12),
+    Animation(0x0103, strip, duration, 4, 12),
     index(0),
     period(0),
     fwd(false),

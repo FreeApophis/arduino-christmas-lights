@@ -8,6 +8,7 @@ AnimationManager::AnimationManager(AbstractLedStrip* strip, Animation* animation
     _shuffle(numberOfAnimations),
     _strip(strip),
     _animations(animations),
+    _numberOfAnimations(numberOfAnimations),
     _clearances(clearances),
     _numberOfClearances(numberOfClearances),
     _nextStep(0),
@@ -62,6 +63,20 @@ void AnimationManager::Show()
         AdvanceClearance();
     } else {
         AdvanceAnimation();
+    }
+}
+
+uint16_t AnimationManager::CurrentAnimationId() const
+{
+    return _currentAnimation->AnimationId();
+}
+
+void AnimationManager::StartAnimation(uint16_t animationId)
+{
+    for (byte index = 0; index < _numberOfAnimations; ++index) {
+        if (_animations[index]->AnimationId() == animationId) {
+            _nextAnimation = index;
+        }
     }
 }
 

@@ -1,8 +1,9 @@
 #include "TowardRain.h"
+
 #include "ColorManipulation.h"
 
-TowardRain::TowardRain(AbstractLedStrip* strip, byte duration):
-    Animation(strip, 8, 10, 20)
+TowardRain::TowardRain(AbstractLedStrip* strip, byte duration) :
+    Animation(0x011d, strip, 8, 10, 20)
 {
 }
 

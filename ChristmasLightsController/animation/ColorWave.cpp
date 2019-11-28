@@ -4,12 +4,11 @@
 
 ColorWave::ColorWave(AbstractLedStrip* strip, byte duration) :
     BrightnessManipulation(strip),
-    Animation(strip, duration, 2, 8),
+    Animation(0x0104, strip, duration, 2, 8),
     _index(0),
     _isReady(false)
 {
 }
-
 
 void ColorWave::Init()
 {

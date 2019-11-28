@@ -3,7 +3,7 @@
 #include "ColorManipulation.h"
 
 ColorSwing::ColorSwing(AbstractLedStrip* strip, byte duration) :
-    Animation(strip, 10, 3, 10),
+    Animation(0x0102, strip, 10, 3, 10),
     len(0),
     index(0),
     w(0),

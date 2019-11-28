@@ -1,10 +1,11 @@
 #include "ColorWipe.h"
 
 #include "ColorManipulation.h"
+
 #include "framework.h"
 
 ColorWipe::ColorWipe(AbstractLedStrip* strip, byte duration) :
-    Animation(strip, duration, 2, 8),
+    Animation(0x0105, strip, duration, 2, 8),
     index(0),
     fwd(false)
 {

@@ -1,8 +1,8 @@
 #include "LightUp.h"
 
-LightUp::LightUp(AbstractLedStrip* strip, byte duration):
+LightUp::LightUp(AbstractLedStrip* strip, byte duration) :
     BrightnessManipulation(strip),
-    Animation(strip, 12, 6, 24),
+    Animation(0x010a, strip, 12, 6, 24),
     sp(0),
     inc(0)
 {
