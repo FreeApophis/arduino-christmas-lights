@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Funcky.Extensions;
 
 namespace ChristmasLightsSimulator
 {
@@ -50,24 +51,26 @@ namespace ChristmasLightsSimulator
             {0x010e, "RainBlend"},
             {0x010f, "RainCycle"},
             {0x0110, "RainFull"},
-            {0x0100, "Rainbow"},
-            {0x0100, "RandomCreep"},
-            {0x0100, "RandomDrops"},
-            {0x0100, "RandomFade"},
-            {0x0100, "RandomFill"},
-            {0x0100, "ShineFlash"},
-            {0x0100, "ShineSeven"},
-            {0x0100, "SingleColorSwing"},
-            {0x0100, "SingleWave"},
-            {0x0100, "SolitonCreep"},
-            {0x0100, "Sparks"},
-            {0x0100, "StaticColor"},
-            {0x0100, "Toward"},
-            {0x0100, "TowardRain"},
-            {0x0100, "WalkAcross"},
-            {0x0100, "WalkSeven"},
-            {0x0100, "WalkToCenter"},
-            {0x0100, "Worms"},
+            {0x0111, "Rainbow"},
+            {0x0112, "RandomCreep"},
+            {0x0113, "RandomDrops"},
+            {0x0114, "RandomFade"},
+            {0x0115, "RandomFill"},
+            {0x0116, "ShineFlash"},
+            {0x0117, "ShineSeven"},
+            {0x0118, "SingleColorSwing"},
+            {0x0119, "SingleWave"},
+            {0x011a, "SolitonCreep"},
+            {0x011b, "Sparks"},
+            {0x011c, "Toward"},
+            {0x011d, "TowardRain"},
+            {0x011e, "WalkAcross"},
+            {0x011f, "WalkSeven"},
+            {0x0120, "WalkToCenter"},
+            {0x0121, "Worms"},
+            {0xaf00, "Static Red"},
+            {0xa0f0, "Static Green"},
+            {0xa00f, "Static Blue"},
         };
 
         private void Loop(object sender, EventArgs e)
@@ -83,7 +86,9 @@ namespace ChristmasLightsSimulator
 
         private string ToAnimationName(ushort currentAnimationId)
         {
-
+            return _animations
+                .TryGetValue(key: currentAnimationId)
+                .OrElse("N/A!");
         }
 
         private void CreateLeds(ushort pixelCount)
