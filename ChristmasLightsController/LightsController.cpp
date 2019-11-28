@@ -3,6 +3,7 @@
 #include "AnimationManager.h"
 #include "animation/Animation.h"
 #include "animation/CenterRun.h"
+#include "animation/ChristmasWave.h"
 #include "animation/CollideOne.h"
 #include "animation/ColorSwing.h"
 #include "animation/ColorWalk.h"
@@ -155,6 +156,8 @@ StaticColor greenColor(&strip, MinimalSequenceShowTime, ToColor(0, 255, 0), 0xa0
 // ID: 0xa00f
 StaticColor blueColor(&strip, MinimalSequenceShowTime, ToColor(0, 0, 255), 0xa00f);
 
+// ID: 0xb000
+ChristmasWave christmasWave(&strip, MinimalSequenceShowTime);
 
 // Instantiate Clearance Animations
 ClearSide clearSide(&strip);
@@ -249,7 +252,7 @@ uint16_t setup()
     strip.begin();
     strip.setBrightness(PixelBrightness);
     strip.show(); // Initialize all pixels to 'off'
-    mgr.Init(&off);
+    mgr.Init(&christmasWave);
 
     return strip.numPixels();
 }

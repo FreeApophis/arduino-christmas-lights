@@ -33,19 +33,19 @@ uint32_t Crawl::NextColor() const
     return _nextColor;
 }
 
-void Crawl::Step(AbstractLedStrip* strip)
+void Crawl::Step(AbstractLedStrip* strip) const
 {
     if (_crawlDirection == CrawlDirection::Forward) {
-        for (int i = strip->numPixels() - 1; i > 0; --i) {
-            uint32_t c = strip->getPixelColor(i - 1);
-            strip->setPixelColor(i, c);
+        for (auto i = strip->numPixels() - 1; i > 0; --i) {
+            const auto color = strip->getPixelColor(i - 1);
+            strip->setPixelColor(i, color);
         }
         strip->setPixelColor(0, _nextColor);
     } else { // creep backward
-        const int last = strip->numPixels() - 1;
-        for (int i = 0; i < last; ++i) {
-            uint32_t c = strip->getPixelColor(i + 1);
-            strip->setPixelColor(i, c);
+        const auto last = strip->numPixels() - 1;
+        for (auto i = 0; i < last; ++i) {
+            const auto color = strip->getPixelColor(i + 1);
+            strip->setPixelColor(i, color);
         }
         strip->setPixelColor(last, _nextColor);
     }

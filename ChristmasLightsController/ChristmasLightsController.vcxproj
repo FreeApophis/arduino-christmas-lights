@@ -155,6 +155,7 @@
     <ClInclude Include="AbstractLedStrip.h" />
     <ClInclude Include="animation\Animation.h" />
     <ClInclude Include="animation\CenterRun.h" />
+    <ClInclude Include="animation\ChristmasWave.h" />
     <ClInclude Include="animation\WalkAcross.h" />
     <ClInclude Include="animation\CollideOne.h" />
     <ClInclude Include="animation\WalkToCenter.h" />
@@ -210,6 +211,7 @@
     <ClCompile Include="AnimationManager.cpp" />
     <ClCompile Include="animation\Animation.cpp" />
     <ClCompile Include="animation\CenterRun.cpp" />
+    <ClCompile Include="animation\ChristmasWave.cpp" />
     <ClCompile Include="animation\WalkAcross.cpp" />
     <ClCompile Include="animation\CollideOne.cpp" />
     <ClCompile Include="animation\WalkToCenter.cpp" />

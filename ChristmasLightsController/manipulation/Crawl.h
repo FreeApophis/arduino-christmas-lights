@@ -5,12 +5,12 @@
 
 #include <cstdint>
 
-// creep the sequence up or down, superclass
+// creep the sequence up or down
 class Crawl final {
   public:
     Crawl();
 
-    void Step(AbstractLedStrip* strip);
+    void Step(AbstractLedStrip* strip) const;
 
     void SetDirection(CrawlDirection direction);
     void ToggleDirection();
