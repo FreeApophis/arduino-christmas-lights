@@ -15,6 +15,6 @@ class RainFull : public Animation {
 
   private:
     BrightnessManipulation _brightnessManipulation;
-    byte index{};
-    bool rdy{};
+    byte _index;
+    bool _isReady;
 };

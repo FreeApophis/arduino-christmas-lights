@@ -13,7 +13,9 @@ class RainCycle : public Animation {
     void Show() override;
 
   private:
+    uint32_t ColorWheelFromIndex(uint16_t i) const;
+    void Brighten();
     BrightnessManipulation _brightnessManipulation;
-    byte index;
-    bool rdy;
+    byte _index;
+    bool _brightenPhase;
 };

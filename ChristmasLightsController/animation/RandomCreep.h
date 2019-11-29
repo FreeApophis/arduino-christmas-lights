@@ -17,5 +17,5 @@ class RandomCreep : public Animation {
     Crawl _crawl;
     byte _space; // space between the color dots
     int _changeDirection;
-    byte _count{};
+    byte _count;
 };

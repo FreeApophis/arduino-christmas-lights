@@ -15,6 +15,6 @@ class RandomDrops : public Animation {
   private:
     void add();
     BrightnessManipulation _brightnessManipulation;
-    Drop dr[16]{};
-    char num{};
+    Drop dr[16];
+    char num;
 };

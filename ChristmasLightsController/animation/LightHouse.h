@@ -15,7 +15,7 @@ class LightHouse : public Animation {
 
   private:
     BrightnessManipulation _brightnessManipulation;
-    uint32_t dot[5];
+    uint32_t dot[5]{};
     int pos;
     byte stp;
     char incr;

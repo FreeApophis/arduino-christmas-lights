@@ -16,10 +16,10 @@ class ShineFlash : public Animation {
   private:
     BrightnessManipulation _brightnessManipulation;
     void startNewColor();
-    byte w{};
-    byte mode{};
-    bool flash{};
-    int remain{};
-    int indx{};
-    char wait{};
+    byte w;
+    byte mode;
+    bool flash;
+    int remain;
+    int indx;
+    char wait;
 };

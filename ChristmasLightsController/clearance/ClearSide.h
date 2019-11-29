@@ -10,7 +10,7 @@ class ClearSide : public Clearance {
     void Show() override;
 
   private:
-    uint32_t color{};
-    int index{};
-    bool fwd{};
+    uint32_t color;
+    int index;
+    bool fwd;
 };

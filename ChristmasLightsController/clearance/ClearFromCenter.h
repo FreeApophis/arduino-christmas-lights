@@ -10,7 +10,7 @@ class ClearFromCenter : public Clearance {
     void Show() override;
 
   private:
-    uint32_t color{};
-    int l{}, r{};
-    bool fwd{};
+    uint32_t color;
+    int l, r;
+    bool fwd;
 };

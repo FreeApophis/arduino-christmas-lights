@@ -15,7 +15,8 @@ class ColorSwing : public Animation {
 
   private:
     Crawl _crawl;
-    int len, index;
+    int _length;
+    int _index;
     byte w;
     bool rnd;
 };

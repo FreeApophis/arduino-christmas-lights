@@ -6,8 +6,8 @@
 
 ColorWalk::ColorWalk(AbstractLedStrip* strip) :
     Animation(0x0103, strip, 4, 12),
-    index(0),
-    period(0),
+    _index(0),
+    _period(0),
     fwd(false),
     w(0)
 {
@@ -15,38 +15,38 @@ ColorWalk::ColorWalk(AbstractLedStrip* strip) :
 
 void ColorWalk::Init()
 {
-    index = 0;
+    _index = 0;
     w = random(256);
     fwd = random(2);
-    period = random(10, 30);
+    _period = random(10, 30);
 }
 
 void ColorWalk::Show()
 {
     int n = _strip->numPixels();
     if (fwd) {
-        if (index > n) {
-            index -= period;
+        if (_index > n) {
+            _index -= _period;
             _strip->setPixelColor(n - 1, 0);
         }
         uint32_t color = ColorFromColorWheel(w--);
-        for (int i = index; i > 0; i -= period) {
+        for (int i = _index; i > 0; i -= _period) {
             if (i > 0)
                 _strip->setPixelColor(i - 1, 0);
             _strip->setPixelColor(i, color);
         }
-        ++index;
+        ++_index;
     } else {
-        if (index < 0) {
-            index += period;
+        if (_index < 0) {
+            _index += _period;
             _strip->setPixelColor(0, 0);
         }
         uint32_t color = ColorFromColorWheel(w++);
-        for (int i = index; i < n; i += period) {
+        for (int i = _index; i < n; i += _period) {
             if (i < int(_strip->numPixels() - 1))
                 _strip->setPixelColor(i + 1, 0);
             _strip->setPixelColor(i, color);
         }
-        --index;
+        --_index;
     }
 }

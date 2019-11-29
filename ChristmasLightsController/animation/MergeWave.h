@@ -13,7 +13,8 @@ class MergeWave : public Animation {
     void Show() override;
 
   private:
-    int l, r;
+    int l;
+    int r;
     byte index;
     byte len;
 };

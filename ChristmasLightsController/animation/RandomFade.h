@@ -10,7 +10,7 @@ class RandomFade : public Animation {
   public:
     RandomFade(AbstractLedStrip* strip);
 
-    void Init() override {}
+    void Init() override ;
     void Show() override;
 
   private:

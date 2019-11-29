@@ -13,8 +13,8 @@ class SingleColorSwing : public Animation {
     void Show() override;
 
   private:
-    uint32_t color{};
-    int len{}, index{};
-    bool fwd{};
-    byte w{};
+    uint32_t color;
+    int len, index;
+    bool fwd;
+    byte w;
 };

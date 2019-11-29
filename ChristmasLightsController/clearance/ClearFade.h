@@ -11,5 +11,5 @@ class ClearFade : public Clearance {
     void Show() override;
 
   private:
-    byte decrement{};
+    byte decrement;
 };

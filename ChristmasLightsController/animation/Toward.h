@@ -13,5 +13,5 @@ class Toward : public Animation {
     void Show() override;
 
   private:
-    byte w{};
+    byte w;
 };

@@ -16,8 +16,8 @@ class RandomFill : public Animation {
   private:
     void newDot(bool clr);
     BrightnessManipulation _brightnessManipulation;
-    byte w{};
-    int remain{};
-    uint16_t pos{};
-    bool clr{};
+    byte w;
+    int remain;
+    uint16_t pos;
+    bool clr;
 };

@@ -15,9 +15,9 @@ class WalkSeven : public Animation {
 
   private:
     BrightnessManipulation _brightnessManipulation;
-    char curs{};
-    byte w{};
-    bool fwd{};
-    int ch_dir{};
-    byte period{};
+    char curs;
+    byte w;
+    bool fwd;
+    int ch_dir;
+    byte period;
 };

@@ -13,8 +13,8 @@ class ColorWalk : public Animation {
     void Show() override;
 
   private:
-    int index;
-    byte period;
+    int _index;
+    byte _period;
     bool fwd;
     byte w;
 };

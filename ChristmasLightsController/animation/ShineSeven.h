@@ -16,7 +16,7 @@ class ShineSeven : public Animation {
   private:
     BrightnessManipulation _brightnessManipulation;
     void startNewColor();
-    byte curs{};
-    byte w{};
-    byte base{};
+    byte curs;
+    byte w;
+    byte base;
 };

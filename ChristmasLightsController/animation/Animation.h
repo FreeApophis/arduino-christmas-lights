@@ -25,11 +25,19 @@ class Animation {
 
   protected:
     AbstractLedStrip* _strip;
-    bool _needsClearance; // Whether the strip have to be cleaned for the next loop
-    bool _complete;       // Whether the animation can be changed to the next one
+    
+    // Whether the strip have to be cleaned for the next loop
+    bool _needsClearance;
+    
+    // Whether the animation can be changed to the next one
+    bool _complete;       
 
   private:
     uint16_t _animationId;
-    byte _minPeriod; // The minimum period in tenth of second to show the stage
-    byte _maxPeriod; // The maximum period in tenth of second to show the stage
+    
+    // The minimum time for a single step in this animation (in centiseconds)
+    byte _minPeriod;
+    
+    // The maximum time for a single step in this animation (in centiseconds)
+    byte _maxPeriod; 
 };

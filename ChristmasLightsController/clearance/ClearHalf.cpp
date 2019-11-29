@@ -1,5 +1,11 @@
 #include "ClearHalf.h"
 
+ClearHalf::ClearHalf(AbstractLedStrip* strip) :
+    Clearance(strip),
+    one_step(0)
+{
+}
+
 void ClearHalf::Init()
 {
     _complete = false;

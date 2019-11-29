@@ -15,11 +15,11 @@ class SingleWave : public Animation {
 
   private:
     BrightnessManipulation _brightnessManipulation;
-    uint32_t dot[5]{};
-    int pos{};
-    byte stp{};
-    byte remain{};
-    char incr{};
-    byte mode{};
-    byte w{};
+    uint32_t dot[5];
+    int pos;
+    byte stp;
+    byte remain;
+    char incr;
+    byte mode;
+    byte w;
 };

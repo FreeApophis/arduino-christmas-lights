@@ -9,9 +9,9 @@ class RainBlend : public Animation {
   public:
     RainBlend(AbstractLedStrip* strip);
 
-    void Init() override { index = 0; }
+    void Init() override { _index = 0; }
     void Show() override;
 
   private:
-    int index;
+    int _index;
 };

@@ -16,5 +16,5 @@ class Sparks : public Animation {
 
   private:
     BrightnessManipulation _brightnessManipulation;
-    uint16_t _positions[8]{};
+    uint16_t _positions[8];
 };

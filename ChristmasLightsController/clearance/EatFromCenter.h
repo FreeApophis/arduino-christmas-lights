@@ -11,5 +11,5 @@ class EatFromCenter : public Clearance {
     void Show() override;
 
   private:
-    int remain{};
+    int remain;
 };

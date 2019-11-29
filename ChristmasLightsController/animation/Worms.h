@@ -19,6 +19,6 @@ class Worms : public Animation {
     void Die(byte index);
 
     BrightnessManipulation _brightnessManipulation;
-    Worm _worms[5]{};
-    byte _active{};
+    Worm _worms[5];
+    byte _active;
 };

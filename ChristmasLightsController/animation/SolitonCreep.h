@@ -16,9 +16,9 @@ class SolitonCreep : public Animation {
   private:
     Crawl _crawl;
     void newSoliton();
-    int space{};            // space between the solitons
-    int change_direction{}; // the time to change direction
-    uint32_t dot[5]{};
-    int sol{};
-    byte w{};
+    int space;            // space between the solitons
+    int change_direction; // the time to change direction
+    uint32_t dot[5];
+    int sol;
+    byte w;
 };

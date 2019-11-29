@@ -13,7 +13,7 @@ class NeoFire : public Animation {
     void Show() override;
 
   private:
-    uint32_t color;
+    uint32_t _color;
     char pause;
     const uint32_t c1 = 80;
     const uint32_t c2 = 25;

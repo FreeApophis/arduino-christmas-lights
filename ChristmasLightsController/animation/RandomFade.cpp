@@ -8,10 +8,14 @@ RandomFade::RandomFade(AbstractLedStrip* strip) :
 {
 }
 
+void RandomFade::Init()
+{
+}
+
 void RandomFade::Show()
 {
     _brightnessManipulation.changeAll(-16);
-    byte newDot = random(1, 5);
+    const byte newDot = random(1, 5);
     for (byte i = 0; i < newDot; ++i) {
         int p = random(_strip->numPixels() + 1);
         uint32_t c = ColorFromColorWheel(random(256));

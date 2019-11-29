@@ -16,6 +16,6 @@ class ColorWipe : public Animation {
 
   private:
     byte w;
-    int index;
+    int _index;
     bool fwd;
 };

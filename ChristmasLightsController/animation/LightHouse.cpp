@@ -3,7 +3,6 @@
 LightHouse::LightHouse(AbstractLedStrip* strip) :
     Animation(0x0109, strip, 2, 10),
     _brightnessManipulation(strip),
-    dot{},
     pos(0),
     stp(0),
     incr(0),
@@ -33,12 +32,12 @@ void LightHouse::Show()
         return;
     dlay = sp;
 
-    int n = _strip->numPixels();
+    const int pixelCount = _strip->numPixels();
     if (stp <= 0) {
         incr = 1;
-        if (pos > n / 2)
+        if (pos > pixelCount / 2)
             incr = -1;
-        stp = random(5, n);
+        stp = random(5, pixelCount);
         sp += random(3) - 1;
         if (sp < 1)
             sp = 1;
@@ -46,23 +45,23 @@ void LightHouse::Show()
             sp = 3;
     }
     pos += incr;
-    pos %= n;
+    pos %= pixelCount;
 
     for (int i = 0; i <= 5; ++i) {
         byte indx = i;
         if (indx >= 1)
             indx--;
         int x = pos + i;
-        if (x >= n)
-            x -= n;
+        if (x >= pixelCount)
+            x -= pixelCount;
         else if (x < 0)
-            x += n;
+            x += pixelCount;
         _strip->setPixelColor(x, dot[indx]);
         x = pos - i;
-        if (x >= n)
-            x -= n;
+        if (x >= pixelCount)
+            x -= pixelCount;
         else if (x < 0)
-            x += n;
+            x += pixelCount;
         _strip->setPixelColor(x, dot[indx]);
     }
     stp--;

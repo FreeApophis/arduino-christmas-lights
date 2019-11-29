@@ -13,6 +13,8 @@ class EvenOdd : public Animation {
     void Show() override;
 
   private:
-    uint32_t cl, cr;
-    int l, r;
+    uint32_t cl;
+    uint32_t cr;
+    int l;
+    int r;
 };
