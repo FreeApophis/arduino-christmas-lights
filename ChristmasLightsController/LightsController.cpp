@@ -55,10 +55,11 @@
 
 #include <set>
 
+// Brightness of the whole strip (create via PMW)
 const byte PixelBrightness = 100;
 
 // Pin of Neopixel Strip
-//const byte NEO_PIN = 6;
+const byte LedControlPin = 7;
 
 // Length of Neopixel Strip
 const byte NumberOfPixels = 100;

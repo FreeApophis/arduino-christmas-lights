@@ -26,11 +26,20 @@ namespace CreateIno
             var ino = new InoCreator(args.First());
 
             ino.AddLine("#include <Adafruit_NeoPixel.h>");
+            ino.AddLine("#include <WiFi101.h>");
+            ino.AddLine("#include <MQTT.h>");
+            ino.AddLine(string.Empty);
+            ino.AddLine("#define AbstractLedStrip Adafruit_NeoPixel");
             ino.AddLine(string.Empty);
 
+            DefineConstants(ino);
             AddHelpers(ino);
             AddAnimations(ino);
             AddClearances(ino);
+
+            ino.AddLine(string.Empty);
+            ino.AddLine("Adafruit_NeoPixel strip = Adafruit_NeoPixel(NumberOfPixels, LedControlPin, NEO_GRB + NEO_KHZ800);");
+
             AddLogic(ino);
 
             ino.Save("christmas-lights.ino");
@@ -38,7 +47,13 @@ namespace CreateIno
             return new Unit();
         }
 
-
+        private static void DefineConstants(InoCreator ino)
+        {
+            ino.AddLine("const char ssid[] = \"ssid\";");
+            ino.AddLine("const char pass[] = \"pass\";");
+            ino.AddLine(string.Empty);
+            ino.AddFile("LightsController.cpp", 57, 65);
+        }
 
         private static void AddHelpers(InoCreator ino)
         {
@@ -173,6 +188,10 @@ namespace CreateIno
 
             ino.AddFileWithoutIncludes(Path.Combine("animation", "Worms.h"));
             ino.AddFileWithoutIncludes(Path.Combine("animation", "Worms.cpp"));
+
+            ino.AddFileWithoutIncludes(Path.Combine("animation", "ChristmasWave.h"));
+            ino.AddFileWithoutIncludes(Path.Combine("animation", "ChristmasWave.cpp"));
+
         }
 
         private static void AddClearances(InoCreator ino)
@@ -201,14 +220,12 @@ namespace CreateIno
         private static void AddLogic(InoCreator ino)
         {
             ino.AddLine("/* Logic */");
-            ino.AddFileWithoutIncludes("Shuffle.h");
-            ino.AddFileWithoutIncludes("Shuffle.h");
 
             ino.AddFileWithoutIncludes("AnimationManager.h");
             ino.AddFileWithoutIncludes("AnimationManager.cpp");
 
             // animation instances ...
-            ino.AddFile("LightsController.cpp", 80, 212);
+            ino.AddFile("LightsController.cpp", 77, 215);
 
             // The arduino specific code
             ino.AddFile("arduino.template");

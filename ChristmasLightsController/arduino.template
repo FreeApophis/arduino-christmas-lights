@@ -4,12 +4,14 @@ int arraySize(TElement (&array)[NSize])
     return NSize;
 }
 
-AnimationManager mgr(&strip, animations, arraySize(animations), clearances, arraySize(clearances));
+AnimationManager animationManager(&strip, animations, arraySize(animations), clearances, arraySize(clearances));
+
+WiFiClient wifi;
+MQTTClient mqtt;
+int status = WL_IDLE_STATUS;
 
 void randomize()
 {
-    Serial.begin(9600);
-
     uint32_t rnd = 0;
     for (byte i = A0; i < A4; ++i) {
         pinMode(i, INPUT);
@@ -19,18 +21,89 @@ void randomize()
     randomSeed(rnd);
 }
 
+const char nextAnimationTopic[] = "/home/christmas-lights/next-animation";
+const char currentAnimationTopic[] = "/home/christmas-lights/current-animation";
+
+void messageReceived(String& topic, String& payload) {
+  if(topic == nextAnimationTopic) {
+    animationManager.StartAnimation(static_cast<uint16_t>(payload.toInt()));
+  }
+}
+
+void connectWifi() {
+  // check for the presence of the shield:
+  if (WiFi.status() == WL_NO_SHIELD) {
+    Serial.println("WiFi shield not present");
+    // don't continue:
+    while (true);
+  }
+
+  // attempt to connect to WiFi network:
+  while ( status != WL_CONNECTED) {
+    Serial.print("Attempting to connect to WPA SSID: ");
+    Serial.println(ssid);
+    // Connect to WPA/WPA2 network:
+    status = WiFi.begin(ssid, pass);
+
+    // wait 10 seconds for connection:
+    delay(10000);
+  }
+}
+
+void connectMqtt() {
+  Serial.print("\nconnecting to mqtt...");
+
+  mqtt.begin("192.168.178.40", wifi);
+  mqtt.onMessage(messageReceived);
+
+  while (!mqtt.connect("arduino", "try", "try")) {
+    Serial.print(".");
+    delay(1000);
+  }
+
+  Serial.println("\nconnected!");
+
+  mqtt.subscribe(nextAnimationTopic);
+}
+
+void openSerialPort() {
+  Serial.begin(9600);
+  while (!Serial) {}
+}
+
 void setup()
 {
+    openSerialPort();
     randomize();
+    connectWifi();
+    connectMqtt();
 
     strip.begin();
     strip.setBrightness(PixelBrightness);
     strip.show();
 
-    mgr.Init(&off);
+	pinMode(LED_BUILTIN, OUTPUT);
+
+	for (int i = 0; i < 50; ++i) {
+		digitalWrite(LED_BUILTIN, LOW);
+		delay(100);
+		digitalWrite(LED_BUILTIN, HIGH);
+		delay(100);
+	}
+
+    animationManager.Init(&off);
 }
+
+
+uint16_t currentAnimationId = 0xffff;
 
 void loop()
 {
-    mgr.Show();
+    mqtt.loop();
+    animationManager.Show();
+	if (currentAnimationId != animationManager.CurrentAnimationId()) {
+	  mqtt.publish(currentAnimationTopic, String(animationManager.CurrentAnimationId()));
+	  currentAnimationId = animationManager.CurrentAnimationId();
+	}
+	
 }
