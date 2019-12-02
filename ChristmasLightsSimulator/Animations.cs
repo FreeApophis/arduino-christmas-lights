@@ -47,9 +47,10 @@ namespace ChristmasLightsSimulator
             {0xa00f, "Static Blue"},
             {0xb000, "Christmas Wave"},
             {0xb001, "Warm White Shimmer"},
+            {0xb002, "Fire" },
         };
 
-        public static string ToAnimationName(ushort currentAnimationId) 
+        public static string ToAnimationName(ushort currentAnimationId)
             => AllAnimations
                 .TryGetValue(key: currentAnimationId)
                 .OrElse("N/A!");

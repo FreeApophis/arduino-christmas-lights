@@ -193,6 +193,7 @@
     <ClInclude Include="animation\WarmWhiteShimmer.h" />
     <ClInclude Include="animation\Worm.h" />
     <ClInclude Include="animation\Worms.h" />
+    <ClInclude Include="animation\Fire.h" />
     <ClInclude Include="manipulation\BrightnessManipulation.h" />
     <ClInclude Include="clearance\Clearance.h" />
     <ClInclude Include="clearance\ClearFade.h" />
@@ -248,6 +249,7 @@
     <ClCompile Include="animation\WalkSeven.cpp" />
     <ClCompile Include="animation\WarmWhiteShimmer.cpp" />
     <ClCompile Include="animation\Worms.cpp" />
+    <ClCompile Include="animation\Fire.cpp" />
     <ClCompile Include="manipulation\BrightnessManipulation.cpp" />
     <ClCompile Include="clearance\Clearance.cpp" />
     <ClCompile Include="clearance\ClearFade.cpp" />

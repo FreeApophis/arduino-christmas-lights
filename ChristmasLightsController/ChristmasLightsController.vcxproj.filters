@@ -183,6 +183,9 @@
     <ClInclude Include="manipulation\RandomWalk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="animation\Fire.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -345,6 +348,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="manipulation\RandomWalk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\Fire.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

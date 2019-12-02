@@ -10,6 +10,7 @@
 #include "animation/ColorWave.h"
 #include "animation/ColorWipe.h"
 #include "animation/EvenOdd.h"
+#include "animation/Fire.h" 
 #include "animation/FlashSeven.h"
 #include "animation/Interference.h"
 #include "animation/LightHouse.h"
@@ -161,6 +162,8 @@ ChristmasWave christmasWave(&strip);
 // ID: 0xb001
 WarmWhiteShimmer warmWhiteShimmer(&strip);
 
+Fire fire(&strip);
+
 // Instantiate Clearance Animations
 ClearSide clearSide(&strip);
 ClearFromCenter clearFromCenter(&strip);
@@ -208,7 +211,8 @@ Animation* animations[] = {
     &greenColor,
     &blueColor,
     &christmasWave,
-    &warmWhiteShimmer};
+    &warmWhiteShimmer,
+    &fire};
 
 Clearance* clearances[] = {
     &clearSide,
