@@ -46,6 +46,7 @@ namespace ChristmasLightsSimulator
             {0xa0f0, "Static Green"},
             {0xa00f, "Static Blue"},
             {0xb000, "Christmas Wave"},
+            {0xb001, "Warm White Shimmer"},
         };
 
         public static string ToAnimationName(ushort currentAnimationId) 

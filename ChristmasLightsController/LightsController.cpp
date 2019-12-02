@@ -37,6 +37,7 @@
 #include "animation/WalkAcross.h"
 #include "animation/WalkSeven.h"
 #include "animation/WalkToCenter.h"
+#include "animation/WarmWhiteShimmer.h"
 #include "animation/Worms.h"
 #include "clearance/ClearFade.h"
 #include "clearance/ClearFromCenter.h"
@@ -157,6 +158,9 @@ StaticColor blueColor(&strip, ToColor(0, 0, 255), 0xa00f);
 // ID: 0xb000
 ChristmasWave christmasWave(&strip);
 
+// ID: 0xb001
+WarmWhiteShimmer warmWhiteShimmer(&strip);
+
 // Instantiate Clearance Animations
 ClearSide clearSide(&strip);
 ClearFromCenter clearFromCenter(&strip);
@@ -203,8 +207,8 @@ Animation* animations[] = {
     &redColor,
     &greenColor,
     &blueColor,
-    &christmasWave
-};
+    &christmasWave,
+    &warmWhiteShimmer};
 
 Clearance* clearances[] = {
     &clearSide,

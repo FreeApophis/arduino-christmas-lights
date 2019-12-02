@@ -190,6 +190,7 @@
     <ClInclude Include="animation\Toward.h" />
     <ClInclude Include="animation\TowardRain.h" />
     <ClInclude Include="animation\WalkSeven.h" />
+    <ClInclude Include="animation\WarmWhiteShimmer.h" />
     <ClInclude Include="animation\Worm.h" />
     <ClInclude Include="animation\Worms.h" />
     <ClInclude Include="manipulation\BrightnessManipulation.h" />
@@ -202,6 +203,7 @@
     <ClInclude Include="manipulation\ColorManipulation.h" />
     <ClInclude Include="manipulation\Crawl.h" />
     <ClInclude Include="manipulation\CrawlDirection.h" />
+    <ClInclude Include="manipulation\RandomWalk.h" />
     <ClInclude Include="SimulatedLedStrip.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="LightsController.h" />
@@ -244,6 +246,7 @@
     <ClCompile Include="animation\Toward.cpp" />
     <ClCompile Include="animation\TowardRain.cpp" />
     <ClCompile Include="animation\WalkSeven.cpp" />
+    <ClCompile Include="animation\WarmWhiteShimmer.cpp" />
     <ClCompile Include="animation\Worms.cpp" />
     <ClCompile Include="manipulation\BrightnessManipulation.cpp" />
     <ClCompile Include="clearance\Clearance.cpp" />
@@ -258,6 +261,7 @@
     <ClCompile Include="manipulation\Crawl.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="LightsController.cpp" />
+    <ClCompile Include="manipulation\RandomWalk.cpp" />
     <ClCompile Include="SimulatedLedStrip.cpp" />
   </ItemGroup>
   <ItemGroup>
