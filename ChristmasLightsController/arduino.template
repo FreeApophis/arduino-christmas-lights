@@ -56,7 +56,7 @@ auto connectMqtt() -> void {
   mqtt.begin("192.168.178.40", wifi);
   mqtt.onMessage(messageReceived);
 
-  while (!mqtt.connect("arduino", "try", "try")) {
+  while (!mqtt.connect("christmas-light", "", "")) {
     Serial.print(".");
     delay(1000);
   }
@@ -80,16 +80,6 @@ auto setup() -> void
 
     strip.begin();
     strip.show();
-
-	pinMode(LED_BUILTIN, OUTPUT);
-
-	for (int i = 0; i < 50; ++i) {
-		digitalWrite(LED_BUILTIN, LOW);
-		delay(100);
-		digitalWrite(LED_BUILTIN, HIGH);
-		delay(100);
-	}
-
     animationManager.Init(&off);
 }
 
@@ -99,10 +89,17 @@ uint16_t currentAnimationId = 0xffff;
 auto loop() -> void
 {
     mqtt.loop();
+
+    if (!mqtt.connected()) {
+      connectWifi();
+      connectMqtt();
+    }
+
     animationManager.Show();
-	if (currentAnimationId != animationManager.CurrentAnimationId()) {
-	  mqtt.publish(currentAnimationTopic, String(animationManager.CurrentAnimationId()));
-	  currentAnimationId = animationManager.CurrentAnimationId();
-	}
-	
+
+    if (currentAnimationId != animationManager.CurrentAnimationId()) {
+      mqtt.publish(currentAnimationTopic, String(animationManager.CurrentAnimationId()));
+      currentAnimationId = animationManager.CurrentAnimationId();
+    }
+    
 }
