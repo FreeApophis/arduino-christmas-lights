@@ -1,5 +1,5 @@
 template<typename TElement, int NSize>
-int arraySize(TElement (&array)[NSize])
+auto arraySize(TElement (&array)[NSize]) -> int
 {
     return NSize;
 }
@@ -10,7 +10,7 @@ WiFiClient wifi;
 MQTTClient mqtt;
 int status = WL_IDLE_STATUS;
 
-void randomize()
+auto randomize() -> void
 {
     uint32_t rnd = 0;
     for (byte i = A0; i < A4; ++i) {
@@ -24,13 +24,13 @@ void randomize()
 const char nextAnimationTopic[] = "/home/christmas-lights/next-animation";
 const char currentAnimationTopic[] = "/home/christmas-lights/current-animation";
 
-void messageReceived(String& topic, String& payload) {
+auto messageReceived(String& topic, String& payload) -> void {
   if(topic == nextAnimationTopic) {
     animationManager.StartAnimation(static_cast<uint16_t>(payload.toInt()));
   }
 }
 
-void connectWifi() {
+auto connectWifi() -> void {
   // check for the presence of the shield:
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi shield not present");
@@ -50,7 +50,7 @@ void connectWifi() {
   }
 }
 
-void connectMqtt() {
+auto connectMqtt() -> void {
   Serial.print("\nconnecting to mqtt...");
 
   mqtt.begin("192.168.178.40", wifi);
@@ -66,12 +66,12 @@ void connectMqtt() {
   mqtt.subscribe(nextAnimationTopic);
 }
 
-void openSerialPort() {
+auto openSerialPort() -> void {
   Serial.begin(9600);
   // while (!Serial) {}
 }
 
-void setup()
+auto setup() -> void
 {
     openSerialPort();
     randomize();
@@ -96,7 +96,7 @@ void setup()
 
 uint16_t currentAnimationId = 0xffff;
 
-void loop()
+auto loop() -> void
 {
     mqtt.loop();
     animationManager.Show();

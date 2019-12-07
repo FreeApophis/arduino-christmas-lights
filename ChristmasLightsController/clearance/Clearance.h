@@ -13,12 +13,17 @@ class Clearance {
     explicit Clearance(AbstractLedStrip* strip);
     virtual ~Clearance() = default;
 
-    virtual void Init() = 0;
-    virtual void Show() = 0;
+    Clearance(const Clearance& animation) = delete;
+    Clearance(Clearance&& animation) = delete;
+    auto operator=(const Clearance& animation) -> void = delete;
+    auto operator=(Clearance&& animation) -> void = delete;
 
-    bool IsComplete() const;
-    bool Fade(uint16_t index, byte val);
-    bool FadeAll(byte val);
+    virtual auto Init() -> void = 0;
+    virtual auto Show() -> void = 0;
+
+    auto IsComplete() const -> bool;
+    auto Fade(uint16_t index, byte value) const -> bool;
+    auto FadeAll(byte value) const -> bool;
 
   protected:
     AbstractLedStrip* _strip;

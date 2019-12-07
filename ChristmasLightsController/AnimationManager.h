@@ -7,18 +7,18 @@
 class AnimationManager {
   public:
     AnimationManager(AbstractLedStrip* strip, Animation* animations[], byte numberOfAnimations, Clearance* clearances[], byte numberOfClearances);
-    void Init(Animation* animation);
-    void Show();
-    uint16_t CurrentAnimationId() const;
-    void StartAnimation(uint16_t animationId);
+    auto Init(Animation* animation) -> void;
+    auto Show() -> void;
+    auto CurrentAnimationId() const -> uint16_t;
+    auto StartAnimation(uint16_t animationId) -> void;
 
   private:
-    void InitClear();
-    bool IsClean();
-    void SetStepSettings();
-    Animation* NextAnimation();
-    void AdvanceAnimation();
-    void AdvanceClearance();
+    auto InitClear() -> void;
+    auto IsClean() const -> bool;
+    auto SetStepSettings() -> void;
+    auto NextAnimation() -> Animation*;
+    auto AdvanceAnimation() -> void;
+    auto AdvanceClearance() -> void;
 
     AbstractLedStrip* _strip;
 

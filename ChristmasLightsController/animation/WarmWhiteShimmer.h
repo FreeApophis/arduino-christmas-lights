@@ -2,13 +2,10 @@
 
 #include "animation/Animation.h"
 
-class WarmWhiteShimmer : public Animation {
+class WarmWhiteShimmer final : public Animation {
   public:
-    WarmWhiteShimmer(AbstractLedStrip* strip);
+    explicit WarmWhiteShimmer(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
-
-  private:
-
+    auto Init() -> void override;
+    auto Show() -> void override;
 };

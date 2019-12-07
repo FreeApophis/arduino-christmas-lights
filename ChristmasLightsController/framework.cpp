@@ -6,13 +6,13 @@ std::random_device randomDevice;
 std::seed_seq seed{randomDevice(), randomDevice()};
 std::mt19937 mt(seed);
 
-int random(int maxVal)
+auto random(int maxVal) -> int
 {
     const std::uniform_int_distribution<int> dist(0, maxVal - 1);
     return dist(mt);
 }
 
-int random(int minVal, int maxVal)
+auto random(int minVal, int maxVal) -> int
 {
     const std::uniform_int_distribution<int> dist(minVal, maxVal - 1);
     return dist(mt);
@@ -20,16 +20,16 @@ int random(int minVal, int maxVal)
 
 long _millis = 0;
 
-void incrementMillis(long millis)
+auto incrementMillis(long millis) -> void
 {
     _millis += millis;
 }
 
-unsigned long millis()
+auto millis() -> unsigned long
 {
     return _millis;
 }
 
-void delay(unsigned long)
+auto delay(unsigned long) -> void
 {
 }

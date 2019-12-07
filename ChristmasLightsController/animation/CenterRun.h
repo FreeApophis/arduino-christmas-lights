@@ -5,19 +5,18 @@
 #include "framework.h"
 
 // Lights run from the center
-class CenterRun : public Animation {
+class CenterRun final : public Animation {
   public:
-    CenterRun(AbstractLedStrip* strip);
+    explicit CenterRun(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
     // returns a value in the middle 1/8 of the strip
-    int MiddleWithVariations() const;
-    void SetParameters(int middle);
-
-    bool IsFinished() const;
+    auto MiddleWithVariations() const -> int;
+    auto SetParameters(int middle) -> void;
+    auto IsFinished() const -> bool;
 
     uint32_t _color;
     int _middle;

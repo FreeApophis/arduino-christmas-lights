@@ -6,18 +6,18 @@
 #include "framework.h"
 
 // Rapid flashing by the differenc colors
-class FlashSeven : public Animation {
+class FlashSeven final : public Animation {
   public:
-    FlashSeven(AbstractLedStrip* strip);
+    explicit FlashSeven(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
     BrightnessManipulation _brightnessManipulation;
-    char curs;
-    byte w;
-    bool fwd;
-    int ch_dir;
-    byte period;
+    char _current;
+    byte _wheelIndex;
+    bool _isForward;
+    int _changeDirection;
+    byte _period;
 };

@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 
 #include "AbstractLedStrip.h"
 
@@ -7,20 +8,18 @@
 #include <cstdint>
 #include <vector>
 
-class SimulatedLedStrip : public AbstractLedStrip {
+class SimulatedLedStrip final : public AbstractLedStrip {
   public:
-    SimulatedLedStrip(byte stripSize);
+    explicit SimulatedLedStrip(byte stripSize);
 
-    uint16_t numPixels() const override;
-    uint32_t getPixelColor(uint16_t n) const override;
-    void setPixelColor(uint16_t n, uint32_t c) override;
-    void show() override;
-    void begin() override;
-    void setBrightness(uint8_t brightness) override;
+    auto numPixels() const -> uint16_t override;
+    auto getPixelColor(uint16_t n) const -> uint32_t override;
+    auto setPixelColor(uint16_t n, uint32_t c) -> void override;
+    auto show() -> void override;
+    auto begin() -> void override;
+    auto setBrightness(uint8_t brightness) -> void override;
 
-    ~SimulatedLedStrip() = default;
-
-    std::vector<uint32_t>& CurrentPixels();
+    auto CurrentPixels() -> std::vector<uint32_t>&;
 
   private:
     std::vector<uint32_t> _pixels;

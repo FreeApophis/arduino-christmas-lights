@@ -3,12 +3,12 @@
 #include "Clearance.h"
 
 // Clear the strip from the ether side
-class Brighten : public Clearance {
+class Brighten final : public Clearance {
   public:
-    Brighten(AbstractLedStrip* strip);
+    explicit Brighten(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
     int _step;

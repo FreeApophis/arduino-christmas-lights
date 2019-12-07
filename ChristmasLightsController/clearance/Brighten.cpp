@@ -8,13 +8,13 @@ Brighten::Brighten(AbstractLedStrip* strip) :
 {
 }
 
-void Brighten::Init()
+auto Brighten::Init() -> void
 {
     _complete = false;
     _step = 0;
 }
 
-int32_t ToWhite(int32_t color)
+auto ToWhite(const int32_t color) -> int32_t
 {
     const auto red = (ExtractRed(color) + 255 * 2) / 3;
     const auto green = (ExtractGreen(color) + 255 * 2) / 3;
@@ -23,7 +23,7 @@ int32_t ToWhite(int32_t color)
     return ToColor(red, green, blue);
 }
 
-void Brighten::Show()
+auto Brighten::Show() -> void
 {
     if (_step < 6) {
         for (auto index = 0; index < _strip->numPixels(); ++index) {
@@ -31,7 +31,7 @@ void Brighten::Show()
             _strip->setPixelColor(index, ToWhite(color));
         }
     } else {
-        _complete = Clearance::FadeAll(40);
+        _complete = FadeAll(40);
     }
 
     ++_step;

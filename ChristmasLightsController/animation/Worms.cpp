@@ -4,42 +4,43 @@
 
 Worms::Worms(AbstractLedStrip* strip) :
     Animation(0x0121, strip, 10, 20),
-    _brightnessManipulation(strip)
+    _brightnessManipulation(strip),
+    _worms{},
+    _active(0)
 {
 }
 
-void Worms::Init()
+auto Worms::Init() -> void
 {
     _active = 0;
     Add();
 }
 
-void Worms::Show()
+auto Worms::Show() -> void
 {
     const int n = _strip->numPixels();
 
     // fade away
-    _brightnessManipulation.changeAll(-32);
+    _brightnessManipulation.ChangeAll(-32);
 
     // Move existing
-    for (byte wi = 0; wi < _active; ++wi) {
-        int np = _worms[wi].Position - 1;
-        if (_worms[wi].Forward)
-            np += 2;
-        if ((np < 0) || (np >= n)) {
-            Die(wi);
-            --wi;
+    for (byte wormIndex = 0; wormIndex < _active; ++wormIndex) {
+        int newPosition = _worms[wormIndex].Position - 1;
+        if (_worms[wormIndex].Forward)
+            newPosition += 2;
+        if ((newPosition < 0) || (newPosition >= n)) {
+            Die(wormIndex);
+            --wormIndex;
             continue;
         }
-        uint32_t c = _strip->getPixelColor(np);
-        if ((c != 0) && (random(10) == 0)) {
-            Die(wi);
-            --wi;
-            continue;
+        uint32_t color = _strip->getPixelColor(newPosition);
+        if ((color != 0) && (random(10) == 0)) {
+            Die(wormIndex);
+            --wormIndex;
         } else {
-            c = ColorSuperPosition(c, _worms[wi].Color);
-            _worms[wi].Position = np;
-            _strip->setPixelColor(np, c);
+            color = ColorSuperPosition(color, _worms[wormIndex].Color);
+            _worms[wormIndex].Position = newPosition;
+            _strip->setPixelColor(newPosition, color);
         }
     }
 
@@ -47,10 +48,11 @@ void Worms::Show()
         Add();
 }
 
-void Worms::Add()
+auto Worms::Add() -> void
 {
-    if (_active >= 5)
+    if (_active >= 5) {
         return;
+    }
 
     const byte mode = random(3);
     const int n = _strip->numPixels();
@@ -67,8 +69,9 @@ void Worms::Add()
             break;
     }
     _worms[_active].Color = ColorFromColorWheel(random(256));
-    if (_strip->getPixelColor(_worms[_active].Position) != 0)
+    if (_strip->getPixelColor(_worms[_active].Position) != 0) {
         return;
+    }
     if (_worms[_active].Position < n / 3) {
         _worms[_active].Forward = true;
     } else if ((n - _worms[_active].Position) < n / 3) {
@@ -79,7 +82,7 @@ void Worms::Add()
     ++_active;
 }
 
-void Worms::Die(const byte index)
+auto Worms::Die(const byte index) -> void
 {
     --_active;
     _worms[index].Color = _worms[_active].Color;

@@ -3,42 +3,42 @@
 LightUp::LightUp(AbstractLedStrip* strip) :
     Animation(0x010a, strip, 6, 24),
     _brightnessManipulation(strip),
-    sp(0),
-    inc(0)
+    _speed(0),
+    _increment(0)
 {
 }
 
-void LightUp::Init()
+auto LightUp::Init() -> void
 {
-    sp = 1;
-    inc = sp;
+    _speed = 1;
+    _increment = _speed;
     NewColor();
 }
 
-void LightUp::Show()
+auto LightUp::Show() -> void
 {
-    const bool finish = _brightnessManipulation.changeAll(inc);
+    const auto finish = _brightnessManipulation.ChangeAll(_increment);
     if (finish) {
-        if (inc > 0)
-            inc = -8;
+        if (_increment > 0)
+            _increment = -8;
         else {
-            ++sp;
-            inc = sp;
-            if (sp > 8) {
-                sp = 1;
+            ++_speed;
+            _increment = _speed;
+            if (_speed > 8) {
+                _speed = 1;
                 NewColor();
             }
         }
     }
 }
 
-void LightUp::NewColor()
+auto LightUp::NewColor() -> void
 {
-    uint32_t c = 0;
-    for (byte i = 0; i < 3; ++i) {
-        c <<= 8;
-        const byte d = random(16) << 4;
-        c |= d;
+    uint32_t color = 0;
+    for (byte index = 0; index < 3; ++index) {
+        color <<= 8;
+        const byte digit = random(16) << 4;
+        color |= digit;
     }
-    _brightnessManipulation.setColor(c);
+    _brightnessManipulation.SetColor(color);
 }

@@ -5,13 +5,13 @@
 #include "framework.h"
 
 // Rainbow colors toward each other
-class TowardRain : public Animation {
+class TowardRain final : public Animation {
   public:
-    TowardRain(AbstractLedStrip* strip);
+    explicit TowardRain(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    byte w;
+    byte _wheelIndex;
 };

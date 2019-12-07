@@ -3,31 +3,36 @@
 #include "manipulation/ColorManipulation.h"
 
 ClearFromCenter::ClearFromCenter(AbstractLedStrip* strip) :
-    Clearance(strip)
+    Clearance(strip),
+    color(0),
+    _left(0),
+    _right(0)
 {
 }
 
-void ClearFromCenter::Init()
+auto ClearFromCenter::Init() -> void
 {
     _complete = false;
     color = ColorFromColorWheel(random(256));
-    l = _strip->numPixels() / 2;
-    r = l + 1;
+    _left = _strip->numPixels() / 2;
+    _right = _left + 1;
 }
 
-void ClearFromCenter::Show()
+auto ClearFromCenter::Show() -> void
 {
-    if (r < int(_strip->numPixels())) {
-        _strip->setPixelColor(r, color);
-        if (r > 0)
-            _strip->setPixelColor(r - 1, 0);
+    if (_right < int(_strip->numPixels())) {
+        _strip->setPixelColor(_right, color);
+        if (_right > 0) {
+            _strip->setPixelColor(_right - 1, 0);
+        }
     }
-    ++r;
-    if (l >= 0) {
-        _strip->setPixelColor(l, color);
-        if (l < int(_strip->numPixels() - 1))
-            _strip->setPixelColor(l + 1, 0);
+    ++_right;
+    if (_left >= 0) {
+        _strip->setPixelColor(_left, color);
+        if (_left < int(_strip->numPixels() - 1)) {
+            _strip->setPixelColor(_left + 1, 0);
+        }
     }
-    --l;
-    _complete = (l < 0);
+    --_left;
+    _complete = (_left < 0);
 }

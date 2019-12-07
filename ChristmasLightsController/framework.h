@@ -9,15 +9,15 @@ using byte = unsigned char;
 
 #define constrain(amt, low, high) ((amt) < (low) ? (low) : ((amt) > (high) ? (high) : (amt)))
 
-int random(int maxVal);
-int random(int minVal, int maxVal);
+auto random(int maxVal) -> int;
+auto random(int minVal, int maxVal) -> int;
 
-void incrementMillis(long millis);
-unsigned long millis();
-void delay(unsigned long);
+auto incrementMillis(long millis) -> void;
+auto millis() -> unsigned long;
+auto delay(unsigned long) -> void;
 
 template<class T>
-void swap(T& a, T& b) noexcept
+auto swap(T& a, T& b) noexcept -> void
 {
     T c(a);
     a = b;

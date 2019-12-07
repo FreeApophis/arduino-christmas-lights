@@ -6,17 +6,17 @@
 #include "framework.h"
 
 // Color swing
-class ColorSwing : public Animation {
+class ColorSwing final : public Animation {
   public:
-    ColorSwing(AbstractLedStrip* strip);
+    explicit ColorSwing(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
     Crawl _crawl;
     int _length;
     int _index;
-    byte w;
-    bool rnd;
+    byte _wheelIndex;
+    bool _random;
 };

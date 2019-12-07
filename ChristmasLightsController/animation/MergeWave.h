@@ -5,16 +5,16 @@
 #include "framework.h"
 
 // Fast merging of Waves
-class MergeWave : public Animation {
+class MergeWave final : public Animation {
   public:
-    MergeWave(AbstractLedStrip* strip);
+    explicit MergeWave(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    int l;
-    int r;
-    byte index;
-    byte len;
+    int _left;
+    int _right;
+    byte _index;
+    byte _length;
 };

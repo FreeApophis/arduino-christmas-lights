@@ -10,15 +10,15 @@ class Crawl final {
   public:
     Crawl();
 
-    void Step(AbstractLedStrip* strip) const;
+    auto Step(AbstractLedStrip* strip) const -> void;
 
-    void SetDirection(CrawlDirection direction);
-    void ToggleDirection();
+    auto SetDirection(CrawlDirection direction) -> void;
+    auto ToggleDirection() -> void;
 
-    CrawlDirection GetDirection() const;
+    auto GetDirection() const -> CrawlDirection;
 
-    void SetNextColor(uint32_t color);
-    uint32_t NextColor() const;
+    auto SetNextColor(uint32_t color) -> void;
+    auto NextColor() const -> uint32_t;
 
   protected:
     // direction to crawl: false - backward, true - formard

@@ -6,15 +6,15 @@
 #include "framework.h"
 
 // show the rainbow (from neopixel example)
-class Rainbow : public Animation {
+class Rainbow final : public Animation {
   public:
-    Rainbow(AbstractLedStrip* strip);
+    explicit Rainbow(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
     BrightnessManipulation _brightnessManipulation;
-    byte index;
-    bool rdy;
+    byte _index;
+    bool _isReady;
 };

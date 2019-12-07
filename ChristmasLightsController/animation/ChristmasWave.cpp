@@ -8,12 +8,12 @@ ChristmasWave::ChristmasWave(AbstractLedStrip* strip) :
 {
 }
 
-bool ChristmasWave::IsQuadrant(byte quadrant) const
+auto ChristmasWave::IsQuadrant(byte quadrant) const -> bool
 {
     return (_currentStep >> 2 & 0x3) == quadrant;
 }
 
-byte ChristmasWave::RedValue() const
+auto ChristmasWave::RedValue() const -> byte
 {
     return IsQuadrant(0)
                ? (4 - _currentStep) * 63
@@ -22,7 +22,7 @@ byte ChristmasWave::RedValue() const
                      : 0;
 }
 
-byte ChristmasWave::GreenValue() const
+auto ChristmasWave::GreenValue() const -> byte
 {
     return IsQuadrant(1)
                ? (_currentStep - 4) * 63
@@ -31,21 +31,21 @@ byte ChristmasWave::GreenValue() const
                      : 0;
 }
 
-uint32_t ChristmasWave::CurrentColor() const
+auto ChristmasWave::CurrentColor() const -> uint32_t
 {
     return ToColor(RedValue(), GreenValue(), 0);
 }
 
-void ChristmasWave::Init()
+auto ChristmasWave::Init() -> void
 {
 }
 
-void ChristmasWave::Advance()
+auto ChristmasWave::Advance() -> void
 {
     _currentStep = (_currentStep + 1) % 16;
 }
 
-void ChristmasWave::Show()
+auto ChristmasWave::Show() -> void
 {
     _crawl.SetNextColor(CurrentColor());
     _crawl.Step(_strip);

@@ -4,89 +4,101 @@
 
 SingleWave::SingleWave(AbstractLedStrip* strip) :
     Animation(0x0119, strip, 4, 20),
-    _brightnessManipulation(strip)
+    _brightnessManipulation(strip),
+    _dots{},
+    _position(0),
+    _stop(0),
+    _remain(0),
+    _increment(0),
+    _mode(0)
 {
 }
 
-void SingleWave::Init()
+auto SingleWave::Init() -> void
 {
-    uint32_t c = ColorFromColorWheel(random(256));
-    uint32_t r = c & 0xff;
-    uint32_t g = (c >> 8) & 0xff;
-    uint32_t b = (c >> 16) & 0xff;
-    for (byte i = 1; i <= 4; ++i) {
-        r >>= 1;
-        g >>= 1;
-        b >>= 1;
-        uint32_t cc = b & 0xff;
+    auto color = ColorFromColorWheel(random(256));
+    uint32_t red = ExtractRed(color);
+    uint32_t green = ExtractGreen(color);
+    uint32_t blue = ExtractBlue(color);
+    for (byte index = 1; index <= 4; ++index) {
+        red >>= 1;
+        green >>= 1;
+        blue >>= 1;
+        auto cc = blue & 0xff;
         cc <<= 8;
-        cc |= g & 0xff;
+        cc |= green & 0xff;
         cc <<= 8;
-        cc |= r & 0xff;
-        dot[i] = cc;
+        cc |= red & 0xff;
+        _dots[index] = cc;
     }
 
-    _brightnessManipulation.setColor(dot[3]);
-    c &= 0x10101;
-    int n = _strip->numPixels();
-    for (int i = 0; i < n; ++i)
-        _strip->setPixelColor(i, c);
-    mode = 0;
-    pos = random(n);
-    remain = random(5, 15);
-    stp = 0;
+    _brightnessManipulation.SetColor(_dots[3]);
+    color &= 0x10101;
+    const int pixelCount = _strip->numPixels();
+    for (auto i = 0; i < pixelCount; ++i) {
+        _strip->setPixelColor(i, color);
+    }
+    _mode = 0;
+    _position = random(pixelCount);
+    _remain = random(5, 15);
+    _stop = 0;
 }
 
-void SingleWave::Show()
+auto SingleWave::Show() -> void
 {
-    int n = _strip->numPixels();
-    bool finish = true;
-    switch (mode) {
+    const int pixelCount = _strip->numPixels();
+    bool finish;
+    switch (_mode) {
         case 0: // Light up
-            finish = _brightnessManipulation.changeAll(4);
+            finish = _brightnessManipulation.ChangeAll(4);
             break;
         case 1: // move the soliton
             finish = false;
-            if (stp <= 0) {
-                incr = 1;
-                if (pos > n / 2)
-                    incr = -1;
-                int m = n - pos - 2;
-                if (incr < 0)
-                    m = pos - 2;
-                stp = random(5, m);
-                --remain;
-                if (remain <= 0) {
-                    for (int i = 0; i < n; ++i)
-                        _strip->setPixelColor(i, dot[3]);
+            if (_stop <= 0) {
+                _increment = 1;
+                if (_position > pixelCount / 2) {
+                    _increment = -1;
+                }
+                int m = pixelCount - _position - 2;
+                if (_increment < 0) {
+                    m = _position - 2;
+                }
+                _stop = random(5, m);
+                --_remain;
+                if (_remain <= 0) {
+                    for (int i = 0; i < pixelCount; ++i) {
+                        _strip->setPixelColor(i, _dots[3]);
+                    }
                     finish = true;
                     break;
                 }
             }
-            pos += incr;
-            for (int i = 0; i < n; ++i) {
-                _strip->setPixelColor(i, dot[3]);
+            _position += _increment;
+            for (auto index = 0; index < pixelCount; ++index) {
+                _strip->setPixelColor(index, _dots[3]);
             }
-            _brightnessManipulation.changeAll(random(9) - 4);
-            for (int i = 3; i > 0; --i) {
-                if ((pos - i) >= 0)
-                    _strip->setPixelColor(pos - i, dot[i]);
+            _brightnessManipulation.ChangeAll(random(9) - 4);
+            for (auto index = 3; index > 0; --index) {
+                if ((_position - index) >= 0) {
+                    _strip->setPixelColor(_position - index, _dots[index]);
+                }
             }
-            for (int i = 0; i <= 3; ++i) {
-                if ((pos + i) < n)
-                    _strip->setPixelColor(pos + i, dot[i]);
+            for (auto index = 0; index <= 3; ++index) {
+                if ((_position + index) < pixelCount) {
+                    _strip->setPixelColor(_position + index, _dots[index]);
+                }
             }
-            stp--;
+            _stop--;
             break;
         case 2: // Fade out
         default:
-            finish = _brightnessManipulation.changeAll(-4);
+            finish = _brightnessManipulation.ChangeAll(-4);
             break;
     }
 
     if (finish) { // The current color has been light fully
-        ++mode;
-        if (mode >= 3) {
+        ++_mode;
+        if (_mode >= 3) {
             Init();
             _complete = true;
             return;

@@ -5,31 +5,32 @@
 Rainbow::Rainbow(AbstractLedStrip* strip) :
     Animation(0x0111, strip, 2, 8),
     _brightnessManipulation(strip),
-    index(0),
-    rdy(false)
+    _index(0),
+    _isReady(false)
 {
 }
 
-void Rainbow::Init()
+auto Rainbow::Init() -> void
 {
-    index = 0;
-    rdy = false;
+    _index = 0;
+    _isReady = false;
 }
 
-void Rainbow::Show()
+auto Rainbow::Show() -> void
 {
-    if (!rdy) {
-        rdy = true;
-        for (uint16_t i = 0; i < _strip->numPixels(); ++i) {
-            _brightnessManipulation.setColor(ColorFromColorWheel(i & 255));
-            if (!_brightnessManipulation.change(i, 2))
-                rdy = false;
+    if (!_isReady) {
+        _isReady = true;
+        for (uint16_t index = 0; index < _strip->numPixels(); ++index) {
+            _brightnessManipulation.SetColor(ColorFromColorWheel(index & 255));
+            if (!_brightnessManipulation.Change(index, 2)) {
+                _isReady = false;
+            }
         }
         return;
     }
 
-    for (uint16_t i = 0; i < _strip->numPixels(); ++i) {
-        _strip->setPixelColor(i, ColorFromColorWheel((i + index) & 255));
+    for (uint16_t index = 0; index < _strip->numPixels(); ++index) {
+        _strip->setPixelColor(index, ColorFromColorWheel((index + _index) & 255));
     }
-    ++index; // index is from 0 to 255
+    ++_index; // index is from 0 to 255
 }

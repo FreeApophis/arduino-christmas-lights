@@ -5,43 +5,44 @@ BrightnessManipulation::BrightnessManipulation(AbstractLedStrip* strip) :
 {
 }
 
-void BrightnessManipulation::setColor(uint32_t c)
+auto BrightnessManipulation::SetColor(uint32_t color) -> void
 {
-    color[0] = c & 0xff;
-    c >>= 8;
-    color[1] = c & 0xff;
-    c >>= 8;
-    color[2] = c & 0xff;
+    _color[0] = color & 0xff;
+    color >>= 8;
+    _color[1] = color & 0xff;
+    color >>= 8;
+    _color[2] = color & 0xff;
 }
 
-bool BrightnessManipulation::changeAll(int val)
+auto BrightnessManipulation::ChangeAll(const int value) -> bool
 {
     bool finish = true;
-    for (byte i = 0; i < _brightStrip->numPixels(); ++i) {
-        if (!change(i, val))
+    for (uint16_t index = 0; index < _brightStrip->numPixels(); ++index) {
+        if (!Change(index, value)) {
             finish = false;
+        }
     }
     return finish;
 }
 
-bool BrightnessManipulation::change(uint16_t index, int val)
+auto BrightnessManipulation::Change(const uint16_t index, const int value) -> bool
 {
-    uint32_t c = _brightStrip->getPixelColor(index);
+    uint32_t color = _brightStrip->getPixelColor(index);
     byte bound = 0;
-    const int e = 256 + val;
+    const int e = 256 + value;
     for (char s = 2; s >= 0; --s) {
-        long cc = c >> (s * 8);
+        long cc = color >> (s * 8);
         cc &= 0xff;
         const long cs = cc;
         cc *= e;
         cc >>= 8;
         if (cs == cc)
-            cc += val;
-        if ((val > 0) && (cc >= color[byte(s)])) {
-            cc = color[byte(s)];
+            cc += value;
+        if ((value > 0) && (cc >= _color[byte(s)])) {
+            cc = _color[byte(s)];
             bound++;
         }
-        if ((val < 0) && (cc <= 0)) {
+        if ((value < 0) && (cc <= 0)) {
             cc = 0;
             bound++;
         }
@@ -49,9 +50,9 @@ bool BrightnessManipulation::change(uint16_t index, int val)
         mask <<= (8 * s);
         mask = ~mask;
         cc <<= (s * 8);
-        c &= mask;
-        c |= cc;
+        color &= mask;
+        color |= cc;
     }
-    _brightStrip->setPixelColor(index, c);
+    _brightStrip->setPixelColor(index, color);
     return (bound >= 3);
 }

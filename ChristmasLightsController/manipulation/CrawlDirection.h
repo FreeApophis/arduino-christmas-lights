@@ -5,5 +5,5 @@ enum class CrawlDirection {
     Backward
 };
 
-CrawlDirection RandomDirection();
-int StartPosition(CrawlDirection direction, int endPosition);
+auto RandomDirection() -> CrawlDirection;
+auto StartPosition(CrawlDirection direction, int endPosition) -> int;

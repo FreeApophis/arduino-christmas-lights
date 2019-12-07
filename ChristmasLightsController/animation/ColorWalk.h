@@ -5,16 +5,16 @@
 #include "framework.h"
 
 // Walk the dots one after the other with a color
-class ColorWalk : public Animation {
+class ColorWalk final : public Animation {
   public:
-    ColorWalk(AbstractLedStrip* strip);
+    explicit ColorWalk(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
     int _index;
     byte _period;
-    bool fwd;
-    byte w;
+    bool _isForward;
+    byte _wheelIndex;
 };

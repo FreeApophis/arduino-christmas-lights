@@ -5,12 +5,12 @@
 #include "framework.h"
 
 // Fast collide of two colors
-class CollideOne : public Animation {
+class CollideOne final : public Animation {
   public:
-    CollideOne(AbstractLedStrip* strip);
+    explicit CollideOne(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
     uint32_t _leftColor;

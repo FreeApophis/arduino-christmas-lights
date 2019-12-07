@@ -2,15 +2,13 @@
 
 #include "animation/Animation.h"
 
-#include "framework.h"
-
 // Rainbow colors blend
-class RainBlend : public Animation {
+class RainBlend final : public Animation {
   public:
-    RainBlend(AbstractLedStrip* strip);
+    explicit RainBlend(AbstractLedStrip* strip);
 
-    void Init() override { _index = 0; }
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
     int _index;

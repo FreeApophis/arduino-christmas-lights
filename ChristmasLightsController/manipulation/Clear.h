@@ -2,5 +2,4 @@
 
 #include "AbstractLedStrip.h"
 
-
-void Clear(AbstractLedStrip* strip);
+auto Clear(AbstractLedStrip* strip) -> void;

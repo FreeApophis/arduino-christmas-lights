@@ -8,18 +8,18 @@ RandomFade::RandomFade(AbstractLedStrip* strip) :
 {
 }
 
-void RandomFade::Init()
+auto RandomFade::Init() -> void
 {
 }
 
-void RandomFade::Show()
+auto RandomFade::Show() -> void
 {
-    _brightnessManipulation.changeAll(-16);
+    _brightnessManipulation.ChangeAll(-16);
     const byte newDot = random(1, 5);
-    for (byte i = 0; i < newDot; ++i) {
-        int p = random(_strip->numPixels() + 1);
-        uint32_t c = ColorFromColorWheel(random(256));
-        if (_strip->getPixelColor(p) == 0)
-            _strip->setPixelColor(p, c);
+    for (byte index = 0; index < newDot; ++index) {
+        const auto position = random(_strip->numPixels() + 1);
+        const auto color = ColorFromColorWheel(random(256));
+        if (_strip->getPixelColor(position) == 0)
+            _strip->setPixelColor(position, color);
     }
 }

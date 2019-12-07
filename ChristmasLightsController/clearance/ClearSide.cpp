@@ -7,35 +7,37 @@ ClearSide::ClearSide(AbstractLedStrip* strip) :
 {
 }
 
-void ClearSide::Init()
+auto ClearSide::Init() -> void
 {
     _complete = false;
-    color = ColorFromColorWheel(random(256));
-    fwd = random(2);
-    if (fwd) {
-        index = 0;
+    _color = ColorFromColorWheel(random(256));
+    _isForward = random(2);
+    if (_isForward) {
+        _index = 0;
     } else {
-        index = _strip->numPixels() - 1;
+        _index = _strip->numPixels() - 1;
     }
 }
 
-void ClearSide::Show()
+auto ClearSide::Show() -> void
 {
-    if (fwd) {
-        if (index < int(_strip->numPixels())) {
-            _strip->setPixelColor(index, color);
-            if (index > 0)
-                _strip->setPixelColor(index - 1, 0);
+    if (_isForward) {
+        if (_index < int(_strip->numPixels())) {
+            _strip->setPixelColor(_index, _color);
+            if (_index > 0) {
+                _strip->setPixelColor(_index - 1, 0);
+            }
         }
-        ++index;
-        _complete = (index >= int(_strip->numPixels()));
+        ++_index;
+        _complete = (_index >= int(_strip->numPixels()));
     } else {
-        if (index >= 0) {
-            _strip->setPixelColor(index, color);
-            if (index < int(_strip->numPixels() - 1))
-                _strip->setPixelColor(index + 1, 0);
+        if (_index >= 0) {
+            _strip->setPixelColor(_index, _color);
+            if (_index < int(_strip->numPixels() - 1)) {
+                _strip->setPixelColor(_index + 1, 0);
+            }
         }
-        --index;
-        _complete = (index < 0);
+        --_index;
+        _complete = (_index < 0);
     }
 }

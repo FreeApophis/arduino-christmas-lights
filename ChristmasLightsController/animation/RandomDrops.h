@@ -5,16 +5,17 @@
 #include "manipulation/BrightnessManipulation.h"
 
 // Random dropped color dot fading out from epicenter
-class RandomDrops : public Animation {
+class RandomDrops final : public Animation {
   public:
-    RandomDrops(AbstractLedStrip* strip);
+    explicit RandomDrops(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    void add();
+    auto Add() -> void;
+
     BrightnessManipulation _brightnessManipulation;
-    Drop dr[16];
-    char num;
+    Drop _drops[16];
+    char _count;
 };

@@ -7,16 +7,16 @@
 #include "framework.h"
 
 // Several worms are moving randomly
-class Worms : public Animation {
+class Worms final : public Animation {
   public:
-    Worms(AbstractLedStrip* strip);
+    explicit Worms(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    void Add();
-    void Die(byte index);
+    auto Add() -> void;
+    auto Die(byte index) -> void;
 
     BrightnessManipulation _brightnessManipulation;
     Worm _worms[5];

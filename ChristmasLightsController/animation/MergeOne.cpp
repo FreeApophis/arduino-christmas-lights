@@ -5,41 +5,41 @@
 
 MergeOne::MergeOne(AbstractLedStrip* strip) :
     Animation(0x010b, strip, 8, 30),
-    cl(0),
-    cr(0),
-    l(0),
-    r(0)
+    _leftColor(0),
+    _rightColor(0),
+    _left(0),
+    _right(0)
 {
 }
 
-void MergeOne::Init()
+auto MergeOne::Init() -> void
 {
-    l = 0;
-    r = _strip->numPixels();
-    byte indx = random(256);
-    cl = ColorFromColorWheel(indx);
-    indx += random(4, 16);
-    cr = ColorFromColorWheel(indx);
+    _left = 0;
+    _right = _strip->numPixels();
+    byte wheelIndex = random(256);
+    _leftColor = ColorFromColorWheel(wheelIndex);
+    wheelIndex += random(4, 16);
+    _rightColor = ColorFromColorWheel(wheelIndex);
     Clear(_strip);
 }
 
-void MergeOne::Show()
+auto MergeOne::Show() -> void
 {
-    if (l < r) {
-        _strip->setPixelColor(l, cl);
-        _strip->setPixelColor(r, cr);
+    if (_left < _right) {
+        _strip->setPixelColor(_left, _leftColor);
+        _strip->setPixelColor(_right, _rightColor);
     } else {
-        uint32_t c = _strip->getPixelColor(l);
-        c = ColorSuperPosition(c, cl);
-        _strip->setPixelColor(l, c);
-        c = _strip->getPixelColor(r);
-        c = ColorSuperPosition(c, cr);
-        _strip->setPixelColor(r, c);
+        uint32_t color = _strip->getPixelColor(_left);
+        color = ColorSuperPosition(color, _leftColor);
+        _strip->setPixelColor(_left, color);
+        color = _strip->getPixelColor(_right);
+        color = ColorSuperPosition(color, _rightColor);
+        _strip->setPixelColor(_right, color);
     }
 
-    --r;
-    ++l;
-    if (r < 0) { // Force the strip clerance
+    --_right;
+    ++_left;
+    if (_right < 0) { // Force the strip clerance
         _needsClearance = true;
         _complete = true;
         return;

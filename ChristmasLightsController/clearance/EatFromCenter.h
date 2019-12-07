@@ -3,13 +3,13 @@
 #include "Clearance.h"
 
 // Clear the strip by 'eating' the pixels from the center
-class EatFromCenter : public Clearance {
+class EatFromCenter final : public Clearance {
   public:
-    EatFromCenter(AbstractLedStrip* strip);
+    explicit EatFromCenter(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    int remain;
+    int _remaining;
 };

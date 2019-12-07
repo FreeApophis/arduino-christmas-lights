@@ -226,7 +226,7 @@ Clearance* clearances[] = {
     &brighten};
 
 template<typename TElement, int NSize>
-bool CheckAnimationIds(TElement (&animations)[NSize])
+auto CheckAnimationIds(TElement (&animations)[NSize]) -> bool
 {
     std::set<uint16_t> ids;
     for (const auto animation : animations) {
@@ -241,18 +241,18 @@ bool CheckAnimationIds(TElement (&animations)[NSize])
 }
 
 template<typename TElement, int NSize>
-int arraySize(TElement (&array)[NSize])
+auto arraySize(TElement (&array)[NSize]) -> int
 {
     return NSize;
 }
 
 AnimationManager mgr(&strip, animations, arraySize(animations), clearances, arraySize(clearances));
 
-void randomize()
+auto randomize() -> void
 {
 }
 
-uint16_t setup()
+auto setup() -> uint16_t
 {
     randomize();
 
@@ -268,7 +268,7 @@ uint16_t setup()
     return strip.numPixels();
 }
 
-uint32_t* loop(long millis)
+auto loop(long millis) -> uint32_t*
 {
     mgr.Show();
 
@@ -276,12 +276,12 @@ uint32_t* loop(long millis)
     return strip.CurrentPixels().data();
 }
 
-void setAnimation(unsigned short animationId)
+auto setAnimation(unsigned short animationId) -> void
 {
     mgr.StartAnimation(animationId);
 }
 
-unsigned short currentAnimationId()
+auto currentAnimationId() -> unsigned short
 {
     return mgr.CurrentAnimationId();
 }

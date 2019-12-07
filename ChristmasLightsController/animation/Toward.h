@@ -5,13 +5,13 @@
 #include "framework.h"
 
 // Random  colors toward each other
-class Toward : public Animation {
+class Toward final : public Animation {
   public:
-    Toward(AbstractLedStrip* strip);
+    explicit Toward(AbstractLedStrip* strip);
 
-    void Init() override { w = random(256); }
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    byte w;
+    byte _wheelIndex;
 };

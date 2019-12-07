@@ -2,14 +2,14 @@
 
 #include "Animation.h"
 
-class Fire : public Animation {
+class Fire final : public Animation {
   public:
-    Fire(AbstractLedStrip* strip);
+    explicit Fire(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    void SetPixelHeatColor(int index, byte temperature);
-    void Burn(int cooling, int sparks);
+    auto SetPixelHeatColor(int index, byte temperature) const -> void;
+    auto Burn(int cooling, int sparks) const -> void;
 };

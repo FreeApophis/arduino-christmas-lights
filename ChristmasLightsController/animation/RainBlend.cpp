@@ -8,13 +8,19 @@ RainBlend::RainBlend(AbstractLedStrip* strip) :
 {
 }
 
-void RainBlend::Show()
+auto RainBlend::Init() -> void
+{
+    _index = 0;
+}
+
+auto RainBlend::Show() -> void
 {
     if (_index < int(_strip->numPixels())) {
         _strip->setPixelColor(_index, ColorFromColorWheel(((_index * 256 / _strip->numPixels())) & 255));
         ++_index;
         return;
     }
-    for (uint16_t i = 0; i < _strip->numPixels(); ++i)
-        _strip->setPixelColor(i, Shimmer(_strip->getPixelColor(i)));
+    for (uint16_t index = 0; index < _strip->numPixels(); ++index) {
+        _strip->setPixelColor(index, Shimmer(_strip->getPixelColor(index)));
+    }
 }

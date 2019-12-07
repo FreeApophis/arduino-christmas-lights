@@ -4,22 +4,24 @@
 
 #include "framework.h"
 
-constexpr int num_inter = 3;
+constexpr int interferenceCount = 3;
 
 // Show interference from many sources
-class Interference : public Animation {
+class Interference final : public Animation {
   public:
-    Interference(AbstractLedStrip* strip);
+    explicit Interference(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    void add();
-    uint32_t clr(int p, byte source);
-    int tm;               // Time the animation starts (in cycles)
-    int pos[num_inter];   // The position os the source
-    int start[num_inter]; // Time whan the source activated
-    byte w[num_inter];    // Wheel Color index of the source
-    byte active;          // The number of active sources
+    auto Add() -> void;
+    auto Clear(int position, byte source) -> uint32_t;
+    auto NextColor(int position) -> uint32_t;
+
+    int _startTime;                      // Time the animation starts (in cycles)
+    int _positions[interferenceCount];   // The position of the source
+    int _start[interferenceCount];       // Time when the source activated
+    byte _wheelIndex[interferenceCount]; // Wheel Color index of the source
+    byte _active;                        // The number of active sources
 };

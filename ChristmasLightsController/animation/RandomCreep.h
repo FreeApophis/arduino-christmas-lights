@@ -6,12 +6,12 @@
 #include "framework.h"
 
 // creep the random sequence up or down
-class RandomCreep : public Animation {
+class RandomCreep final : public Animation {
   public:
-    RandomCreep(AbstractLedStrip* strip);
+    explicit RandomCreep(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
     Crawl _crawl;

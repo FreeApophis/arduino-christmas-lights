@@ -10,32 +10,32 @@ Animation::Animation(uint16_t animationId, AbstractLedStrip* strip, byte minPeri
 {
 }
 
-uint16_t Animation::AnimationId() const
+auto Animation::AnimationId() const -> uint16_t
 {
     return _animationId;
 }
 
-bool Animation::IsComplete() const
+auto Animation::IsComplete() const -> bool
 {
     return _complete;
 }
 
-bool Animation::NeedsClearance() const
+auto Animation::NeedsClearance() const -> bool
 {
     return _needsClearance;
 }
 
-void Animation::SetNeedsClearance(const bool clear)
+auto Animation::SetNeedsClearance(const bool clear) -> void
 {
     _needsClearance = clear;
 }
 
-uint16_t Animation::MinPeriod() const
+auto Animation::MinPeriod() const -> uint16_t
 {
     return _minPeriod;
 }
 
-uint16_t Animation::MaxPeriod() const
+auto Animation::MaxPeriod() const -> uint16_t
 {
     return _maxPeriod;
 }

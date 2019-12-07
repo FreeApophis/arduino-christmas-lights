@@ -4,65 +4,74 @@
 
 RandomDrops::RandomDrops(AbstractLedStrip* strip) :
     Animation(0x0113, strip, 2, 7),
-    _brightnessManipulation(strip)
+    _brightnessManipulation(strip),
+    _drops{},
+    _count(0)
 {
 }
 
-void RandomDrops::Init()
+auto RandomDrops::Init() -> void
 {
-    num = 0;
-    add();
+    _count = 0;
+    Add();
 }
 
-void RandomDrops::Show()
+auto RandomDrops::Show() -> void
 {
-    int n = _strip->numPixels();
-    for (byte i = 0; i < num; ++i) {
-        if (++dr[i].TimeFrame > 7) { // Delete old drops
-            dr[i].Position = dr[byte(num - 1)].Position;
-            dr[i].TimeFrame = dr[byte(num - 1)].TimeFrame;
-            --num;
-            --i;
+    const int pixelCount = _strip->numPixels();
+    for (byte index = 0; index < _count; ++index) {
+        if (++_drops[index].TimeFrame > 7) { // Delete old drops
+            _drops[index].Position = _drops[byte(_count - 1)].Position;
+            _drops[index].TimeFrame = _drops[byte(_count - 1)].TimeFrame;
+            --_count;
+            --index;
             continue;
         }
-        int p = dr[i].Position - dr[i].TimeFrame;
-        if (p < 0)
-            p += n;
-        uint32_t c1 = _strip->getPixelColor(p + 1);
-        _brightnessManipulation.change(p + 1, -64);
-        uint32_t c2 = _strip->getPixelColor(p);
+        auto position = _drops[index].Position - _drops[index].TimeFrame;
+        if (position < 0) {
+            position += pixelCount;
+        }
+        uint32_t c1 = _strip->getPixelColor(position + 1);
+        _brightnessManipulation.Change(position + 1, -64);
+        uint32_t c2 = _strip->getPixelColor(position);
         c2 = ColorSuperPosition(c1, c2);
-        _strip->setPixelColor(p, c2);
+        _strip->setPixelColor(position, c2);
 
-        p = dr[i].Position + dr[i].TimeFrame;
-        if (p >= n)
-            p -= n;
-        c1 = _strip->getPixelColor(p - 1);
-        if (dr[i].TimeFrame > 1)
-            _brightnessManipulation.change(p - 1, -32);
-        c2 = _strip->getPixelColor(p);
+        position = _drops[index].Position + _drops[index].TimeFrame;
+        if (position >= pixelCount) {
+            position -= pixelCount;
+        }
+        c1 = _strip->getPixelColor(position - 1);
+        if (_drops[index].TimeFrame > 1) {
+            _brightnessManipulation.Change(position - 1, -32);
+        }
+        c2 = _strip->getPixelColor(position);
         c2 = ColorSuperPosition(c1, c2);
-        _strip->setPixelColor(p, c2);
+        _strip->setPixelColor(position, c2);
 
-        _brightnessManipulation.change(dr[i].Position, -64);
+        _brightnessManipulation.Change(_drops[index].Position, -64);
     }
 
-    _brightnessManipulation.changeAll(-32);
+    _brightnessManipulation.ChangeAll(-32);
 
-    add();
+    Add();
 }
 
-void RandomDrops::add()
+auto RandomDrops::Add() -> void
 {
-    if (num >= 16)
+    if (_count >= 16) {
         return;
-    int pos = random(_strip->numPixels());
-    uint32_t c = _strip->getPixelColor(pos);
-    if (c)
+    }
+
+    const auto position = random(_strip->numPixels());
+
+    if (_strip->getPixelColor(position) != 0) {
         return;
-    c = ColorFromColorWheel(random(256));
-    _strip->setPixelColor(pos, c);
-    dr[byte(num)].Position = pos;
-    dr[byte(num)].TimeFrame = 0;
-    num++;
+    }
+
+    const auto color = ColorFromColorWheel(random(256));
+    _strip->setPixelColor(position, color);
+    _drops[byte(_count)].Position = position;
+    _drops[byte(_count)].TimeFrame = 0;
+    _count++;
 }

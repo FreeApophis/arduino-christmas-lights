@@ -5,16 +5,17 @@
 
 #include "framework.h"
 
-class RainCycle : public Animation {
+class RainCycle final : public Animation {
   public:
-    RainCycle(AbstractLedStrip* strip);
+    explicit RainCycle(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    uint32_t ColorWheelFromIndex(uint16_t i) const;
-    void Brighten();
+    auto ColorWheelFromIndex(uint16_t index) const -> uint32_t;
+    auto Brighten() -> void;
+
     BrightnessManipulation _brightnessManipulation;
     byte _index;
     bool _brightenPhase;

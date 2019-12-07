@@ -4,12 +4,12 @@
 
 // show the color Wave using rainbowCycle
 
-class StaticColor : public Animation {
+class StaticColor final : public Animation {
   public:
     StaticColor(AbstractLedStrip* strip, int32_t color, uint16_t animationId);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
     uint32_t _color;

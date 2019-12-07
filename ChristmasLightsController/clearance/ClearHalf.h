@@ -5,11 +5,11 @@
 // Clear the strip by deviding it by 2
 class ClearHalf : public Clearance {
   public:
-    ClearHalf(AbstractLedStrip* strip);
+    explicit ClearHalf(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    int one_step;
+    int _oneStep;
 };

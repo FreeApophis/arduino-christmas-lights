@@ -1,17 +1,18 @@
 #include "ClearFade.h"
 
 ClearFade::ClearFade(AbstractLedStrip* strip) :
-    Clearance(strip)
+    Clearance(strip),
+    _decrement(0)
 {
 }
 
-void ClearFade::Init()
+auto ClearFade::Init() -> void
 {
     _complete = false;
-    decrement = random(6, 16);
+    _decrement = random(6, 16);
 }
 
-void ClearFade::Show()
+auto ClearFade::Show() -> void
 {
-    _complete = Clearance::FadeAll(decrement);
+    _complete = FadeAll(_decrement);
 }

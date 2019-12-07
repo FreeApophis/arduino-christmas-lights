@@ -6,19 +6,20 @@
 #include "framework.h"
 
 // Solitons are creaping up or down
-class SolitonCreep : public Animation {
+class SolitonCreep final : public Animation {
   public:
-    SolitonCreep(AbstractLedStrip* strip);
+    explicit SolitonCreep(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
+    auto NewSoliton() -> void;
+
     Crawl _crawl;
-    void newSoliton();
-    int space;            // space between the solitons
-    int change_direction; // the time to change direction
-    uint32_t dot[5];
-    int sol;
-    byte w;
+    int _space;           // space between the solitons
+    int _changeDirection; // the time to change direction
+    uint32_t _dots[5];
+    int _solitons;
+    byte _wheelIndex;
 };

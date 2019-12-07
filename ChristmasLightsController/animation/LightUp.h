@@ -6,17 +6,17 @@
 #include "framework.h"
 
 // Light up with the random color than fade out
-class LightUp : public Animation {
+class LightUp final : public Animation {
   public:
-    LightUp(AbstractLedStrip* strip);
+    explicit LightUp(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    BrightnessManipulation _brightnessManipulation;
-    void NewColor();
+    auto NewColor() -> void;
 
-    byte sp;
-    char inc;
+    BrightnessManipulation _brightnessManipulation;
+    byte _speed;
+    char _increment;
 };

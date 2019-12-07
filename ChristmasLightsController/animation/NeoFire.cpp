@@ -5,33 +5,34 @@
 NeoFire::NeoFire(AbstractLedStrip* strip) :
     Animation(0x010d, strip, 1, 5),
     _color(0),
-    pause(0)
+    _pause(0)
 {
 }
 
-void NeoFire::Init()
+auto NeoFire::Init() -> void
 {
     _color = 0;
     byte m = random(3);
-    _color |= c1 << (m * 8);
+    _color |= _color1 << (m * 8);
     m += random(1, 3);
-    if (m >= 3)
+    if (m >= 3) {
         m = 0;
-    _color |= c2 << (m * 8);
+    }
+    _color |= _color2 << (m * 8);
 }
 
-void NeoFire::Show()
+auto NeoFire::Show() -> void
 {
-    if (pause > 0) {
-        --pause;
+    if (_pause > 0) {
+        --_pause;
         return;
     }
-    pause = random(8);
+    _pause = static_cast<char>(random(8));
     for (uint16_t i = 0; i < _strip->numPixels(); ++i) {
-        uint32_t blended_color = AddColors(_strip->getPixelColor(i), _color);
-        const byte r = random(80);
-        const uint32_t diff_color = ToColor(r, r / 2, r / 2);
-        blended_color = SubtractColors(blended_color, diff_color);
-        _strip->setPixelColor(i, blended_color);
+        auto blendedColor = AddColors(_strip->getPixelColor(i), _color);
+        const byte redPart = random(80);
+        const auto differentColor = ToColor(redPart, redPart / 2, redPart / 2);
+        blendedColor = SubtractColors(blendedColor, differentColor);
+        _strip->setPixelColor(i, blendedColor);
     }
 }

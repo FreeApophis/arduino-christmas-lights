@@ -4,14 +4,19 @@
 
 class AbstractLedStrip {
   public:
-    virtual uint16_t numPixels() const = 0;
-    virtual uint32_t getPixelColor(uint16_t n) const = 0;
-    virtual void setPixelColor(uint16_t n, uint32_t c) = 0;
-    //virtual void clear() = 0;
-    virtual void show() = 0;
-    virtual void begin() = 0;
-    virtual void setBrightness(uint8_t brightness) = 0;
+    AbstractLedStrip() = default;
+    virtual ~AbstractLedStrip() = default;
 
-  protected:
-    ~AbstractLedStrip() = default;
+    AbstractLedStrip(const AbstractLedStrip& animation) = delete;
+    AbstractLedStrip(AbstractLedStrip&& animation) = delete;
+    auto operator=(const AbstractLedStrip& animation) -> void = delete;
+    auto operator=(AbstractLedStrip&& animation) -> void = delete;
+
+    virtual auto numPixels() const -> uint16_t = 0;
+    virtual auto getPixelColor(uint16_t n) const -> uint32_t = 0;
+    virtual auto setPixelColor(uint16_t n, uint32_t c) -> void = 0;
+    //virtual auto clear() -> void = 0;
+    virtual auto show() -> void = 0;
+    virtual auto begin() -> void = 0;
+    virtual auto setBrightness(uint8_t brightness) -> void = 0;
 };

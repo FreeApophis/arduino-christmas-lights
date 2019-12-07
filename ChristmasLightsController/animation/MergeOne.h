@@ -5,16 +5,16 @@
 #include "framework.h"
 
 // Slow merging of two colors
-class MergeOne : public Animation {
+class MergeOne final : public Animation {
   public:
-    MergeOne(AbstractLedStrip* strip);
+    explicit MergeOne(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    uint32_t cl;
-    uint32_t cr;
-    int l;
-    int r;
+    uint32_t _leftColor;
+    uint32_t _rightColor;
+    int _left;
+    int _right;
 };

@@ -4,44 +4,53 @@
 
 ShineSeven::ShineSeven(AbstractLedStrip* strip) :
     Animation(0x0117, strip, 4, 20),
-    _brightnessManipulation(strip)
+    _brightnessManipulation(strip),
+    _current(0),
+    _wheelIndex(0),
+    _base(0)
 {
 }
 
-void ShineSeven::Init()
+auto ShineSeven::Init() -> void
 {
-    curs = 0;
-    w = random(256);
-    base = random(4, 8);
-    startNewColor();
+    _current = 0;
+    _wheelIndex = random(256);
+    _base = random(4, 8);
+    StartNewColor();
 }
 
-void ShineSeven::Show()
+auto ShineSeven::Show() -> void
 {
-    int n = _strip->numPixels();
-    bool finish = true;
-    for (int i = int(curs) - 1; i < n; i += base) { // Fade out previous color
-        if (i >= 0)
-            if (!_brightnessManipulation.change(i, -8))
+    const int pixelCount = _strip->numPixels();
+    auto finish = true;
+    for (auto index = int(_current) - 1; index < pixelCount; index += _base) { // Fade out previous color
+        if (index >= 0) {
+            if (!_brightnessManipulation.Change(index, -8)) {
                 finish = false;
+            }
+        }
     }
-    for (int i = curs; i < n; i += base) // Light up current color
-        if (!_brightnessManipulation.change(i, 8))
+    for (int i = _current; i < pixelCount; i += _base) { // Light up current color
+        if (!_brightnessManipulation.Change(i, 8)) {
             finish = false;
+        }
+    }
     if (finish) { // The current color has been light fully
-        ++curs;
-        if (curs >= base)
-            curs = 0;
-        startNewColor();
+        ++_current;
+        if (_current >= _base) {
+            _current = 0;
+        }
+        StartNewColor();
     }
 }
 
-void ShineSeven::startNewColor()
+auto ShineSeven::StartNewColor() -> void
 {
-    uint32_t c = ColorFromColorWheel(w);
-    w += 97;
-    _brightnessManipulation.setColor(c);
-    c &= 0x10101;
-    for (uint16_t i = curs; i < _strip->numPixels(); i += base)
-        _strip->setPixelColor(i, c);
+    auto color = ColorFromColorWheel(_wheelIndex);
+    _wheelIndex += 97;
+    _brightnessManipulation.SetColor(color);
+    color &= 0x10101;
+    for (uint16_t index = _current; index < _strip->numPixels(); index += _base) {
+        _strip->setPixelColor(index, color);
+    }
 }

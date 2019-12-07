@@ -1,78 +1,83 @@
 #include "RandomFill.h"
 
-#include "manipulation/ColorManipulation.h"
 #include "manipulation/Clear.h"
+#include "manipulation/ColorManipulation.h"
 
 RandomFill::RandomFill(AbstractLedStrip* strip) :
     Animation(0x0115, strip, 2, 4),
-    _brightnessManipulation(strip)
+    _brightnessManipulation(strip),
+    _wheelIndex(0),
+    _remaining(0),
+    _position(0),
+    _isClear(false)
 {
 }
 
-void RandomFill::Init()
+auto RandomFill::Init() -> void
 {
-    w = random(256);
-    remain = _strip->numPixels();
-    clr = false;
-    newDot(clr);
+    _wheelIndex = random(256);
+    _remaining = _strip->numPixels();
+    _isClear = false;
+    NewDot(_isClear);
 }
 
-void RandomFill::Show()
+auto RandomFill::Show() -> void
 {
     char val = 12;
-    if (clr)
+    if (_isClear)
         val = -12;
-    if (_brightnessManipulation.change(pos, val)) {
-        if (remain <= 0) {
-            if (clr) {
+    if (_brightnessManipulation.Change(_position, val)) {
+        if (_remaining <= 0) {
+            if (_isClear) {
                 Clear(_strip);
-                w += 71;
+                _wheelIndex += 71;
                 Init();
                 _complete = true;
                 return;
             } else {
-                clr = true;
-                remain = _strip->numPixels();
-                newDot(clr);
+                _isClear = true;
+                _remaining = _strip->numPixels();
+                NewDot(_isClear);
             }
         } else {
-            newDot(clr);
+            NewDot(_isClear);
         }
     }
     _complete = false;
 }
 
-void RandomFill::newDot(bool clr)
+auto RandomFill::NewDot(const bool clear) -> void
 {
     uint32_t color = 0;
-    if (!clr)
-        color = ColorFromColorWheel(w);
+    if (!clear) {
+        color = ColorFromColorWheel(_wheelIndex);
+    }
 
-    byte p = random(remain);
+    const byte p = random(_remaining);
     byte c = 0;
-    for (pos = 0; (pos < _strip->numPixels()) && (c < p); ++pos) {
+    for (_position = 0; (_position < _strip->numPixels()) && (c < p); ++_position) {
         if (!color) {
-            while (_strip->getPixelColor(pos) == 0)
-                pos++;
+            while (_strip->getPixelColor(_position) == 0)
+                _position++;
             ++c;
         } else {
-            while (_strip->getPixelColor(pos) != 0)
-                pos++;
+            while (_strip->getPixelColor(_position) != 0)
+                _position++;
             ++c;
         }
     }
     if (!color) {
-        while (_strip->getPixelColor(pos) == 0)
-            pos++;
+        while (_strip->getPixelColor(_position) == 0)
+            _position++;
     } else {
-        while (_strip->getPixelColor(pos) != 0)
-            pos++;
+        while (_strip->getPixelColor(_position) != 0)
+            _position++;
     }
-    if (pos >= _strip->numPixels()) { // something is wrong in the code
-        for (uint16_t i = 0; i < _strip->numPixels(); ++i)
-            _strip->setPixelColor(i, color);
-        remain = 0;
+    if (_position >= _strip->numPixels()) { // something is wrong in the code
+        for (uint16_t index = 0; index < _strip->numPixels(); ++index)
+            _strip->setPixelColor(index, color);
+        _remaining = 0;
     }
-    _brightnessManipulation.setColor(color);
-    remain--;
+    _brightnessManipulation.SetColor(color);
+    _remaining--;
 }

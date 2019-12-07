@@ -4,65 +4,71 @@
 
 ShineFlash::ShineFlash(AbstractLedStrip* strip) :
     Animation(0x0116, strip, 4, 20),
-    _brightnessManipulation(strip)
+    _brightnessManipulation(strip),
+    _wheelIndex(0),
+    _mode(0),
+    _isFlash(false),
+    _remaining(0),
+    _index(0),
+    _wait(0)
 {
 }
 
-void ShineFlash::Init()
+auto ShineFlash::Init() -> void
 {
-    w = random(256);
-    mode = 0;
-    flash = false;
-    startNewColor();
+    _wheelIndex = random(256);
+    _mode = 0;
+    _isFlash = false;
+    StartNewColor();
 }
 
-void ShineFlash::Show()
+auto ShineFlash::Show() -> void
 {
-    int n = _strip->numPixels();
-    bool finish = true;
-    switch (mode) {
+    const int pixelCount = _strip->numPixels();
+    bool finish;
+    switch (_mode) {
         case 0: // Light up
-            finish = _brightnessManipulation.changeAll(4);
+            finish = _brightnessManipulation.ChangeAll(4);
             if (finish) {
-                flash = true;
-                remain = random(17, 30);
-                wait = 0;
+                _isFlash = true;
+                _remaining = random(17, 30);
+                _wait = 0;
             }
             break;
-        case 1:          // Run flash
-            if (flash) { // Lit the LED
-                if (--wait > 0)
+        case 1:             // Run flash
+            if (_isFlash) { // Lit the LED
+                if (--_wait > 0)
                     return;
-                wait = random(2, 7);
-                indx = random(n);
-                if (remain > 0) {
-                    uint32_t c = _strip->getPixelColor(indx);
+                _wait = random(2, 7);
+                _index = random(pixelCount);
+                if (_remaining > 0) {
+                    uint32_t c = _strip->getPixelColor(_index);
                     c |= 0x808080;
-                    _strip->setPixelColor(indx, c);
-                    flash = false;
-                    remain--;
+                    _strip->setPixelColor(_index, c);
+                    _isFlash = false;
+                    _remaining--;
                 } else {
-                    mode++;
+                    _mode++;
                 }
             } else {
-                uint32_t c = _strip->getPixelColor(indx);
+                uint32_t c = _strip->getPixelColor(_index);
                 c &= 0x7f7f7f;
-                _strip->setPixelColor(indx, c);
-                flash = true;
+                _strip->setPixelColor(_index, c);
+                _isFlash = true;
             }
             finish = false;
             break;
         case 2: // Fade out
         default:
-            finish = _brightnessManipulation.changeAll(-4);
+            finish = _brightnessManipulation.ChangeAll(-4);
             break;
     }
 
     if (finish) { // The current color has been light fully
-        ++mode;
-        if (mode >= 3) {
-            startNewColor();
-            mode = 0;
+        ++_mode;
+        if (_mode >= 3) {
+            StartNewColor();
+            _mode = 0;
             _complete = true;
             return;
         }
@@ -70,14 +76,15 @@ void ShineFlash::Show()
     _complete = false;
 }
 
-void ShineFlash::startNewColor()
+auto ShineFlash::StartNewColor() -> void
 {
-    uint32_t c = ColorFromColorWheel(w);
-    c &= 0x7f7f7f;
-    w += 17;
-    _brightnessManipulation.setColor(c);
-    c &= 0x10101;
-    int n = _strip->numPixels();
-    for (int i = 0; i < n; ++i)
-        _strip->setPixelColor(i, c);
+    auto color = ColorFromColorWheel(_wheelIndex);
+    color &= 0x7f7f7f;
+    _wheelIndex += 17;
+    _brightnessManipulation.SetColor(color);
+    color &= 0x10101;
+
+    for (int index = 0; index < _strip->numPixels(); ++index) {
+        _strip->setPixelColor(index, color);
+    }
 }

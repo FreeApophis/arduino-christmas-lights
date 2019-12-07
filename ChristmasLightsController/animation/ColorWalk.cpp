@@ -8,32 +8,32 @@ ColorWalk::ColorWalk(AbstractLedStrip* strip) :
     Animation(0x0103, strip, 4, 12),
     _index(0),
     _period(0),
-    fwd(false),
-    w(0)
+    _isForward(false),
+    _wheelIndex(0)
 {
 }
 
-void ColorWalk::Init()
+auto ColorWalk::Init() -> void
 {
     _index = 0;
-    w = random(256);
-    fwd = random(2);
+    _wheelIndex = random(256);
+    _isForward = random(2);
     _period = random(10, 30);
 }
 
-void ColorWalk::Show()
+auto ColorWalk::Show() -> void
 {
-    int n = _strip->numPixels();
-    if (fwd) {
-        if (_index > n) {
+    const int pixelCount = _strip->numPixels();
+    if (_isForward) {
+        if (_index > pixelCount) {
             _index -= _period;
-            _strip->setPixelColor(n - 1, 0);
+            _strip->setPixelColor(pixelCount - 1, 0);
         }
-        uint32_t color = ColorFromColorWheel(w--);
-        for (int i = _index; i > 0; i -= _period) {
-            if (i > 0)
-                _strip->setPixelColor(i - 1, 0);
-            _strip->setPixelColor(i, color);
+        const auto color = ColorFromColorWheel(_wheelIndex--);
+        for (auto index = _index; index > 0; index -= _period) {
+            if (index > 0)
+                _strip->setPixelColor(index - 1, 0);
+            _strip->setPixelColor(index, color);
         }
         ++_index;
     } else {
@@ -41,11 +41,11 @@ void ColorWalk::Show()
             _index += _period;
             _strip->setPixelColor(0, 0);
         }
-        uint32_t color = ColorFromColorWheel(w++);
-        for (int i = _index; i < n; i += _period) {
-            if (i < int(_strip->numPixels() - 1))
-                _strip->setPixelColor(i + 1, 0);
-            _strip->setPixelColor(i, color);
+        const auto color = ColorFromColorWheel(_wheelIndex++);
+        for (auto index = _index; index < pixelCount; index += _period) {
+            if (index < int(_strip->numPixels() - 1))
+                _strip->setPixelColor(index + 1, 0);
+            _strip->setPixelColor(index, color);
         }
         --_index;
     }

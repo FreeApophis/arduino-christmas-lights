@@ -6,18 +6,19 @@
 #include "framework.h"
 
 // Fill the strip by the color in random order
-class RandomFill : public Animation {
+class RandomFill final : public Animation {
   public:
-    RandomFill(AbstractLedStrip* strip);
+    explicit RandomFill(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    void newDot(bool clr);
+    auto NewDot(bool clear) -> void;
+
     BrightnessManipulation _brightnessManipulation;
-    byte w;
-    int remain;
-    uint16_t pos;
-    bool clr;
+    byte _wheelIndex;
+    int _remaining;
+    uint16_t _position;
+    bool _isClear;
 };

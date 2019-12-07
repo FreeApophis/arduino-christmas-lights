@@ -4,34 +4,34 @@
 
 EvenOdd::EvenOdd(AbstractLedStrip* strip) :
     Animation(0x0106, strip, 10, 20),
-    cl(0),
-    cr(0),
-    l(0),
-    r(0)
+    _leftColor(0),
+    _rightColor(0),
+    _left(0),
+    _right(0)
 {
 }
 
-void EvenOdd::Init()
+auto EvenOdd::Init() -> void
 {
-    byte indx = random(256);
-    cl = ColorFromColorWheel(indx);
-    indx += random(4, 16);
-    cr = ColorFromColorWheel(indx);
-    l = 0;
-    r = _strip->numPixels() - 1; // r is Odd
+    byte index = random(256);
+    _leftColor = ColorFromColorWheel(index);
+    index += random(4, 16);
+    _rightColor = ColorFromColorWheel(index);
+    _left = 0;
+    _right = _strip->numPixels() - 1; // r is Odd
 }
 
-void EvenOdd::Show()
+auto EvenOdd::Show() -> void
 {
-    _strip->setPixelColor(l, cl);
-    _strip->setPixelColor(r, cr);
-    l += 2;
-    r -= 2;
-    if (r < 0) {
-        if (cr) {
-            cr = cl = 0;
-            l = 0;
-            r = _strip->numPixels() - 1; // r is Odd
+    _strip->setPixelColor(_left, _leftColor);
+    _strip->setPixelColor(_right, _rightColor);
+    _left += 2;
+    _right -= 2;
+    if (_right < 0) {
+        if (_rightColor) {
+            _rightColor = _leftColor = 0;
+            _left = 0;
+            _right = _strip->numPixels() - 1; // r is Odd
         } else {
             Init();
             _complete = true;

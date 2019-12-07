@@ -4,20 +4,20 @@
 #include "../manipulation/RandomWalk.h"
 
 const unsigned char MaxBrightness = 160; // cap on LED brighness
-const unsigned char ChangeAmount = 4;   // size of random walk step
+const unsigned char ChangeAmount = 4;    // size of random walk step
 
 WarmWhiteShimmer::WarmWhiteShimmer(AbstractLedStrip* strip) :
     Animation(0xb001, strip, 2, 2)
 {
 }
 
-void WarmWhiteShimmer::Init()
+auto WarmWhiteShimmer::Init() -> void
 {
 }
 
-void WarmWhiteShimmer::Show()
+auto WarmWhiteShimmer::Show() -> void
 {
-    bool dimOnly = false;
+    const auto dimOnly = false;
 
     for (uint16_t index = 0; index < _strip->numPixels(); index += 2) {
         // randomly walk the brightness of every even LED

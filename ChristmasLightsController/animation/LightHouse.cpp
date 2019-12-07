@@ -3,66 +3,66 @@
 LightHouse::LightHouse(AbstractLedStrip* strip) :
     Animation(0x0109, strip, 2, 10),
     _brightnessManipulation(strip),
-    pos(0),
-    stp(0),
-    incr(0),
-    sp(0),
-    dlay(0)
+    _position(0),
+    _step(0),
+    _increment(0),
+    _speed(0),
+    _delay(0)
 {
 }
 
-void LightHouse::Init()
+auto LightHouse::Init() -> void
 {
-    uint32_t c = 0xff;
-    for (byte i = 0; i <= 4; ++i) {
-        dot[i] = c | (c << 8) | (c << 16);
-        c >>= 1;
+    uint32_t color = 0xff;
+    for (byte index = 0; index <= 4; ++index) {
+        _dots[index] = color | (color << 8) | (color << 16);
+        color >>= 1;
     }
-    _brightnessManipulation.setColor(dot[4]);
-    pos = random(_strip->numPixels());
-    stp = 0;
-    sp = random(1, 4);
-    dlay = sp;
+    _brightnessManipulation.SetColor(_dots[4]);
+    _position = random(_strip->numPixels());
+    _step = 0;
+    _speed = random(1, 4);
+    _delay = _speed;
 }
 
-void LightHouse::Show()
+auto LightHouse::Show() -> void
 {
-    _brightnessManipulation.changeAll(-8);
-    if (--dlay > 0)
+    _brightnessManipulation.ChangeAll(-8);
+    if (--_delay > 0)
         return;
-    dlay = sp;
+    _delay = _speed;
 
     const int pixelCount = _strip->numPixels();
-    if (stp <= 0) {
-        incr = 1;
-        if (pos > pixelCount / 2)
-            incr = -1;
-        stp = random(5, pixelCount);
-        sp += random(3) - 1;
-        if (sp < 1)
-            sp = 1;
-        else if (sp > 3)
-            sp = 3;
+    if (_step <= 0) {
+        _increment = 1;
+        if (_position > pixelCount / 2)
+            _increment = -1;
+        _step = random(5, pixelCount);
+        _speed += random(3) - 1;
+        if (_speed < 1)
+            _speed = 1;
+        else if (_speed > 3)
+            _speed = 3;
     }
-    pos += incr;
-    pos %= pixelCount;
+    _position += _increment;
+    _position %= pixelCount;
 
-    for (int i = 0; i <= 5; ++i) {
-        byte indx = i;
-        if (indx >= 1)
-            indx--;
-        int x = pos + i;
+    for (auto index = 0; index <= 5; ++index) {
+        byte lastIndex = index;
+        if (lastIndex >= 1)
+            lastIndex--;
+        int x = _position + index;
         if (x >= pixelCount)
             x -= pixelCount;
         else if (x < 0)
             x += pixelCount;
-        _strip->setPixelColor(x, dot[indx]);
-        x = pos - i;
+        _strip->setPixelColor(x, _dots[lastIndex]);
+        x = _position - index;
         if (x >= pixelCount)
             x -= pixelCount;
         else if (x < 0)
             x += pixelCount;
-        _strip->setPixelColor(x, dot[indx]);
+        _strip->setPixelColor(x, _dots[lastIndex]);
     }
-    stp--;
+    _step--;
 }

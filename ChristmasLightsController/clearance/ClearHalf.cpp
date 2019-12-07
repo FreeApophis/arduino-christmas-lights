@@ -2,21 +2,23 @@
 
 ClearHalf::ClearHalf(AbstractLedStrip* strip) :
     Clearance(strip),
-    one_step(0)
+    _oneStep(0)
 {
 }
 
-void ClearHalf::Init()
+auto ClearHalf::Init() -> void
 {
     _complete = false;
-    one_step = _strip->numPixels() / 2;
+    _oneStep = _strip->numPixels() / 2;
 }
 
-void ClearHalf::Show()
+auto ClearHalf::Show() -> void
 {
-    for (uint16_t i = 0; i < _strip->numPixels(); i += one_step) {
-        if (i > 0 || (one_step == 1))
-            _strip->setPixelColor(i, 0);
+    for (uint16_t index = 0; index < _strip->numPixels(); index += _oneStep) {
+        if (index > 0 || (_oneStep == 1)) {
+            _strip->setPixelColor(index, 0);
+        }
     }
-    _complete = ((one_step >>= 1) == 0);
+
+    _complete = ((_oneStep >>= 1) == 0);
 }

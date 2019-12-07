@@ -3,27 +3,33 @@
 #include "manipulation/ColorManipulation.h"
 
 Toward::Toward(AbstractLedStrip* strip) :
-    Animation(0x011c, strip, 5, 10)
+    Animation(0x011c, strip, 5, 10),
+    _wheelIndex(0)
 {
 }
 
-void Toward::Show()
+auto Toward::Init() -> void
 {
-    const int n = _strip->numPixels();
-    for (int i = n - 2; i >= 2; i -= 2) {
-        const uint32_t c = _strip->getPixelColor(i - 2);
-        _strip->setPixelColor(i, c);
+    _wheelIndex = random(256);
+}
+
+auto Toward::Show() -> void
+{
+    const int pixelCount = _strip->numPixels();
+    for (int index = pixelCount - 2; index >= 2; index -= 2) {
+        const uint32_t c = _strip->getPixelColor(index - 2);
+        _strip->setPixelColor(index, c);
     }
-    for (int i = 1; i < n - 1; i += 2) {
-        const uint32_t c = _strip->getPixelColor(i + 2);
-        _strip->setPixelColor(i, c);
+    for (auto index = 1; index < pixelCount - 1; index += 2) {
+        const uint32_t c = _strip->getPixelColor(index + 2);
+        _strip->setPixelColor(index, c);
     }
     if (random(16) == 0) {
         _strip->setPixelColor(0, 0);
-        _strip->setPixelColor(n - 1, 0);
-        w += 4;
+        _strip->setPixelColor(pixelCount - 1, 0);
+        _wheelIndex += 4;
     } else {
-        _strip->setPixelColor(0, ColorFromColorWheel(w + 128));
-        _strip->setPixelColor(n - 1, ColorFromColorWheel(w));
+        _strip->setPixelColor(0, ColorFromColorWheel(_wheelIndex + 128));
+        _strip->setPixelColor(pixelCount - 1, ColorFromColorWheel(_wheelIndex));
     }
 }

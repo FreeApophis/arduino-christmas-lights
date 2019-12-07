@@ -4,40 +4,45 @@
 
 WalkSeven::WalkSeven(AbstractLedStrip* strip) :
     Animation(0x011f, strip, 8, 15),
-    _brightnessManipulation(strip)
+    _brightnessManipulation(strip),
+    _current(0),
+    _wheelIndex(0),
+    _isForward(false),
+    _changeDirection(0),
+    _period(0)
 {
 }
 
-void WalkSeven::Init()
+auto WalkSeven::Init() -> void
 {
-    w = random(256);
-    fwd = random(2);
-    ch_dir = random(30, 100);
-    period = random(13, 20);
-    curs = 0;
+    _wheelIndex = random(256);
+    _isForward = random(2);
+    _changeDirection = random(30, 100);
+    _period = random(13, 20);
+    _current = 0;
 }
 
-void WalkSeven::Show()
+auto WalkSeven::Show() -> void
 {
-    _brightnessManipulation.changeAll(-64);
+    _brightnessManipulation.ChangeAll(-64);
 
-    int n = _strip->numPixels();
-    uint32_t c1 = ColorFromColorWheel(w);
-    w += 71;
-    for (int i = curs; i < n; i += period) {
-        uint32_t c2 = _strip->getPixelColor(i);
-        c2 = ColorSuperPosition(c1, c2);
-        _strip->setPixelColor(i, c2);
+    const int pixelCount = _strip->numPixels();
+    const uint32_t color1 = ColorFromColorWheel(_wheelIndex);
+    _wheelIndex += 71;
+    for (int index = _current; index < pixelCount; index += _period) {
+        uint32_t color2 = _strip->getPixelColor(index);
+        color2 = ColorSuperPosition(color1, color2);
+        _strip->setPixelColor(index, color2);
     }
 
-    if (fwd)
-        ++curs;
+    if (_isForward)
+        ++_current;
     else
-        --curs;
-    curs %= period;
+        --_current;
+    _current %= _period;
 
-    if (--ch_dir < 0) {
-        ch_dir = random(70, 300);
-        fwd = !fwd;
+    if (--_changeDirection < 0) {
+        _changeDirection = random(70, 300);
+        _isForward = !_isForward;
     }
 }

@@ -5,16 +5,20 @@
 #include "framework.h"
 
 // Random colors from left and right move to the center
-class WalkToCenter : public Animation {
+class WalkToCenter final : public Animation {
   public:
-    WalkToCenter(AbstractLedStrip* strip);
+    explicit WalkToCenter(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    void newColors();
-    uint32_t cl, cr;
-    int l, r, ml, mr;
-    bool clr;
+    auto NewColors() -> void;
+    uint32_t _colorLeft;
+    uint32_t _colorRight;
+    int _left;
+    int _right;
+    int _leftMiddle;
+    int _rightMiddle;
+    bool _clear;
 };

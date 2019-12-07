@@ -5,16 +5,17 @@
 #include "framework.h"
 
 // Single color swing
-class SingleColorSwing : public Animation {
+class SingleColorSwing final : public Animation {
   public:
-    SingleColorSwing(AbstractLedStrip* strip);
+    explicit SingleColorSwing(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    uint32_t color;
-    int len, index;
-    bool fwd;
-    byte w;
+    uint32_t _color;
+    int _length;
+    int _index;
+    bool _isForward;
+    byte _wheelIndex;
 };

@@ -3,51 +3,58 @@
 #include "manipulation/ColorManipulation.h"
 
 SingleColorSwing::SingleColorSwing(AbstractLedStrip* strip) :
-    Animation(0x0118, strip, 3, 10)
+    Animation(0x0118, strip, 3, 10),
+    _color(0),
+    _length(0),
+    _index(0),
+    _isForward(false),
+    _wheelIndex(0)
 {
 }
 
-void SingleColorSwing::Init()
+auto SingleColorSwing::Init() -> void
 {
-    len = 1;
-    w = random(256);
-    color = ColorFromColorWheel(w);
-    _strip->setPixelColor(0, color);
-    fwd = true;
-    index = len;
+    _length = 1;
+    _wheelIndex = random(256);
+    _color = ColorFromColorWheel(_wheelIndex);
+    _strip->setPixelColor(0, _color);
+    _isForward = true;
+    _index = _length;
 }
 
-void SingleColorSwing::Show()
+auto SingleColorSwing::Show() -> void
 {
-    if (fwd) {
-        for (int i = 0; i <= index; ++i) {
-            if (i < (index - len))
-                _strip->setPixelColor(i, 0);
-            else
-                _strip->setPixelColor(i, color);
+    if (_isForward) {
+        for (int index = 0; index <= _index; ++index) {
+            if (index < (_index - _length)) {
+                _strip->setPixelColor(index, 0);
+            } else {
+                _strip->setPixelColor(index, _color);
+            }
         }
-        ++index;
-        if (index >= int(_strip->numPixels())) {
-            fwd = false;
-            len += random(1, _strip->numPixels() >> 4);
-            index = _strip->numPixels() - len - 1;
-            w += 4;
+        ++_index;
+        if (_index >= int(_strip->numPixels())) {
+            _isForward = false;
+            _length += random(1, _strip->numPixels() >> 4);
+            _index = _strip->numPixels() - _length - 1;
+            _wheelIndex += 4;
         }
     } else {
-        for (int i = _strip->numPixels() - 1; i >= index; --i) {
-            if (i > (index + len))
-                _strip->setPixelColor(i, 0);
-            else
-                _strip->setPixelColor(i, color);
+        for (auto index = _strip->numPixels() - 1; index >= _index; --index) {
+            if (index > (_index + _length)) {
+                _strip->setPixelColor(index, 0);
+            } else {
+                _strip->setPixelColor(index, _color);
+            }
         }
-        --index;
-        if (index < 0) {
-            fwd = true;
-            index = len;
-            w += 4;
+        --_index;
+        if (_index < 0) {
+            _isForward = true;
+            _index = _length;
+            _wheelIndex += 4;
         }
     }
-    if (len >= int(_strip->numPixels())) {
+    if (_length >= int(_strip->numPixels())) {
         _needsClearance = true; // Force the strip clerance
         _complete = true;
         return;

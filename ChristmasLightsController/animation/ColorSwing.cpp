@@ -6,41 +6,41 @@ ColorSwing::ColorSwing(AbstractLedStrip* strip) :
     Animation(0x0102, strip, 3, 10),
     _length(0),
     _index(0),
-    w(0),
-    rnd(false)
+    _wheelIndex(0),
+    _random(false)
 {
 }
 
-void ColorSwing::Init()
+auto ColorSwing::Init() -> void
 {
     _length = 1;
-    rnd = random(2);
-    uint32_t c = ColorFromColorWheel(random(256));
-    if (!rnd) { // Use rainbow colors from ColorFromColorWheel
-        w = random(256);
-        c = ColorFromColorWheel(w);
+    _random = random(2);
+    auto color = ColorFromColorWheel(random(256));
+    if (!_random) { // Use rainbow colors from ColorFromColorWheel
+        _wheelIndex = random(256);
+        color = ColorFromColorWheel(_wheelIndex);
     }
-    _strip->setPixelColor(0, c);
+    _strip->setPixelColor(0, color);
     _crawl.SetDirection(CrawlDirection::Forward);
     _crawl.SetNextColor(0);
     _index = _strip->numPixels() - _length - 1;
 }
 
-void ColorSwing::Show()
+auto ColorSwing::Show() -> void
 {
     _crawl.Step(_strip);
     --_index;
 
     if (_index < 0) {
-        uint32_t c = ColorFromColorWheel(random(256));
-        if (!rnd) {
-            w += 4;
-            c = ColorFromColorWheel(w);
+        auto color = ColorFromColorWheel(random(256));
+        if (!_random) {
+            _wheelIndex += 4;
+            color = ColorFromColorWheel(_wheelIndex);
         }
         if (_crawl.GetDirection() == CrawlDirection::Forward) {
-            _strip->setPixelColor(_strip->numPixels() - _length - 1, c);
+            _strip->setPixelColor(_strip->numPixels() - _length - 1, color);
         } else {
-            _strip->setPixelColor(_length, c);
+            _strip->setPixelColor(_length, color);
         }
         ++_length;
         _crawl.ToggleDirection();

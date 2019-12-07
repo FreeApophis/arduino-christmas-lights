@@ -13,7 +13,7 @@ CollideOne::CollideOne(AbstractLedStrip* strip) :
 {
 }
 
-void CollideOne::Init()
+auto CollideOne::Init() -> void
 {
     _left = 0;
     _right = _strip->numPixels() - 1;
@@ -25,7 +25,7 @@ void CollideOne::Init()
     _isBooom = false;
 }
 
-void CollideOne::Show()
+auto CollideOne::Show() -> void
 {
     if (_isBooom) {
         _strip->setPixelColor(_left, 0xffffff);

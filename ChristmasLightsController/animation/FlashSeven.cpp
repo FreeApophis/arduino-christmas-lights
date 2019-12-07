@@ -5,46 +5,46 @@
 FlashSeven::FlashSeven(AbstractLedStrip* strip) :
     Animation(0x0107, strip, 4, 8),
     _brightnessManipulation(strip),
-    curs(0),
-    w(0),
-    fwd(false),
-    ch_dir(0),
-    period(0)
+    _current(0),
+    _wheelIndex(0),
+    _isForward(false),
+    _changeDirection(0),
+    _period(0)
 {
 }
 
-void FlashSeven::Init()
+auto FlashSeven::Init() -> void
 {
-    w = random(256);
-    fwd = random(2);
-    ch_dir = random(30, 100);
-    period = random(7, 20);
-    curs = 0;
+    _wheelIndex = random(256);
+    _isForward = random(2);
+    _changeDirection = random(30, 100);
+    _period = random(7, 20);
+    _current = 0;
 }
 
-void FlashSeven::Show()
+auto FlashSeven::Show() -> void
 {
-    _brightnessManipulation.changeAll(-64);
+    _brightnessManipulation.ChangeAll(-64);
 
-    const int n = _strip->numPixels();
-    for (int i = curs; i < n; i += period) {
-        _brightnessManipulation.change(i, -128);
+    const int pixelCount = _strip->numPixels();
+    for (int index = _current; index < pixelCount; index += _period) {
+        _brightnessManipulation.Change(index, -128);
     }
 
-    if (fwd)
-        ++curs;
+    if (_isForward)
+        ++_current;
     else
-        --curs;
-    curs %= period;
+        --_current;
+    _current %= _period;
 
-    const uint32_t c = ColorFromColorWheel(w);
-    w += 71;
-    for (int i = curs; i < n; i += period) {
-        _strip->setPixelColor(i, c);
+    const auto color = ColorFromColorWheel(_wheelIndex);
+    _wheelIndex += 71;
+    for (int index = _current; index < pixelCount; index += _period) {
+        _strip->setPixelColor(index, color);
     }
 
-    if (--ch_dir < 0) {
-        ch_dir = random(70, 300);
-        fwd = !fwd;
+    if (--_changeDirection < 0) {
+        _changeDirection = random(70, 300);
+        _isForward = !_isForward;
     }
 }

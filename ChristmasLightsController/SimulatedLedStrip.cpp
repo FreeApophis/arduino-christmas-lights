@@ -7,42 +7,40 @@ SimulatedLedStrip::SimulatedLedStrip(byte stripSize)
     _pixels.resize(stripSize, 0);
 }
 
-uint16_t SimulatedLedStrip::numPixels() const
+auto SimulatedLedStrip::numPixels() const -> uint16_t
 {
     return static_cast<uint16_t>(_pixels.size());
 }
 
-inline uint32_t SimulatedLedStrip::getPixelColor(uint16_t n) const
+auto SimulatedLedStrip::getPixelColor(uint16_t n) const -> uint32_t
 {
-    if (n < _pixels.size()) {
-        return _pixels[n];
-    }
-
-    return 0;
+    return n < _pixels.size()
+               ? _pixels[n]
+               : 0;
 }
 
-void SimulatedLedStrip::setPixelColor(uint16_t n, uint32_t c)
+auto SimulatedLedStrip::setPixelColor(uint16_t n, uint32_t c) -> void
 {
     if (n < _pixels.size()) {
         _pixels[n] = c;
     }
 }
 
-void SimulatedLedStrip::show()
+auto SimulatedLedStrip::show() -> void
 {
     // Well here we are...
 }
 
-void SimulatedLedStrip::begin()
+auto SimulatedLedStrip::begin() -> void
 {
 }
 
-void SimulatedLedStrip::setBrightness(uint8_t brightness)
+auto SimulatedLedStrip::setBrightness(uint8_t) -> void
 {
     // we don't care for brightness in the simulator...
 }
 
-std::vector<uint32_t>& SimulatedLedStrip::CurrentPixels()
+auto SimulatedLedStrip::CurrentPixels() -> std::vector<uint32_t>&
 {
     return _pixels;
 }

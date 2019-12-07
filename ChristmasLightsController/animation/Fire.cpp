@@ -9,64 +9,63 @@ Fire::Fire(AbstractLedStrip* strip) :
 {
 }
 
-void Fire::Init()
+auto Fire::Init() -> void
 {
 }
 
-void Fire::Show()
+auto Fire::Show() -> void
 {
     Burn(55, 120);
 }
 
-void Fire::SetPixelHeatColor(int index, byte temperature)
+auto Fire::SetPixelHeatColor(int index, byte temperature) const -> void
 {
     // Scale 'heat' down from 0-255 to 0-191
-    byte t192 = static_cast<byte>((temperature / 255.0) * 191);
+    const byte t192 = static_cast<byte>((temperature / 255.0) * 191);
 
     // calculate ramp up from
-    byte heatramp = t192 & 0x3F; // 0..63
-    heatramp <<= 2;              // scale up to 0..252
+    byte heatRamp = t192 & 0x3F; // 0..63
+    heatRamp <<= 2;              // scale up to 0..252
 
     // figure out which third of the spectrum we're in:
     if (t192 > 0x80) { // hottest
-        _strip->setPixelColor(index, ToColor(255, 255, heatramp));
+        _strip->setPixelColor(index, ToColor(255, 255, heatRamp));
     } else if (t192 > 0x40) { // middle
-        _strip->setPixelColor(index, ToColor(255, heatramp, 0));
+        _strip->setPixelColor(index, ToColor(255, heatRamp, 0));
     } else { // coolest
-        _strip->setPixelColor(index, ToColor(heatramp, 0, 0));
+        _strip->setPixelColor(index, ToColor(heatRamp, 0, 0));
     }
 }
 
-void Fire::Burn(int cooling, int sparks)
+auto Fire::Burn(const int cooling, const int sparks) const -> void
 {
     static byte heat[100];
-    int cooldown;
 
     // Step 1.  Cool down every cell a little
-    for (int i = 0; i < _strip->numPixels(); i++) {
-        cooldown = random(0, ((cooling * 10) / _strip->numPixels()) + 2);
+    for (auto index = 0; index < _strip->numPixels(); index++) {
+        const auto cooldown = random(0, cooling * 10 / _strip->numPixels() + 2);
 
-        if (cooldown > heat[i]) {
-            heat[i] = 0;
+        if (cooldown > heat[index]) {
+            heat[index] = 0;
         } else {
-            heat[i] = heat[i] - cooldown;
+            heat[index] = heat[index] - cooldown;
         }
     }
 
     // Step 2.  Heat from each cell drifts 'up' and diffuses a little
-    for (int k = _strip->numPixels() - 1; k >= 2; k--) {
-        heat[k] = (heat[k - 1] + heat[k - 2] + heat[k - 2]) / 3;
+    for (auto index = _strip->numPixels() - 1; index >= 2; index--) {
+        heat[index] = (heat[index - 1] + heat[index - 2] + heat[index - 2]) / 3;
     }
 
     // Step 3.  Randomly ignite new 'sparks' near the bottom
     if (random(255) < sparks) {
-        int y = random(7);
-        heat[y] = heat[y] + random(160, 255);
+        const auto sparkPosition = random(7);
+        heat[sparkPosition] = heat[sparkPosition] + random(160, 255);
         //heat[y] = random(160,255);
     }
 
     // Step 4.  Convert heat to LED colors
-    for (int j = 0; j < _strip->numPixels(); j++) {
-        SetPixelHeatColor(j, heat[j]);
+    for (auto index = 0; index < _strip->numPixels(); index++) {
+        SetPixelHeatColor(index, heat[index]);
     }
 }

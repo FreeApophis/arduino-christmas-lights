@@ -6,13 +6,13 @@ StaticColor::StaticColor(AbstractLedStrip* strip, int32_t color, uint16_t animat
 {
 }
 
-void StaticColor::Init()
+auto StaticColor::Init() -> void
 {
     for (auto index = 0; index < _strip->numPixels(); ++index) {
         _strip->setPixelColor(index, _color);
     }
 }
 
-void StaticColor::Show()
+auto StaticColor::Show() -> void
 {
 }

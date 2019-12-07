@@ -5,12 +5,12 @@
 
 // show the color Wave using rainbowCycle
 
-class ColorWave : public Animation {
+class ColorWave final : public Animation {
   public:
-    ColorWave(AbstractLedStrip* strip);
+    explicit ColorWave(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
     BrightnessManipulation _brightnessManipulation;

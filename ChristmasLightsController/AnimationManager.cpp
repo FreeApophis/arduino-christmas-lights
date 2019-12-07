@@ -1,9 +1,10 @@
 #include "AnimationManager.h"
 
+#include "manipulation/Clear.h"
+
 #include "framework.h"
 
 #include <cstdint>
-#include "manipulation/Clear.h"
 
 AnimationManager::AnimationManager(AbstractLedStrip* strip, Animation* animations[], byte numberOfAnimations, Clearance* clearances[], byte numberOfClearances) :
     _strip(strip),
@@ -22,7 +23,7 @@ AnimationManager::AnimationManager(AbstractLedStrip* strip, Animation* animation
 {
 }
 
-void AnimationManager::SetStepSettings()
+auto AnimationManager::SetStepSettings() -> void
 {
     const uint16_t stepMinPeriod = 10 * _currentAnimation->MinPeriod();
     const uint16_t stepMaxPeriod = 10 * _currentAnimation->MaxPeriod();
@@ -33,14 +34,14 @@ void AnimationManager::SetStepSettings()
     _nextStep = 0;
 }
 
-Animation* AnimationManager::NextAnimation()
+auto AnimationManager::NextAnimation() -> Animation*
 {
     return _nextAnimation == nullptr
                ? _animations[0] // off animation (should not happen)
                : _nextAnimation;
 }
 
-void AnimationManager::Init(Animation* animation)
+auto AnimationManager::Init(Animation* animation) -> void
 {
     _currentAnimation = animation;
     _nextAnimation = nullptr;
@@ -54,7 +55,7 @@ void AnimationManager::Init(Animation* animation)
     _currentAnimation->SetNeedsClearance(false);
 }
 
-void AnimationManager::Show()
+auto AnimationManager::Show() -> void
 {
     if (millis() < _nextStep) {
         delay(1);
@@ -67,12 +68,12 @@ void AnimationManager::Show()
     }
 }
 
-uint16_t AnimationManager::CurrentAnimationId() const
+auto AnimationManager::CurrentAnimationId() const -> uint16_t
 {
     return _currentAnimation->AnimationId();
 }
 
-void AnimationManager::StartAnimation(uint16_t animationId)
+auto AnimationManager::StartAnimation(uint16_t animationId) -> void
 {
     for (byte index = 0; index < _numberOfAnimations; ++index) {
         if (_animations[index]->AnimationId() == animationId) {
@@ -82,9 +83,8 @@ void AnimationManager::StartAnimation(uint16_t animationId)
     }
 }
 
-void AnimationManager::AdvanceAnimation()
+auto AnimationManager::AdvanceAnimation() -> void
 {
-
     // The current animation is timed out
     if (_nextAnimation != nullptr /* && _currentAnimation->IsComplete() */) {
         if (IsClean()) {
@@ -106,7 +106,7 @@ void AnimationManager::AdvanceAnimation()
     _strip->show();
 }
 
-void AnimationManager::AdvanceClearance()
+auto AnimationManager::AdvanceClearance() -> void
 {
     const uint32_t ms = millis();
     _nextStep = ms + _clearStepPeriod;
@@ -120,7 +120,7 @@ void AnimationManager::AdvanceClearance()
     _strip->show();
 }
 
-void AnimationManager::InitClear()
+auto AnimationManager::InitClear() -> void
 {
     _clearing = true;
 
@@ -130,10 +130,10 @@ void AnimationManager::InitClear()
     _clearStepPeriod = random(3, 10) * 10;
 }
 
-bool AnimationManager::IsClean()
+auto AnimationManager::IsClean() const -> bool
 {
-    for (uint16_t i = 0; i < _strip->numPixels(); ++i) {
-        if (_strip->getPixelColor(i)) {
+    for (uint16_t index = 0; index < _strip->numPixels(); ++index) {
+        if (_strip->getPixelColor(index)) {
             return false;
         }
     }

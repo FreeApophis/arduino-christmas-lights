@@ -4,28 +4,30 @@
 
 Sparks::Sparks(AbstractLedStrip* strip) :
     Animation(0x011b, strip, 2, 6),
-    _brightnessManipulation(strip)
+    _brightnessManipulation(strip),
+    _positions()
 {
 }
 
-void Sparks::Init()
+auto Sparks::Init() -> void
 {
-    for (unsigned short& position : _positions) {
+    for (auto& position : _positions) {
         position = 0;
     }
 }
 
-void Sparks::Show()
+auto Sparks::Show() -> void
 {
-    const uint32_t c = ColorFromColorWheel(random(265));
-    for (char i = 7; i >= 1; --i) {
-        if (i == 6)
-            _strip->setPixelColor(_positions[byte(i)], 0);
-        else
-            _brightnessManipulation.change(_positions[byte(i)], -128);
-        _positions[byte(i)] = _positions[byte(i - 1)];
+    const auto color = ColorFromColorWheel(random(265));
+    for (byte index = 7; index >= 1; --index) {
+        if (index == 6) {
+            _strip->setPixelColor(_positions[index], 0);
+        } else {
+            _brightnessManipulation.Change(_positions[index], -128);
+        }
+        _positions[index] = _positions[index - 1];
     }
-    const int p = random(_strip->numPixels() + 1);
-    _positions[0] = p;
-    _strip->setPixelColor(p, c);
+    const auto position = random(_strip->numPixels() + 1);
+    _positions[0] = position;
+    _strip->setPixelColor(position, color);
 }

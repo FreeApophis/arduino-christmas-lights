@@ -5,65 +5,70 @@
 #include <cstdlib>
 
 SolitonCreep::SolitonCreep(AbstractLedStrip* strip) :
-    Animation(0x011a, strip, 6, 14)
+    Animation(0x011a, strip, 6, 14),
+    _space(0),
+    _changeDirection(0),
+    _dots{},
+    _solitons(0),
+    _wheelIndex(0)
 {
 }
 
-void SolitonCreep::Init()
+auto SolitonCreep::Init() -> void
 {
-    w = random(256);
+    _wheelIndex = random(256);
     _crawl.SetDirection(RandomDirection());
-    change_direction = random(200, 500);
-    newSoliton();
+    _changeDirection = random(200, 500);
+    NewSoliton();
 }
 
-void SolitonCreep::Show()
+auto SolitonCreep::Show() -> void
 {
     _crawl.Step(_strip);
 
-    if (--change_direction <= 0) {
+    if (--_changeDirection <= 0) {
         _crawl.ToggleDirection();
-        change_direction = random(200, 500);
+        _changeDirection = random(200, 500);
     }
 
     const int pos = StartPosition(_crawl.GetDirection(), _strip->numPixels() - 1);
 
-    if (sol <= 4) {
-        int i = abs(sol);
-        _strip->setPixelColor(pos, dot[i]);
-        ++sol;
+    if (_solitons <= 4) {
+        const int index = abs(_solitons);
+        _strip->setPixelColor(pos, _dots[index]);
+        ++_solitons;
     } else {
-        if (--space >= 0) {
+        if (--_space >= 0) {
             _strip->setPixelColor(pos, 0);
         } else {
-            newSoliton();
+            NewSoliton();
         }
     }
 }
 
-void SolitonCreep::newSoliton()
+auto SolitonCreep::NewSoliton() -> void
 {
-    sol = -3;
-    uint32_t c = ColorFromColorWheel(w);
-    dot[0] = c;
-    w += 71;
-    uint32_t r = c & 0xff;
-    uint32_t g = (c >> 8) & 0xff;
-    uint32_t b = (c >> 16) & 0xff;
-    for (byte i = 1; i <= 4; ++i) {
-        r >>= 1;
-        g >>= 1;
-        b >>= 1;
-        uint32_t cc = b & 0xff;
+    _solitons = -3;
+    const uint32_t color = ColorFromColorWheel(_wheelIndex);
+    _dots[0] = color;
+    _wheelIndex += 71;
+    uint32_t red = ExtractRed(color);
+    uint32_t green = ExtractGreen(color);
+    uint32_t blue = ExtractBlue(color);
+    for (byte index = 1; index <= 4; ++index) {
+        red >>= 1;
+        green >>= 1;
+        blue >>= 1;
+        auto cc = blue & 0xff;
         cc <<= 8;
-        cc |= g & 0xff;
+        cc |= green & 0xff;
         cc <<= 8;
-        cc |= r & 0xff;
-        dot[i] = cc;
+        cc |= red & 0xff;
+        _dots[index] = cc;
     }
-    space = random(3, 10);
+    _space = random(3, 10);
 
-    const int position = StartPosition(_crawl.GetDirection(), _strip->numPixels() - 1);
+    const auto position = StartPosition(_crawl.GetDirection(), _strip->numPixels() - 1);
 
-    _strip->setPixelColor(position, dot[4]);
+    _strip->setPixelColor(position, _dots[4]);
 }

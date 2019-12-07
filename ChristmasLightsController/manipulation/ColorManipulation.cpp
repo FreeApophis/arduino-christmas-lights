@@ -4,27 +4,27 @@
 
 #include <cmath>
 
-uint32_t ToColor(const uint8_t r, const uint8_t g, const uint8_t b)
+auto ToColor(const uint8_t r, const uint8_t g, const uint8_t b) -> uint32_t
 {
     return static_cast<uint32_t>(r) << 16 | static_cast<uint32_t>(g) << 8 | b;
 }
 
-uint8_t ExtractRed(const uint32_t color)
+auto ExtractRed(const uint32_t color) -> uint8_t
 {
     return static_cast<uint8_t>(color >> 16);
 }
 
-uint8_t ExtractGreen(const uint32_t color)
+auto ExtractGreen(const uint32_t color) -> uint8_t
 {
     return static_cast<uint8_t>(color >> 8);
 }
 
-uint8_t ExtractBlue(const uint32_t color)
+auto ExtractBlue(const uint32_t color) -> uint8_t
 {
     return static_cast<uint8_t>(color >> 0);
 }
 
-uint32_t AddColors(const uint32_t color1, const uint32_t color2)
+auto AddColors(const uint32_t color1, const uint32_t color2) -> uint32_t
 {
     return ToColor(
         constrain(ExtractRed(color1) + ExtractRed(color2), 0, 255),
@@ -38,13 +38,13 @@ uint32_t AddColors(const uint32_t color1, const uint32_t color2)
 // next 1/6 (128 - 170): linear from 255 to 0
 // last 1/3 (170 - 255): constant 0
 // b is moving the function in x direction...
-byte ColorFunction(int x, int b)
+auto ColorFunction(int x, int b) -> byte
 {
     return static_cast<byte>(constrain(516 - abs(85 / 14 * (x - 85 - b)), 0, 255));
 }
 
 // Input a value 0 to 255 to get a color value. The colours are a transition r - g - b - back to r.
-uint32_t ColorFromColorWheel(const byte position)
+auto ColorFromColorWheel(const byte position) -> uint32_t
 {
     return ToColor(
         ColorFunction(position, 0),
@@ -52,11 +52,11 @@ uint32_t ColorFromColorWheel(const byte position)
         ColorFunction(position, position > 63 ? 170 : -85));
 }
 
-uint32_t ColorSuperPosition(const uint32_t color1, const uint32_t color2)
+auto ColorSuperPosition(const uint32_t color1, const uint32_t color2) -> uint32_t
 {
     uint32_t c = 0;
     for (byte i = 0; i < 3; ++i) {
-        uint32_t p = color1 >> (i * 8);
+        auto p = color1 >> (i * 8);
         p += color2 >> (i * 8);
         p &= 0xff;
         p <<= i * 8;
@@ -65,7 +65,7 @@ uint32_t ColorSuperPosition(const uint32_t color1, const uint32_t color2)
     return c;
 }
 
-uint32_t SubtractColors(const uint32_t minuend, const uint32_t subtrahend)
+auto SubtractColors(const uint32_t minuend, const uint32_t subtrahend) -> uint32_t
 {
     int16_t r = static_cast<int16_t>(ExtractRed(minuend)) - static_cast<int16_t>(ExtractRed(subtrahend));
     int16_t g = static_cast<int16_t>(ExtractGreen(minuend)) - static_cast<int16_t>(ExtractGreen(subtrahend));
@@ -84,7 +84,7 @@ uint32_t SubtractColors(const uint32_t minuend, const uint32_t subtrahend)
     return ToColor(static_cast<uint8_t>(r), static_cast<uint8_t>(g), static_cast<uint8_t>(b));
 }
 
-uint32_t CreateVariation()
+auto CreateVariation() -> uint32_t
 {
     return ToColor(
         random(20),
@@ -92,7 +92,7 @@ uint32_t CreateVariation()
         random(20));
 }
 
-uint32_t Shimmer(const uint32_t color)
+auto Shimmer(const uint32_t color) -> uint32_t
 {
     return SubtractColors(AddColors(CreateVariation(), color), CreateVariation());
 }

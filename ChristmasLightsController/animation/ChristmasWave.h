@@ -6,13 +6,13 @@
 // Lights run from the center
 class ChristmasWave final : public Animation {
   public:
-    ChristmasWave(AbstractLedStrip* strip);
-    void Init() override;
-    void Show() override;
+    explicit ChristmasWave(AbstractLedStrip* strip);
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    void Advance();
-    bool IsQuadrant(byte quadrant) const;
+    auto Advance() -> void;
+    auto IsQuadrant(byte quadrant) const -> bool;
     byte RedValue() const;
     byte GreenValue() const;
     uint32_t CurrentColor() const;

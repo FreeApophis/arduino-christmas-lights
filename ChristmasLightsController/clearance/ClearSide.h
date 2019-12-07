@@ -3,14 +3,14 @@
 #include "Clearance.h"
 
 // Clear the strip from the other side
-class ClearSide : public Clearance {
+class ClearSide final : public Clearance {
   public:
-    ClearSide(AbstractLedStrip* strip);
-    void Init() override;
-    void Show() override;
+    explicit ClearSide(AbstractLedStrip* strip);
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    uint32_t color;
-    int index;
-    bool fwd;
+    uint32_t _color;
+    int _index;
+    bool _isForward;
 };

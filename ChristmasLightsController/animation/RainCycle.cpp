@@ -10,35 +10,35 @@ RainCycle::RainCycle(AbstractLedStrip* strip) :
 {
 }
 
-void RainCycle::Init()
+auto RainCycle::Init() -> void
 {
     _index = 0;
     _brightenPhase = true;
 }
 
-uint32_t RainCycle::ColorWheelFromIndex(uint16_t i) const
+auto RainCycle::ColorWheelFromIndex(const uint16_t index) const -> uint32_t
 {
-    return ColorFromColorWheel(i * 256 / _strip->numPixels() + _index);
+    return ColorFromColorWheel(index * 256 / _strip->numPixels() + _index);
 }
 
-void RainCycle::Brighten()
+auto RainCycle::Brighten() -> void
 {
     _brightenPhase = false;
     for (uint16_t i = 0; i < _strip->numPixels(); ++i) {
-        _brightnessManipulation.setColor(ColorWheelFromIndex(i));
-        if (!_brightnessManipulation.change(i, 1)) {
+        _brightnessManipulation.SetColor(ColorWheelFromIndex(i));
+        if (!_brightnessManipulation.Change(i, 1)) {
             _brightenPhase = true;
         }
     }
 }
 
-void RainCycle::Show()
+auto RainCycle::Show() -> void
 {
     if (_brightenPhase) {
         Brighten();
     } else {
-        for (uint16_t i = 0; i < _strip->numPixels(); ++i) {
-            _strip->setPixelColor(i, ColorWheelFromIndex(i));
+        for (uint16_t index = 0; index < _strip->numPixels(); ++index) {
+            _strip->setPixelColor(index, ColorWheelFromIndex(index));
         }
 
         // unsigned, behaviour is defined %256

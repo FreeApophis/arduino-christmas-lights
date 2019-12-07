@@ -6,17 +6,18 @@
 #include "framework.h"
 
 // Slow shining by the different colors
-class ShineSeven : public Animation {
+class ShineSeven final : public Animation {
   public:
-    ShineSeven(AbstractLedStrip* strip);
+    explicit ShineSeven(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
+    auto StartNewColor() -> void;
+
     BrightnessManipulation _brightnessManipulation;
-    void startNewColor();
-    byte curs;
-    byte w;
-    byte base;
+    byte _current;
+    byte _wheelIndex;
+    byte _base;
 };

@@ -3,34 +3,35 @@
 #include "manipulation/ColorManipulation.h"
 
 TowardRain::TowardRain(AbstractLedStrip* strip) :
-    Animation(0x011d, strip, 10, 20)
+    Animation(0x011d, strip, 10, 20),
+    _wheelIndex(0)
 {
 }
 
-void TowardRain::Init()
+auto TowardRain::Init() -> void
 {
-    w = random(256);
+    _wheelIndex = random(256);
 }
 
-void TowardRain::Show()
+auto TowardRain::Show() -> void
 {
-    int n = _strip->numPixels();
-    for (int i = n - 2; i >= 2; i -= 2) {
-        uint32_t c = _strip->getPixelColor(i - 2);
-        _strip->setPixelColor(i, c);
+    const int pixelCount = _strip->numPixels();
+    for (auto index = pixelCount - 2; index >= 2; index -= 2) {
+        const auto color = _strip->getPixelColor(index - 2);
+        _strip->setPixelColor(index, color);
     }
-    for (int i = 1; i < n - 1; i += 2) {
-        uint32_t c = _strip->getPixelColor(i + 2);
-        _strip->setPixelColor(i, c);
+    for (int index = 1; index < pixelCount - 1; index += 2) {
+        const auto color = _strip->getPixelColor(index + 2);
+        _strip->setPixelColor(index, color);
     }
 
     if (!random(17)) {
         _strip->setPixelColor(0, 0);
-        _strip->setPixelColor(n - 1, 0);
+        _strip->setPixelColor(pixelCount - 1, 0);
     } else {
-        _strip->setPixelColor(0, ColorFromColorWheel(w));
-        w += 9;
-        _strip->setPixelColor(n - 1, ColorFromColorWheel(w));
-        w += 3;
+        _strip->setPixelColor(0, ColorFromColorWheel(_wheelIndex));
+        _wheelIndex += 9;
+        _strip->setPixelColor(pixelCount - 1, ColorFromColorWheel(_wheelIndex));
+        _wheelIndex += 3;
     }
 }

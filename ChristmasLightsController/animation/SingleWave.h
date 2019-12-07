@@ -6,20 +6,19 @@
 #include "framework.h"
 
 // Show single wave moving in random direction
-class SingleWave : public Animation {
+class SingleWave final : public Animation {
   public:
-    SingleWave(AbstractLedStrip* strip);
+    explicit SingleWave(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
     BrightnessManipulation _brightnessManipulation;
-    uint32_t dot[5];
-    int pos;
-    byte stp;
-    byte remain;
-    char incr;
-    byte mode;
-    byte w;
+    uint32_t _dots[5];
+    int _position;
+    byte _stop;
+    byte _remain;
+    char _increment;
+    byte _mode;
 };

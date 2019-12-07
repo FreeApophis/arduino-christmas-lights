@@ -5,16 +5,16 @@
 #include "framework.h"
 
 // Neo fire animation by Robert Ulbricht
-class NeoFire : public Animation {
+class NeoFire final : public Animation {
   public:
-    NeoFire(AbstractLedStrip* strip);
+    explicit NeoFire(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
     uint32_t _color;
-    char pause;
-    const uint32_t c1 = 80;
-    const uint32_t c2 = 25;
+    char _pause;
+    const uint32_t _color1 = 80;
+    const uint32_t _color2 = 25;
 };

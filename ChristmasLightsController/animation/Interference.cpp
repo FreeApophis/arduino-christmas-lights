@@ -6,77 +6,83 @@
 
 Interference::Interference(AbstractLedStrip* strip) :
     Animation(0x0108, strip, 6, 10),
-    tm(0),
-    pos{},
-    start{},
-    w{},
-    active(0)
+    _startTime(0),
+    _positions{},
+    _start{},
+    _wheelIndex{},
+    _active(0)
 {
 }
 
-void Interference::Init()
+auto Interference::Init() -> void
 {
-    active = 0;
-    tm = 0;
-    add();
+    _active = 0;
+    _startTime = 0;
+    Add();
 }
 
-void Interference::Show()
+auto Interference::Show() -> void
 {
-    const int n = _strip->numPixels();
+    const int pixelCount = _strip->numPixels();
 
-    for (int i = 0; i < n; ++i) {
-        uint32_t c = 0;
-        for (byte j = 0; j < active; ++j) {
-            const uint32_t c1 = clr(i, j);
-            c = ColorSuperPosition(c, c1);
-        }
-        _strip->setPixelColor(i, c);
+    for (auto index = 0; index < pixelCount; ++index) {
+        _strip->setPixelColor(index, NextColor(index));
     }
-    ++tm;
-    if (tm % 64 == 0) {
-        for (byte i = 0; i < active; ++i)
-            w[i] += 4;
+    ++_startTime;
+    if (_startTime % 64 == 0) {
+        for (byte index = 0; index < _active; ++index) {
+            _wheelIndex[index] += 4;
+        }
     }
 
     if (!random(20))
-        add();
+        Add();
 }
 
-void Interference::add()
+auto Interference::Add() -> void
 {
-    if (active >= num_inter)
+    if (_active >= interferenceCount) {
         return;
-    pos[active] = random(_strip->numPixels());
-    w[active] = random(256);
-    start[active] = tm;
-    active++;
+    }
+    _positions[_active] = random(_strip->numPixels());
+    _wheelIndex[_active] = random(256);
+    _start[_active] = _startTime;
+    _active++;
 }
 
-uint32_t Interference::clr(int p, byte source)
+auto Interference::Clear(const int position, const byte source) -> uint32_t
 {
     uint32_t c = 0;
-    const int s_pos = pos[source];
-    int e = tm - start[source];
-    e -= abs(p - s_pos);
-    if (e < 0)
+    const int sourcePosition = _positions[source];
+    int delta = _startTime - _start[source];
+    delta -= abs(position - sourcePosition);
+    if (delta < 0) {
         return c; // The wave is not here yet
-    e %= 64;      // The wave period
-    byte elm;
-    if (e < 32) // Half way
-        elm = (31 - e) << 3;
-    else
-        elm = (e - 64) << 3;
+    }
+    delta %= 64; // The wave period
+    // Half way
+    const byte elm = (delta < 32 ? 31 - delta : delta - 64) << 3;
 
-    const uint32_t color = ColorFromColorWheel(w[source]);
-    for (byte i = 0; i < 3; ++i) {
-        int max_c = (color >> (8 * i)) & 0xff;
+    const auto color = ColorFromColorWheel(_wheelIndex[source]);
+    for (byte index = 0; index < 3; ++index) {
+        int max_c = (color >> (8 * index)) & 0xff;
         max_c -= elm;
         if (max_c < 0)
             max_c = 0;
         uint32_t nc = max_c;
-        nc <<= 8 * i;
+        nc <<= 8 * index;
         c |= nc;
     }
     return c;
+}
+
+auto Interference::NextColor(const int position) -> uint32_t
+{
+    uint32_t result = 0;
+
+    for (byte index = 0; index < _active; ++index) {
+        result = ColorSuperPosition(result, Clear(position, index));
+    }
+
+    return result;
 }

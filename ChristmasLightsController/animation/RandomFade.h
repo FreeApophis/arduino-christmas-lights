@@ -3,15 +3,13 @@
 #include "animation/Animation.h"
 #include "manipulation/BrightnessManipulation.h"
 
-#include "framework.h"
-
 // Random sparks fade out
-class RandomFade : public Animation {
+class RandomFade final : public Animation {
   public:
-    RandomFade(AbstractLedStrip* strip);
+    explicit RandomFade(AbstractLedStrip* strip);
 
-    void Init() override ;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
     BrightnessManipulation _brightnessManipulation;

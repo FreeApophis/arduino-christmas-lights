@@ -3,14 +3,14 @@
 #include "Clearance.h"
 
 // Clear the strip from the center to both ends
-class ClearFromCenter : public Clearance {
+class ClearFromCenter final : public Clearance {
   public:
-    ClearFromCenter(AbstractLedStrip* strip);
-    void Init() override;
-    void Show() override;
+    explicit ClearFromCenter(AbstractLedStrip* strip);
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
     uint32_t color;
-    int l, r;
-    bool fwd;
+    int _left;
+    int _right;
 };

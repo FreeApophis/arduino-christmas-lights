@@ -7,26 +7,27 @@
 ColorWipe::ColorWipe(AbstractLedStrip* strip) :
     Animation(0x0105, strip, 2, 8),
     _index(0),
-    fwd(false)
+    _isForward(false)
 {
-    w = random(256);
+    _wheelIndex = random(256);
 }
 
-void ColorWipe::Init()
+auto ColorWipe::Init() -> void
 {
     const int p = random(2, 4);
-    w += p * 16 + 1;
-    fwd = random(2);
+    _wheelIndex += p * 16 + 1;
+    _isForward = random(2) != 0;
     _index = 0;
-    if (!fwd)
+    if (!_isForward) {
         _index = _strip->numPixels() - 1;
+    }
 }
 
-void ColorWipe::Show()
+auto ColorWipe::Show() -> void
 {
-    const uint32_t color = ColorFromColorWheel(w);
+    const auto color = ColorFromColorWheel(_wheelIndex);
 
-    if (fwd) {
+    if (_isForward) {
         if (_index > int(_strip->numPixels())) { // Start new sequence with the new color
             Init();
             _complete = true;

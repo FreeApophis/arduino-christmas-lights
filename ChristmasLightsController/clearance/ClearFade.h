@@ -3,13 +3,13 @@
 #include "Clearance.h"
 
 // Clear the strip from the ether side
-class ClearFade : public Clearance {
+class ClearFade final : public Clearance {
   public:
-    ClearFade(AbstractLedStrip* strip);
+    explicit ClearFade(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    byte decrement;
+    byte _decrement;
 };

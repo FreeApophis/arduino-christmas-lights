@@ -10,7 +10,7 @@ ColorWave::ColorWave(AbstractLedStrip* strip) :
 {
 }
 
-void ColorWave::Init()
+auto ColorWave::Init() -> void
 {
     _index = 0;
     _isReady = false;
@@ -18,13 +18,13 @@ void ColorWave::Init()
     _crawl.SetDirection(RandomDirection());
 }
 
-void ColorWave::Show()
+auto ColorWave::Show() -> void
 {
     if (!_isReady) {
         _isReady = true;
         for (uint16_t i = 0; i < _strip->numPixels(); ++i) {
-            _brightnessManipulation.setColor(ColorFromColorWheel(((i * 256 / _strip->numPixels())) & 255));
-            if (!_brightnessManipulation.change(i, 2))
+            _brightnessManipulation.SetColor(ColorFromColorWheel(((i * 256 / _strip->numPixels())) & 255));
+            if (!_brightnessManipulation.Change(i, 2))
                 _isReady = false;
         }
         return;

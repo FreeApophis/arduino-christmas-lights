@@ -5,18 +5,19 @@
 RandomCreep::RandomCreep(AbstractLedStrip* strip) :
     Animation(0x0112, strip, 6, 24),
     _space(0),
-    _changeDirection(0)
+    _changeDirection(0),
+    _count(0)
 {
 }
 
-void RandomCreep::Init()
+auto RandomCreep::Init() -> void
 {
     _space = random(2, 5);
     _changeDirection = random(100, 500);
     _count = 0;
 }
 
-void RandomCreep::Show()
+auto RandomCreep::Show() -> void
 {
     --_changeDirection;
     if (_changeDirection <= 0) {

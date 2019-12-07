@@ -6,12 +6,12 @@
 #include "framework.h"
 
 // show the rainbow colors on the entire strip
-class RainFull : public Animation {
+class RainFull final : public Animation {
   public:
-    RainFull(AbstractLedStrip* strip);
+    explicit RainFull(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
     BrightnessManipulation _brightnessManipulation;

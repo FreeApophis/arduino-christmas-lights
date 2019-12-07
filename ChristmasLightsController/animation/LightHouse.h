@@ -6,19 +6,19 @@
 #include "framework.h"
 
 // Slow single wave moving in random direction
-class LightHouse : public Animation {
+class LightHouse final : public Animation {
   public:
-    LightHouse(AbstractLedStrip* strip);
+    explicit LightHouse(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
     BrightnessManipulation _brightnessManipulation;
-    uint32_t dot[5]{};
-    int pos;
-    byte stp;
-    char incr;
-    byte sp;
-    byte dlay;
+    uint32_t _dots[5]{};
+    int _position;
+    byte _step;
+    char _increment;
+    byte _speed;
+    byte _delay;
 };

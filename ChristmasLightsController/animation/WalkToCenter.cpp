@@ -4,32 +4,32 @@
 
 WalkToCenter::WalkToCenter(AbstractLedStrip* strip) :
     Animation(0x0120, strip, 1, 6),
-    cl(0),
-    cr(0),
-    l(0),
-    r(0),
-    ml(0),
-    mr(0),
-    clr(false)
+    _colorLeft(0),
+    _colorRight(0),
+    _left(0),
+    _right(0),
+    _leftMiddle(0),
+    _rightMiddle(0),
+    _clear(false)
 {
 }
 
-void WalkToCenter::Init()
+auto WalkToCenter::Init() -> void
 {
-    ml = (_strip->numPixels() - 1) / 2;
-    mr = ml + 1;
-    newColors();
-    clr = false;
+    _leftMiddle = (_strip->numPixels() - 1) / 2;
+    _rightMiddle = _leftMiddle + 1;
+    NewColors();
+    _clear = false;
 }
 
-void WalkToCenter::Show()
+auto WalkToCenter::Show() -> void
 {
-    if (clr) {
-        _strip->setPixelColor(l, 0);
-        _strip->setPixelColor(r, 0);
-        l--;
-        r++;
-        if (l < 0) {
+    if (_clear) {
+        _strip->setPixelColor(_left, 0);
+        _strip->setPixelColor(_right, 0);
+        _left--;
+        _right++;
+        if (_left < 0) {
             Init();
             _complete = true;
         }
@@ -37,44 +37,44 @@ void WalkToCenter::Show()
     }
 
     // blend colors in the middle
-    if ((mr - ml) > 1) {
-        for (int i = ml; i < mr; ++i) {
-            _strip->setPixelColor(i, Shimmer(_strip->getPixelColor(i)));
+    if ((_rightMiddle - _leftMiddle) > 1) {
+        for (int index = _leftMiddle; index < _rightMiddle; ++index) {
+            _strip->setPixelColor(index, Shimmer(_strip->getPixelColor(index)));
         }
     }
 
     // New colors are moving to the center
-    if (l <= ml) {
-        if (l > 1)
-            _strip->setPixelColor(l - 2, 0);
-        _strip->setPixelColor(l, cl);
+    if (_left <= _leftMiddle) {
+        if (_left > 1)
+            _strip->setPixelColor(_left - 2, 0);
+        _strip->setPixelColor(_left, _colorLeft);
     }
-    if (r >= mr) {
-        if (r < int(_strip->numPixels() - 2))
-            _strip->setPixelColor(r + 2, 0);
-        _strip->setPixelColor(r, cr);
+    if (_right >= _rightMiddle) {
+        if (_right < int(_strip->numPixels() - 2))
+            _strip->setPixelColor(_right + 2, 0);
+        _strip->setPixelColor(_right, _colorRight);
     }
-    if ((l >= ml) && (r <= mr)) {
-        ml--;
-        mr++;
-        if (ml < 0) {
-            clr = true;
-            l = (_strip->numPixels() - 1) / 2;
-            r = l + 1;
+    if ((_left >= _leftMiddle) && (_right <= _rightMiddle)) {
+        _leftMiddle--;
+        _rightMiddle++;
+        if (_leftMiddle < 0) {
+            _clear = true;
+            _left = (_strip->numPixels() - 1) / 2;
+            _right = _left + 1;
             return;
         }
-        newColors();
+        NewColors();
         return;
     }
-    l++;
-    r--;
+    _left++;
+    _right--;
     _complete = false;
 }
 
-void WalkToCenter::newColors()
+auto WalkToCenter::NewColors() -> void
 {
-    cl = ColorFromColorWheel(random(256));
-    cr = ColorFromColorWheel(random(256));
-    l = 0;
-    r = _strip->numPixels() - 1;
+    _colorLeft = ColorFromColorWheel(random(256));
+    _colorRight = ColorFromColorWheel(random(256));
+    _left = 0;
+    _right = _strip->numPixels() - 1;
 }

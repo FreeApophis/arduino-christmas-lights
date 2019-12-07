@@ -5,16 +5,16 @@
 #include "framework.h"
 
 // Even and odd position leds are moving towards each other
-class EvenOdd : public Animation {
+class EvenOdd final : public Animation {
   public:
-    EvenOdd(AbstractLedStrip* strip);
+    explicit EvenOdd(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    uint32_t cl;
-    uint32_t cr;
-    int l;
-    int r;
+    uint32_t _leftColor;
+    uint32_t _rightColor;
+    int _left;
+    int _right;
 };

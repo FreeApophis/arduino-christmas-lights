@@ -6,34 +6,34 @@ Crawl::Crawl() :
 {
 }
 
-void Crawl::SetDirection(CrawlDirection direction)
+auto Crawl::SetDirection(CrawlDirection direction) -> void
 {
     _crawlDirection = direction;
 }
 
-void Crawl::ToggleDirection()
+auto Crawl::ToggleDirection() -> void
 {
     _crawlDirection = _crawlDirection == CrawlDirection::Forward
                           ? CrawlDirection::Backward
                           : CrawlDirection::Forward;
 }
 
-CrawlDirection Crawl::GetDirection() const
+auto Crawl::GetDirection() const -> CrawlDirection
 {
     return _crawlDirection;
 }
 
-void Crawl::SetNextColor(uint32_t color)
+auto Crawl::SetNextColor(uint32_t color) -> void
 {
     _nextColor = color;
 }
 
-uint32_t Crawl::NextColor() const
+auto Crawl::NextColor() const -> uint32_t
 {
     return _nextColor;
 }
 
-void Crawl::Step(AbstractLedStrip* strip) const
+auto Crawl::Step(AbstractLedStrip* strip) const -> void
 {
     if (_crawlDirection == CrawlDirection::Forward) {
         for (auto i = strip->numPixels() - 1; i > 0; --i) {

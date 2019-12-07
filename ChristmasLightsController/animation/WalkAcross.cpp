@@ -13,7 +13,7 @@ WalkAcross::WalkAcross(AbstractLedStrip* strip) :
 {
 }
 
-void WalkAcross::Init()
+auto WalkAcross::Init() -> void
 {
     _borderLeft = _strip->numPixels() - 1;
     _borderRight = 0;
@@ -21,18 +21,18 @@ void WalkAcross::Init()
     _left = _borderRight;
     _right = _borderLeft;
 
-    newColors();
+    NewColors();
 }
 
-void WalkAcross::Show()
+auto WalkAcross::Show() -> void
 {
     // blend colors in the both ends
     if (_borderRight > 1) {
-        for (int i = 0; i < _borderRight; ++i) {
-            _strip->setPixelColor(i, Shimmer(_strip->getPixelColor(i)));
+        for (auto index = 0; index < _borderRight; ++index) {
+            _strip->setPixelColor(index, Shimmer(_strip->getPixelColor(index)));
         }
-        for (uint16_t i = _borderLeft; i < _strip->numPixels(); ++i)
-            _strip->setPixelColor(i, Shimmer(_strip->getPixelColor(i)));
+        for (uint16_t index = _borderLeft; index < _strip->numPixels(); ++index)
+            _strip->setPixelColor(index, Shimmer(_strip->getPixelColor(index)));
     }
 
     // New colors are moving to the other end
@@ -64,7 +64,7 @@ void WalkAcross::Show()
     _complete = false;
 }
 
-void WalkAcross::newColors()
+auto WalkAcross::NewColors() -> void
 {
     _leftColor = ColorFromColorWheel(random(256));
     _rightColor = ColorFromColorWheel(random(256));

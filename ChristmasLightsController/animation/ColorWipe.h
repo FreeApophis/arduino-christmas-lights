@@ -5,17 +5,15 @@
 class AbstractLedStrip;
 
 // Fill the dots one after the other with a color
-class ColorWipe : public Animation {
+class ColorWipe final : public Animation {
   public:
-    ColorWipe(AbstractLedStrip* strip);
+    explicit ColorWipe(AbstractLedStrip* strip);
 
-    void Init() override;
-    void Show() override;
-
-    ~ColorWipe() = default;
+    auto Init() -> void override;
+    auto Show() -> void override;
 
   private:
-    byte w;
+    byte _wheelIndex;
     int _index;
-    bool fwd;
+    bool _isForward;
 };

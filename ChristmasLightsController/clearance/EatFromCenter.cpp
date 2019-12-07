@@ -1,30 +1,31 @@
 #include "EatFromCenter.h"
 
 EatFromCenter::EatFromCenter(AbstractLedStrip* strip) :
-    Clearance(strip)
+    Clearance(strip),
+    _remaining(0)
 {
 }
 
-void EatFromCenter::Init()
+auto EatFromCenter::Init() -> void
 {
     _complete = false;
-    remain = _strip->numPixels() / 2 + 1;
+    _remaining = _strip->numPixels() / 2 + 1;
 }
 
-void EatFromCenter::Show()
+auto EatFromCenter::Show() -> void
 {
-    const int n = _strip->numPixels();
-    const int c = n / 2;
-    for (int i = c; i > 0; --i) {
-        uint32_t c = _strip->getPixelColor(i - 1);
-        _strip->setPixelColor(i, c);
+    const int pixelCount = _strip->numPixels();
+    const auto halfPixelCount = pixelCount / 2;
+    for (auto index = halfPixelCount; index > 0; --index) {
+        const auto color = _strip->getPixelColor(index - 1);
+        _strip->setPixelColor(index, color);
     }
-    for (int i = c; i < n - 1; ++i) {
-        uint32_t c = _strip->getPixelColor(i + 1);
-        _strip->setPixelColor(i, c);
+    for (auto index = halfPixelCount; index < pixelCount - 1; ++index) {
+        const uint32_t color = _strip->getPixelColor(index + 1);
+        _strip->setPixelColor(index, color);
     }
     _strip->setPixelColor(0, 0);
-    _strip->setPixelColor(n - 1, 0);
-    --remain;
-    _complete = (remain <= 0);
+    _strip->setPixelColor(pixelCount - 1, 0);
+    --_remaining;
+    _complete = (_remaining <= 0);
 }
