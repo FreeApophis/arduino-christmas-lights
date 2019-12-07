@@ -46,11 +46,12 @@ namespace CreateIno
 
         static public List<string> Clearances { get; } = new List<string>
         {
-            "ClearSide",
-            "ClearFromCenter",
+            "Brighten",
             "ClearFade",
-            "EatFromCenter",
+            "ClearFromCenter",
             "ClearHalf",
+            "ClearSide",
+            "EatFromCenter",
         };
     }
 }

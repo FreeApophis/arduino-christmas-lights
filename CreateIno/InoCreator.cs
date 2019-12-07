@@ -91,7 +91,7 @@ namespace CreateIno
 
         private string YieldPointer(IEnumerable<string> animations)
         {
-            return string.Join(",\n", animations.Select(animation => $"    &{ToCamelCase(animation)}");
+            return string.Join(",\n", animations.Select(animation => $"    &{ToCamelCase(animation)}"));
         }
 
         internal void YieldArrays(string type, IEnumerable<string> animations)
@@ -100,7 +100,7 @@ namespace CreateIno
             AddLine($"{type}* {type.ToLower()}s[] = {{");
             AddLine(YieldPointer(animations));
             AddLine("}");
-            ino.AddLine(string.Empty);
+            AddLine(string.Empty);
         }
     }
 }

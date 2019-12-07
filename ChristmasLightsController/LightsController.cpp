@@ -10,7 +10,7 @@
 #include "animation/ColorWave.h"
 #include "animation/ColorWipe.h"
 #include "animation/EvenOdd.h"
-#include "animation/Fire.h" 
+#include "animation/Fire.h"
 #include "animation/FlashSeven.h"
 #include "animation/Interference.h"
 #include "animation/LightHouse.h"
@@ -40,6 +40,7 @@
 #include "animation/WalkToCenter.h"
 #include "animation/WarmWhiteShimmer.h"
 #include "animation/Worms.h"
+#include "clearance/Brighten.h"
 #include "clearance/ClearFade.h"
 #include "clearance/ClearFromCenter.h"
 #include "clearance/ClearHalf.h"
@@ -171,6 +172,7 @@ ClearFromCenter clearFromCenter(&strip);
 ClearFade clearFade(&strip);
 EatFromCenter eatFromCenter(&strip);
 ClearHalf clearHalf(&strip);
+Brighten brighten(&strip);
 
 Animation* animations[] = {
     &off,
@@ -216,12 +218,12 @@ Animation* animations[] = {
     &fire};
 
 Clearance* clearances[] = {
-    &clearSide,
-    &clearFromCenter,
-    &clearFade,
-    &eatFromCenter,
-    &clearHalf,
-};
+    //&clearSide,
+    //&clearFromCenter,
+    //&clearFade,
+    //&eatFromCenter,
+    //&clearHalf,
+    &brighten};
 
 template<typename TElement, int NSize>
 bool CheckAnimationIds(TElement (&animations)[NSize])

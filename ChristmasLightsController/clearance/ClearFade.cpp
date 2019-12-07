@@ -8,7 +8,7 @@ ClearFade::ClearFade(AbstractLedStrip* strip) :
 void ClearFade::Init()
 {
     _complete = false;
-    decrement = random(4, 16);
+    decrement = random(6, 16);
 }
 
 void ClearFade::Show()
