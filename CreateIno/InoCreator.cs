@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -64,6 +65,42 @@ namespace CreateIno
         private string TargetDirectory(string relativeFilename)
         {
             return Path.Combine(_sourcePath, "christmas-lights", relativeFilename);
+        }
+
+        internal void YieldHeaderAndSource(string path, List<string> files)
+        {
+            foreach (var file in files)
+            {
+                AddFileWithoutIncludes(Path.Combine(path, $"{file}.h"));
+                AddFileWithoutIncludes(Path.Combine(path, $"{file}.cpp"));
+            }
+        }
+
+        string ToCamelCase(string variable)
+        {
+            return char.ToLowerInvariant(variable[0]) + variable.Substring(1);
+        }
+
+        internal void YieldInstances(IEnumerable<string> animations)
+        {
+            foreach (var animation in animations)
+            {
+                AddLine($"{animation} {ToCamelCase(animation)}(&strip);");
+            }
+        }
+
+        private string YieldPointer(IEnumerable<string> animations)
+        {
+            return string.Join(",\n", animations.Select(animation => $"    &{ToCamelCase(animation)}");
+        }
+
+        internal void YieldArrays(string type, IEnumerable<string> animations)
+        {
+            AddLine(string.Empty);
+            AddLine($"{type}* {type.ToLower()}s[] = {{");
+            AddLine(YieldPointer(animations));
+            AddLine("}");
+            ino.AddLine(string.Empty);
         }
     }
 }

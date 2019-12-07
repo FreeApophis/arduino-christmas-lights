@@ -162,6 +162,7 @@ ChristmasWave christmasWave(&strip);
 // ID: 0xb001
 WarmWhiteShimmer warmWhiteShimmer(&strip);
 
+// ID: 0xb002
 Fire fire(&strip);
 
 // Instantiate Clearance Animations
