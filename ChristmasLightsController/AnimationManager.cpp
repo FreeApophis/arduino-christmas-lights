@@ -3,6 +3,7 @@
 #include "framework.h"
 
 #include <cstdint>
+#include "manipulation/Clear.h"
 
 AnimationManager::AnimationManager(AbstractLedStrip* strip, Animation* animations[], byte numberOfAnimations, Clearance* clearances[], byte numberOfClearances) :
     _strip(strip),
@@ -46,7 +47,7 @@ void AnimationManager::Init(Animation* animation)
 
     SetStepSettings();
 
-    _strip->clear();
+    Clear(_strip);
     _currentAnimation->SetNeedsClearance(false);
     _currentAnimation->Init();
     _strip->show();

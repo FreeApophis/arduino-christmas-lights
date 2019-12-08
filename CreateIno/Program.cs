@@ -25,11 +25,13 @@ namespace CreateIno
         {
             var ino = new InoCreator(args.First());
 
-            ino.AddLine("#include <Adafruit_NeoPixel.h>");
+
+            ino.AddLine("#include <Adafruit_WS2801.h>");
+            ino.AddLine("#include <SPI.h>");
             ino.AddLine("#include <WiFi101.h>");
             ino.AddLine("#include <MQTT.h>");
             ino.AddLine(string.Empty);
-            ino.AddLine("#define AbstractLedStrip Adafruit_NeoPixel");
+            ino.AddLine("#define AbstractLedStrip Adafruit_WS2801");
             ino.AddLine(string.Empty);
 
             DefineConstants(ino);
@@ -38,7 +40,7 @@ namespace CreateIno
             AddClearances(ino);
 
             ino.AddLine(string.Empty);
-            ino.AddLine("Adafruit_NeoPixel strip = Adafruit_NeoPixel(NumberOfPixels, LedControlPin, NEO_GRB + NEO_KHZ800);");
+            ino.AddLine("Adafruit_WS2801 strip = Adafruit_WS2801(pixelCount, dataPin, clockPin);");
 
             AddLogic(ino);
 
@@ -52,12 +54,18 @@ namespace CreateIno
             ino.AddLine("const char ssid[] = \"ssid\";");
             ino.AddLine("const char pass[] = \"pass\";");
             ino.AddLine(string.Empty);
-            ino.AddFile("LightsController.cpp", 57, 65);
+            ino.AddLine("uint8_t dataPin = 11;");
+            ino.AddLine("uint8_t clockPin = 13;");
+            ino.AddLine("uint8_t pixelCount = 100;");
+            ino.AddLine(string.Empty);
         }
 
         private static void AddHelpers(InoCreator ino)
         {
             ino.AddLine("/* Helper */");
+
+            ino.AddFileWithoutIncludes(Path.Combine("manipulation", "Clear.h"));
+            ino.AddFileWithoutIncludes(Path.Combine("manipulation", "Clear.cpp"));
 
             ino.AddFileWithoutIncludes(Path.Combine("manipulation", "ColorManipulation.h"));
             ino.AddFileWithoutIncludes(Path.Combine("manipulation", "ColorManipulation.cpp"));
@@ -70,7 +78,9 @@ namespace CreateIno
 
             ino.AddFileWithoutIncludes(Path.Combine("manipulation", "Crawl.h"));
             ino.AddFileWithoutIncludes(Path.Combine("manipulation", "Crawl.cpp"));
-
+            
+            ino.AddFileWithoutIncludes(Path.Combine("manipulation", "RandomWalk.h"));
+            ino.AddFileWithoutIncludes(Path.Combine("manipulation", "RandomWalk.cpp"));
         }
 
         private static void AddAnimations(InoCreator ino)
@@ -192,6 +202,11 @@ namespace CreateIno
             ino.AddFileWithoutIncludes(Path.Combine("animation", "ChristmasWave.h"));
             ino.AddFileWithoutIncludes(Path.Combine("animation", "ChristmasWave.cpp"));
 
+            ino.AddFileWithoutIncludes(Path.Combine("animation", "WarmWhiteShimmer.h"));
+            ino.AddFileWithoutIncludes(Path.Combine("animation", "WarmWhiteShimmer.cpp"));
+
+            ino.AddFileWithoutIncludes(Path.Combine("animation", "Fire.h"));
+            ino.AddFileWithoutIncludes(Path.Combine("animation", "Fire.cpp"));
         }
 
         private static void AddClearances(InoCreator ino)
@@ -225,7 +240,7 @@ namespace CreateIno
             ino.AddFileWithoutIncludes("AnimationManager.cpp");
 
             // animation instances ...
-            ino.AddFile("LightsController.cpp", 77, 215);
+            ino.AddFile("LightsController.cpp", 80, 223);
 
             // The arduino specific code
             ino.AddFile("arduino.template");

@@ -1,6 +1,7 @@
 #include "MergeWave.h"
 
 #include "manipulation/ColorManipulation.h"
+#include "manipulation/Clear.h"
 
 MergeWave::MergeWave(AbstractLedStrip* strip) :
     Animation(0x010c, strip, 3, 20),
@@ -17,7 +18,7 @@ void MergeWave::Init()
     r = _strip->numPixels() - 1;
     index = random(256);
     len = random(8, 17);
-    _strip->clear();
+    Clear(_strip);
 }
 
 void MergeWave::Show()

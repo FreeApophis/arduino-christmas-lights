@@ -23,6 +23,8 @@ namespace ChristmasLightsSimulator
 
             AnimationDropDown.ItemsSource = AllAnimations.Values;
 
+            var x = string.Join("\n", AllAnimations.Select(a => $"{a.Key}:{a.Value}"));
+
             _lastLoop = DateTime.Now;
             _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(50) };
             _timer.Tick += Loop;

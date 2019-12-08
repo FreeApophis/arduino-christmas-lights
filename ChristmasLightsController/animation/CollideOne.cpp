@@ -1,5 +1,6 @@
 #include "CollideOne.h"
 
+#include "manipulation/Clear.h"
 #include "manipulation/ColorManipulation.h"
 
 CollideOne::CollideOne(AbstractLedStrip* strip) :
@@ -20,7 +21,7 @@ void CollideOne::Init()
     _leftColor = ColorFromColorWheel(w);
     w += random(8, 16);
     _rightColor = ColorFromColorWheel(w);
-    _strip->clear();
+    Clear(_strip);
     _isBooom = false;
 }
 

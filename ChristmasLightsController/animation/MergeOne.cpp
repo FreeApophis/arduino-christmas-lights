@@ -1,5 +1,6 @@
 #include "MergeOne.h"
 
+#include "manipulation/Clear.h"
 #include "manipulation/ColorManipulation.h"
 
 MergeOne::MergeOne(AbstractLedStrip* strip) :
@@ -19,7 +20,7 @@ void MergeOne::Init()
     cl = ColorFromColorWheel(indx);
     indx += random(4, 16);
     cr = ColorFromColorWheel(indx);
-    _strip->clear();
+    Clear(_strip);
 }
 
 void MergeOne::Show()

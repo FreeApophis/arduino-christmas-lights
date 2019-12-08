@@ -4,10 +4,6 @@
 
 #include "framework.h"
 
-void loop()
-{
-}
-
 Fire::Fire(AbstractLedStrip* strip) :
     Animation(0xb002, strip, 2, 6)
 {

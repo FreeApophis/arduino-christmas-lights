@@ -201,6 +201,7 @@
     <ClInclude Include="clearance\ClearHalf.h" />
     <ClInclude Include="clearance\ClearSide.h" />
     <ClInclude Include="clearance\EatFromCenter.h" />
+    <ClInclude Include="manipulation\Clear.h" />
     <ClInclude Include="manipulation\ColorManipulation.h" />
     <ClInclude Include="manipulation\Crawl.h" />
     <ClInclude Include="manipulation\CrawlDirection.h" />
@@ -257,6 +258,7 @@
     <ClCompile Include="clearance\ClearHalf.cpp" />
     <ClCompile Include="clearance\ClearSide.cpp" />
     <ClCompile Include="clearance\EatFromCenter.cpp" />
+    <ClCompile Include="manipulation\Clear.cpp" />
     <ClCompile Include="manipulation\ColorManipulation.cpp" />
     <ClCompile Include="manipulation\CrawlDirection.cpp" />
     <ClCompile Include="framework.cpp" />

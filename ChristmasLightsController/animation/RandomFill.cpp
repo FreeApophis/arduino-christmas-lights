@@ -1,6 +1,7 @@
 #include "RandomFill.h"
 
 #include "manipulation/ColorManipulation.h"
+#include "manipulation/Clear.h"
 
 RandomFill::RandomFill(AbstractLedStrip* strip) :
     Animation(0x0115, strip, 2, 4),
@@ -24,7 +25,7 @@ void RandomFill::Show()
     if (_brightnessManipulation.change(pos, val)) {
         if (remain <= 0) {
             if (clr) {
-                _strip->clear();
+                Clear(_strip);
                 w += 71;
                 Init();
                 _complete = true;

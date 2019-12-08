@@ -68,7 +68,7 @@ void connectMqtt() {
 
 void openSerialPort() {
   Serial.begin(9600);
-  while (!Serial) {}
+  // while (!Serial) {}
 }
 
 void setup()
@@ -79,7 +79,6 @@ void setup()
     connectMqtt();
 
     strip.begin();
-    strip.setBrightness(PixelBrightness);
     strip.show();
 
 	pinMode(LED_BUILTIN, OUTPUT);

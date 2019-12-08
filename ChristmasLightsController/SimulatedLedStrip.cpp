@@ -28,13 +28,6 @@ void SimulatedLedStrip::setPixelColor(uint16_t n, uint32_t c)
     }
 }
 
-void SimulatedLedStrip::clear()
-{
-    for (auto& pixel : _pixels) {
-        pixel = 0;
-    }
-}
-
 void SimulatedLedStrip::show()
 {
     // Well here we are...

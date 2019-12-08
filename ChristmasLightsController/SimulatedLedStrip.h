@@ -14,7 +14,6 @@ class SimulatedLedStrip : public AbstractLedStrip {
     uint16_t numPixels() const override;
     uint32_t getPixelColor(uint16_t n) const override;
     void setPixelColor(uint16_t n, uint32_t c) override;
-    void clear() override;
     void show() override;
     void begin() override;
     void setBrightness(uint8_t brightness) override;
