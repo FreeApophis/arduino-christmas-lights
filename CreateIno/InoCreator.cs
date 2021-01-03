@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Funcky.Extensions;
 
 namespace CreateIno
 {
     internal class InoCreator
     {
+        private const int NoIncludesOffset = 1;
+        private const int NoIncludesNextLine = 1;
+
         private readonly string _sourcePath;
-        private readonly List<string> _lines = new List<string>();
+        private readonly List<string> _lines = new();
 
         public InoCreator(string sourcePath)
         {
@@ -17,82 +20,58 @@ namespace CreateIno
         }
 
         public void AddFile(string relativeFilename, int? from = null, int? to = null)
-        {
-            _lines.AddRange(
-                File
-                    .ReadAllLines(SourceDirectory(relativeFilename), Encoding.UTF8)
-                    .Select((line, index) => (line, index))
-                    .Where(l => IsSelectedLine(l.index, from, to))
-                    .Select(l => l.line)
-                );
-        }
+            => _lines.AddRange(LinesFromFile(relativeFilename, from, to));
+
+        private IEnumerable<string> LinesFromFile(string relativeFilename, int? from, int? to)
+            => File
+                .ReadAllLines(SourceDirectory(relativeFilename), Encoding.UTF8)
+                .Select((line, index) => (line, index))
+                .Where(l => IsSelectedLine(l.index, from, to))
+                .Select(l => l.line);
 
         public void AddFileWithoutIncludes(string relativeFilename)
-        {
-            var offset = 1;
-            var nextLine = 1;
+            => AddFile(relativeFilename, LastInclude(relativeFilename) + NoIncludesOffset + NoIncludesNextLine);
 
-            var lastInclude = File
+        private int LastInclude(string relativeFilename)
+            => File
                 .ReadAllLines(SourceDirectory(relativeFilename), Encoding.UTF8)
                 .Select((line, index) => (line, index))
                 .LastOrDefault(l => l.line.StartsWith("#include"))
                 .index;
 
-            AddFile(relativeFilename, lastInclude + offset + nextLine);
-        }
-
         private string SourceDirectory(string relativeFilename)
-        {
-            return Path.Combine(_sourcePath, "ChristmasLightsController", relativeFilename);
-        }
+            => Path.Combine(_sourcePath, "ChristmasLightsController", relativeFilename);
 
-        private bool IsSelectedLine(int index, int? from, int? to)
-        {
-            return (!from.HasValue || from.Value <= index + 1) &&
-                   (!to.HasValue || to.Value >= index);
-        }
+        private static bool IsSelectedLine(int index, int? from, int? to)
+            => (!from.HasValue || from.Value <= index + 1) &&
+               (!to.HasValue || to.Value >= index);
 
         public void AddLine(string line)
-        {
-            _lines.Add(line);
-        }
+            => _lines.Add(line);
 
         public void Save(string relativeFilename)
-        {
-            File.WriteAllLines(TargetDirectory(relativeFilename), _lines);
-        }
+            => File.WriteAllLines(TargetDirectory(relativeFilename), _lines);
 
         private string TargetDirectory(string relativeFilename)
-        {
-            return Path.Combine(_sourcePath, "christmas-lights", relativeFilename);
-        }
+            => Path.Combine(_sourcePath, "christmas-lights", relativeFilename);
 
         internal void YieldHeaderAndSource(string path, List<string> files)
+            => files.ForEach(file => ConcatHeaderAndCpp(path, file));
+
+        private void ConcatHeaderAndCpp(string path, string file)
         {
-            foreach (var file in files)
-            {
-                AddFileWithoutIncludes(Path.Combine(path, $"{file}.h"));
-                AddFileWithoutIncludes(Path.Combine(path, $"{file}.cpp"));
-            }
+            AddFileWithoutIncludes(Path.Combine(path, $"{file}.h"));
+            AddFileWithoutIncludes(Path.Combine(path, $"{file}.cpp"));
         }
 
-        string ToCamelCase(string variable)
-        {
-            return char.ToLowerInvariant(variable[0]) + variable.Substring(1);
-        }
+        private static string ToCamelCase(string variable)
+            => char.ToLowerInvariant(variable[0]) + variable.Substring(1);
 
-        internal void YieldInstances(IEnumerable<string> animations)
-        {
-            foreach (var animation in animations)
-            {
-                AddLine($"{animation} {ToCamelCase(animation)}(&strip);");
-            }
-        }
+        internal void YieldInstances(IEnumerable<string> animations) 
+            => animations.ForEach(animation => AddLine($"{animation} {ToCamelCase(animation)}(&strip);"));
 
-        private string YieldPointer(IEnumerable<string> animations)
-        {
-            return string.Join(",\n", animations.Select(animation => $"    &{ToCamelCase(animation)}"));
-        }
+        private static string YieldPointer(IEnumerable<string> animations)
+            => string.Join(",\n", animations.Select(animation => $"    &{ToCamelCase(animation)}"));
 
         internal void YieldArrays(string type, IEnumerable<string> animations)
         {

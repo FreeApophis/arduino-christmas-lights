@@ -5,7 +5,7 @@ namespace ChristmasLightsSimulator
 {
     static class Animations
     {
-        public static Dictionary<ushort, string> AllAnimations { get; } = new Dictionary<ushort, string>
+        public static Dictionary<ushort, string> AllAnimations { get; } = new()
         {
             {0x0000, "Off"},
             {0x0100, "CenterRun"},
@@ -53,6 +53,6 @@ namespace ChristmasLightsSimulator
         public static string ToAnimationName(ushort currentAnimationId)
             => AllAnimations
                 .TryGetValue(key: currentAnimationId)
-                .OrElse("N/A!");
+                .GetOrElse("N/A!");
     }
 }

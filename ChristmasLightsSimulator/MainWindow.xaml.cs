@@ -6,6 +6,8 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Funcky.Extensions;
+using Funcky.Monads;
 using static ChristmasLightsSimulator.Animations;
 
 namespace ChristmasLightsSimulator
@@ -33,12 +35,12 @@ namespace ChristmasLightsSimulator
 
         private DateTime _lastLoop;
         private readonly DispatcherTimer _timer;
-        private readonly List<Ellipse> _ellipses = new List<Ellipse>();
-        private int _frame = 0;
+        private readonly List<Ellipse> _ellipses = new();
+        private int _frame;
 
 
 
-        private void Loop(object sender, EventArgs e)
+        private void Loop(object? sender, EventArgs e)
         {
             FrameLabel.Content = $"Frame: {++_frame} / Animation {ToAnimationName(ChristmasLightsController.CurrentAnimationId())}";
             var elapsed = DateTime.Now - _lastLoop;
@@ -59,7 +61,6 @@ namespace ChristmasLightsSimulator
                 Canvas.SetTop(led, TopFromIndex(index));
                 MainCanvas.Children.Add(led);
                 _ellipses.Add(led);
-
             }
         }
 
@@ -72,27 +73,24 @@ namespace ChristmasLightsSimulator
         }
 
         private double LeftFromIndex(int index)
-        {
-            return index * 8 + ((index + 5) / 5) * 12;
-        }
+            => index * 8 + (index + 5) / 5 * 12;
 
         private Ellipse CreateLed()
-        {
-            return new Ellipse { Width = 15, Height = 15, Fill = Brushes.Red, Stroke = Brushes.Black };
-        }
+            => new() { Width = 15, Height = 15, Fill = Brushes.Red, Stroke = Brushes.Black };
 
         private void OnAnimationChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count == 1)
             {
-                foreach (var (animationId, animationName) in AllAnimations)
-                {
-                    if (animationName == (string)e.AddedItems[0])
-                    {
-                        ChristmasLightsController.SetAnimation(animationId);
-                    }
-                }
+                AnimationId(e.AddedItems[0] as string)
+                    .AndThen(ChristmasLightsController.SetAnimation);
             }
         }
+
+        private static Option<ushort> AnimationId(string? animationName)
+            => AllAnimations
+                .Where(a => a.Value == animationName)
+                .FirstOrNone()
+                .AndThen(a => a.Key);
     }
 }

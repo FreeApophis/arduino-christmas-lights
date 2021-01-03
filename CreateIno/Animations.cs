@@ -4,7 +4,8 @@ namespace CreateIno
 {
     class ChristmasAnimations
     {
-        static public List<string> Animations { get; } = new List<string>{
+        public static List<string> Animations { get; } = new()
+        {
             "CenterRun",
             "CollideOne",
             "ColorSwing",
@@ -44,7 +45,7 @@ namespace CreateIno
             "Fire",
         };
 
-        static public List<string> Clearances { get; } = new List<string>
+        public static List<string> Clearances { get; } = new()
         {
             "Brighten",
             "ClearFade",

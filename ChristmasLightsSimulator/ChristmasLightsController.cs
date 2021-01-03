@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Media;
+using Funcky.Extensions;
+using Funcky.Monads;
 
 namespace ChristmasLightsSimulator
 {
@@ -10,6 +12,9 @@ namespace ChristmasLightsSimulator
 
     {
         private const int ColorIntSize = 4;
+        private const int Red = 2;
+        private const int Green = 1;
+        private const int Blue = 0;
 
         [DllImport("ChristmasLightsController.dll", EntryPoint = "setup")]
         public static extern ushort Setup();
@@ -23,27 +28,38 @@ namespace ChristmasLightsSimulator
         [DllImport("ChristmasLightsController.dll", EntryPoint = "currentAnimationId")]
         public static extern ushort CurrentAnimationId();
 
+        public static IEnumerable<Color> Loop(int count, long millis)
+            => TransformLeds(count, PointerLoop(millis));
 
-        public static List<Color> Loop(int count, long millis)
-        {
-            var result = new List<Color>();
+        private static IEnumerable<Color> TransformLeds(int count, IntPtr leds)
+            => Enumerable.Range(0, count)
+                .WhereSelect(ExtractPixelColor(leds));
 
-            var leds = PointerLoop(millis);
+        private static Func<int, Option<Color>> ExtractPixelColor(IntPtr leds)
+            => index => ToColor(leds.At(index));
 
-            foreach (var led in Enumerable.Range(0, count))
-            {
-                var ledColorPointer = IntPtr.Add(leds, led * ColorIntSize);
-                var ledColor = (uint)Marshal.PtrToStructure(ledColorPointer, typeof(uint));
+        private static IntPtr At(this IntPtr leds, int index)
+            => IntPtr.Add(leds, index * ColorIntSize);
 
-                result.Add(Color.FromRgb(
-                    (byte)(ledColor / 256 / 256 % 256),
-                    (byte)(ledColor / 256 % 256),
-                    (byte)(ledColor % 256)));
-            }
+        private static Option<Color> ToColor(IntPtr led)
+            => from r in ExtractColor(led, Red)
+               from g in ExtractColor(led, Green)
+               from b in ExtractColor(led, Blue)
+               select Color.FromRgb(r, g, b);
 
+        private static Option<byte> ExtractColor(IntPtr led, int position)
+            => ColorValue(led).AndThen(ExtractByte(position));
 
-            return result;
-        }
+        private static Option<uint> ColorValue(IntPtr led)
+            => Marshal.PtrToStructure(led, typeof(uint)) is uint colorValue
+                ? Option.Some(colorValue)
+                : Option<uint>.None();
 
+        private static Func<uint, byte> ExtractByte(int position)
+            => l
+                => (byte)((l >> (position * 8)) % ByteSize);
+
+        private static uint ByteSize
+            => byte.MaxValue + 1;
     }
 }

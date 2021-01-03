@@ -19,7 +19,7 @@ namespace CreateIno
         {
             Console.WriteLine("no path set!");
 
-            return new Unit();
+            return new();
         }
 
         private static Unit CreateInoFile(string[] args)
@@ -46,7 +46,7 @@ namespace CreateIno
 
             ino.Save("christmas-lights.ino");
 
-            return new Unit();
+            return new();
         }
 
         private static void DefineConstants(InoCreator ino)
